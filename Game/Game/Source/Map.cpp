@@ -3,6 +3,7 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Map.h"
+#include "Physics.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -189,6 +190,13 @@ bool Map::Load()
     {
         ret = LoadAllLayers(mapFileXML.child("map"));
     }
+    
+    // L07 TODO 3: Create colliders
+    // Later you can create a function here to load and create the colliders from the map
+    app->physics->CreateRectangle(1024, 32, 2048, 64, STATIC);
+    app->physics->CreateRectangle(416, 416, 128, 64, STATIC);
+    app->physics->CreateRectangle(352, 576, 256, 64, STATIC);
+    app->physics->CreateRectangle(272, 736, 544, 64, STATIC);
 
     if(ret == true)
     {
