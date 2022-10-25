@@ -79,6 +79,15 @@ bool Scene::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		if (app->render->DebugCamera == false)
+			app->render->DebugCamera = true;
+		else
+			app->render->DebugCamera = false;
+	}
+		
+
+	if (app->render->DebugCamera == true) {
 	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		app->render->camera.y += 1;
 
@@ -90,6 +99,8 @@ bool Scene::Update(float dt)
 
 	if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		app->render->camera.x -= 1;
+
+	}
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
 

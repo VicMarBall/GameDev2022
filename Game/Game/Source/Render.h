@@ -46,6 +46,9 @@ public:
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
 
+	//debug camera
+	bool DebugCamera = false; 
+
 public:
 
 	SDL_Renderer* renderer;
