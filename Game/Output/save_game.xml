@@ -5,10 +5,12 @@
 	<textures />
 	<audio />
 	<:anonymous />
-	<scene />
+	<scene>
+		<player x="715" y="607" />
+	</scene>
 	<entitymanager />
 	<map />
 	<renderer>
-		<camera x="-192" y="-288" />
+		<camera x="-345" y="-288" />
 	</renderer>
 </save_state>
