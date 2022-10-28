@@ -38,6 +38,8 @@ public:
 
 	//L02: DONE 3: Declare a Player attribute 
 	Player* player;
+	bool LoadState(pugi::xml_node&);
+	bool SaveState(pugi::xml_node&);
 
 private:
 	SDL_Texture* img;
