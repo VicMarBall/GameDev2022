@@ -27,6 +27,8 @@ public:
 
 private:
 
+	bool onAir;
+
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;
 	const char* texturePath;

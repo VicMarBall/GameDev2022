@@ -29,6 +29,7 @@ bool Player::Awake() {
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
 
+
 	return true;
 }
 
@@ -40,6 +41,8 @@ bool Player::Start() {
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);
 	pBody->body->SetFixedRotation(true);
+
+	onAir = true;
 
 	return true;
 }
@@ -57,7 +60,10 @@ bool Player::Update()
 
 
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-		//position.y += 1;
+		if (onAir) {
+			velocity.y = 20;
+			velocity.x = 0;
+		}
 	}
 	
 
