@@ -41,6 +41,8 @@ bool Player::Start() {
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);
 	pBody->body->SetFixedRotation(true);
+	pBody->listener = (Module*)(app->entityManager);
+	pBody->entity = this;
 
 	onAir = true;
 
@@ -91,4 +93,9 @@ bool Player::CleanUp()
 {
 
 	return true;
+}
+
+void Player::OnCollision()
+{
+	onAir = false;
 }

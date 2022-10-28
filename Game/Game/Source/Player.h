@@ -23,6 +23,8 @@ public:
 
 	bool CleanUp();
 
+	void OnCollision();
+
 public:
 
 private:

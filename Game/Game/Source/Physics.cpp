@@ -366,6 +366,18 @@ void Physics::BeginContact(b2Contact* contact)
 		physB->listener->OnCollision(physB, physA);
 }
 
+void Physics::EndContact(b2Contact* contact)
+{
+	PhysBody* physA = (PhysBody*)contact->GetFixtureA()->GetBody()->GetUserData();
+	PhysBody* physB = (PhysBody*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+	if (physA && physA->listener != NULL)
+		physA->listener->EndCollision(physA, physB);
+
+	if (physB && physB->listener != NULL)
+		physB->listener->EndCollision(physB, physA);
+}
+
 b2RevoluteJoint* Physics::CreateRevoluteJoint(PhysBody* A, b2Vec2 anchorA, PhysBody* B, b2Vec2 anchorB, float angle, bool collideConnected, bool enableLimit)
 {
 	b2RevoluteJointDef revoluteJointDef;

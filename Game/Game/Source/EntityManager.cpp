@@ -4,6 +4,7 @@
 #include "App.h"
 #include "Textures.h"
 #include "Scene.h"
+#include "Physics.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -115,6 +116,13 @@ void EntityManager::DestroyEntity(Entity* entity)
 void EntityManager::AddEntity(Entity* entity)
 {
 	if ( entity != nullptr) entities.Add(entity);
+}
+
+void EntityManager::OnCollision(PhysBody* pBody1, PhysBody* pBody2)
+{
+	if (pBody1->entity != nullptr) {
+		pBody1->entity->OnCollision();
+	}
 }
 
 bool EntityManager::Update(float dt)

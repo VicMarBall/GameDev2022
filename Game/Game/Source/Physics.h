@@ -3,6 +3,8 @@
 
 #include "Box2D/Box2D/Box2D.h"
 
+#include "EntityManager.h"
+
 #define GRAVITY_X 0.0f
 #define GRAVITY_Y -20.0f
 
@@ -29,7 +31,7 @@ enum bodyType {
 class PhysBody
 {
 public:
-	PhysBody() : listener(NULL), body(NULL)
+	PhysBody() : listener(NULL), body(NULL), entity(NULL)
 	{}
 
 	void GetPosition(int& x, int& y) const;
@@ -41,6 +43,7 @@ public:
 	int width, height;
 	b2Body* body;
 	Module* listener;
+	Entity* entity;
 };
 
 // Module --------------------------------------
@@ -66,6 +69,8 @@ public:
 	
 	// b2ContactListener ---
 	void BeginContact(b2Contact* contact);
+
+	void EndContact(b2Contact* contact);
 
 	b2World* world;
 	bool debug = true;
