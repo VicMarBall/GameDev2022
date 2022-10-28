@@ -25,11 +25,15 @@ public:
 
 	void OnCollision();
 
+	void EndCollision();
+
 public:
 
 private:
 
 	bool onAir;
+
+	bool canDoubleJump;
 
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;

@@ -71,6 +71,10 @@ public:
 	
 	};
 
+	virtual void EndCollision() {
+
+	};
+
 public:
 
 	SString name;

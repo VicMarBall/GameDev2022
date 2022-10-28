@@ -41,7 +41,7 @@ bool Player::Start() {
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);
 	pBody->body->SetFixedRotation(true);
-	pBody->listener = (Module*)(app->entityManager);
+	pBody->listener = app->entityManager;
 	pBody->entity = this;
 
 	onAir = true;
@@ -55,9 +55,16 @@ bool Player::Update()
 	b2Vec2 velocity = pBody->body->GetLinearVelocity();
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-		//position.y -= 1;
-		velocity.y = -10;
-		
+		if (onAir) {
+			if (canDoubleJump) {
+				velocity.y = -10;
+				canDoubleJump = false;
+			}
+		}
+		else {
+			//position.y -= 1;
+			velocity.y = -10;
+		}
 	}
 
 
@@ -98,4 +105,10 @@ bool Player::CleanUp()
 void Player::OnCollision()
 {
 	onAir = false;
+	canDoubleJump = true;
+}
+
+void Player::EndCollision()
+{
+	onAir = true;
 }

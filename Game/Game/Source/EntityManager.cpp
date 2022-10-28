@@ -125,6 +125,13 @@ void EntityManager::OnCollision(PhysBody* pBody1, PhysBody* pBody2)
 	}
 }
 
+void EntityManager::EndCollision(PhysBody* pBody1, PhysBody* pBody2)
+{
+	if (pBody1->entity != nullptr) {
+		pBody1->entity->EndCollision();
+	}
+}
+
 bool EntityManager::Update(float dt)
 {
 	bool ret = true;
