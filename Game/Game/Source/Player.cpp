@@ -29,7 +29,6 @@ bool Player::Awake() {
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
 
-
 	return true;
 }
 
@@ -45,6 +44,8 @@ bool Player::Start() {
 	pBody->entity = this;
 
 	onAir = true;
+
+	maxSpeed = 6;
 
 	return true;
 }
@@ -77,14 +78,22 @@ bool Player::Update()
 	
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		//position.x -= 1;
-		velocity.x = -5;
+		if (velocity.x > -maxSpeed) {
+			velocity.x -= 3;
+		}
+		if (velocity.x < -maxSpeed) {
+			velocity.x = -maxSpeed;
+		}
 	}
 
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		//position.x += 1;
-		velocity.x = 5;
+		if (velocity.x < maxSpeed) {
+			velocity.x += 3;
+		}
+		if (velocity.x > maxSpeed) {
+			velocity.x = maxSpeed;
+		}
 	}
 
 	pBody->body->SetLinearVelocity(velocity);

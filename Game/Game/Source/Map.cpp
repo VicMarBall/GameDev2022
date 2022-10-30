@@ -198,8 +198,7 @@ bool Map::Load()
 	{
 		for (pugi::xml_node objectNode = objectgroupNode.child("object"); objectNode; objectNode = objectNode.next_sibling("object")) {
 			SDL_Rect rect = { objectNode.attribute("x").as_int(), objectNode.attribute("y").as_int(), objectNode.attribute("width").as_int(), objectNode.attribute("height").as_int() };
-			app->physics->CreateRectangle(rect.x + (rect.w/2), rect.y + (rect.h / 2), rect.w, rect.h, STATIC);
-
+			PhysBody* pBody = app->physics->CreateRectangle(rect.x + (rect.w/2), rect.y + (rect.h / 2), rect.w, rect.h, STATIC);
 		}
 	}
 

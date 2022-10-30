@@ -32,8 +32,9 @@ public:
 private:
 
 	bool onAir;
-
 	bool canDoubleJump;
+
+	float maxSpeed;
 
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;
