@@ -37,6 +37,16 @@ bool Player::Start() {
 	//initilize textures
 	texture = app->tex->Load(texturePath);
 
+	idle.PushBack({0, 0, 32, 32});
+	idle.PushBack({ 32, 0, 32, 32 });
+	idle.speed = 0.1f;
+
+	walking.PushBack({0, 0, 32, 32});
+	walking.PushBack({0, 32, 32, 32});
+	walking.speed = 0.2f;
+
+	jumping.PushBack({0, 32, 32, 32});
+
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);
 	pBody->body->SetFixedRotation(true);
@@ -54,8 +64,14 @@ bool Player::Update()
 {
 	// L07 TODO 5: Add physics to the player - updated player position using physics
 	b2Vec2 velocity = pBody->body->GetLinearVelocity();
+	Animation* currentAnimation = &idle;
+	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
+
+
+
 
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
+	// jump
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 		if (!groundPounding) {
 			if (onAir) {
@@ -70,6 +86,7 @@ bool Player::Update()
 		}
 	}
 
+	// groundPound
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN) {
 		if (onAir) {
 			groundPounding = true;
@@ -78,7 +95,7 @@ bool Player::Update()
 		}
 	}
 	
-
+	// go left
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		if (!groundPounding) {
 			if (velocity.x > -maxSpeed) {
@@ -91,10 +108,11 @@ bool Player::Update()
 
 				//velocity.x -= 3;
 			}
+			currentAnimation = &walking;
 		}
 	}
 
-
+	// go right
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		if (!groundPounding) {
 			if (velocity.x < maxSpeed) {
@@ -107,7 +125,13 @@ bool Player::Update()
 
 				//velocity.x += 3;
 			}
+			currentAnimation = &walking;
+
 		}
+	}
+
+	if (onAir) {
+		currentAnimation = &jumping;
 	}
 
 	if (velocity.x < -maxSpeed) {
@@ -119,8 +143,12 @@ bool Player::Update()
 
 	pBody->body->SetLinearVelocity(velocity);
 
+	currentFrame = currentAnimation->GetCurrentFrame();
+	currentAnimation->Update();
+
+
 	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x, position.y);
+	app->render->DrawTexture(texture, position.x, position.y, &currentFrame);
 
 	return true;
 }
