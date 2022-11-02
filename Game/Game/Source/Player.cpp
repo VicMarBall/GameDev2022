@@ -111,13 +111,17 @@ bool Player::CleanUp()
 	return true;
 }
 
-void Player::OnCollision()
+void Player::OnCollision(PhysBody* otherBody)
 {
-	onAir = false;
-	canDoubleJump = true;
+	if (otherBody->typeTerrain == FLOOR) {
+		onAir = false;
+		canDoubleJump = true;
+	}
 }
 
-void Player::EndCollision()
+void Player::EndCollision(PhysBody* otherBody)
 {
-	onAir = true;
+	if (otherBody->typeTerrain == FLOOR) {
+		onAir = true;
+	}
 }

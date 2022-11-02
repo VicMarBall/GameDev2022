@@ -199,6 +199,12 @@ bool Map::Load()
 		for (pugi::xml_node objectNode = objectgroupNode.child("object"); objectNode; objectNode = objectNode.next_sibling("object")) {
 			SDL_Rect rect = { objectNode.attribute("x").as_int(), objectNode.attribute("y").as_int(), objectNode.attribute("width").as_int(), objectNode.attribute("height").as_int() };
 			PhysBody* pBody = app->physics->CreateRectangle(rect.x + (rect.w/2), rect.y + (rect.h / 2), rect.w, rect.h, STATIC);
+			if (objectgroupNode.child("properties").child("property").attribute("value").as_bool()) {
+				pBody->typeTerrain = FLOOR;
+			}
+			else {
+				pBody->typeTerrain = WALL;
+			}
 		}
 	}
 

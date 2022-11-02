@@ -67,11 +67,11 @@ public:
 		}
 	}
 
-	virtual void OnCollision() {
+	virtual void OnCollision(PhysBody* otherBody) {
 	
 	};
 
-	virtual void EndCollision() {
+	virtual void EndCollision(PhysBody* otherBody) {
 
 	};
 

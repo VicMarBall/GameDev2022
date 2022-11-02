@@ -121,14 +121,14 @@ void EntityManager::AddEntity(Entity* entity)
 void EntityManager::OnCollision(PhysBody* pBody1, PhysBody* pBody2)
 {
 	if (pBody1->entity != nullptr) {
-		pBody1->entity->OnCollision();
+		pBody1->entity->OnCollision(pBody2);
 	}
 }
 
 void EntityManager::EndCollision(PhysBody* pBody1, PhysBody* pBody2)
 {
 	if (pBody1->entity != nullptr) {
-		pBody1->entity->EndCollision();
+		pBody1->entity->EndCollision(pBody2);
 	}
 }
 

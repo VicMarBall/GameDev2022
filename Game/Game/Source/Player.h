@@ -23,9 +23,9 @@ public:
 
 	bool CleanUp();
 
-	void OnCollision();
+	void OnCollision(PhysBody* otherBody);
 
-	void EndCollision();
+	void EndCollision(PhysBody* otherBody);
 
 public:
 
