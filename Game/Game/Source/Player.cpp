@@ -57,7 +57,10 @@ bool Player::Update()
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 		if (onAir) {
-			if (canDoubleJump) {
+			if (coyoteJumpTime > 0) {
+				velocity.y = -10;
+			}
+			else if (canDoubleJump) {
 				velocity.y = -10;
 				canDoubleJump = false;
 			}
@@ -66,7 +69,9 @@ bool Player::Update()
 			//position.y -= 1;
 			velocity.y = -10;
 		}
+		coyoteJumpTime = 0;
 	}
+	coyoteJumpTime--;
 
 
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN) {
@@ -116,6 +121,7 @@ void Player::OnCollision(PhysBody* otherBody)
 	if (otherBody->typeTerrain == FLOOR) {
 		onAir = false;
 		canDoubleJump = true;
+		coyoteJumpTime = 50;
 	}
 }
 
