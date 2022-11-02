@@ -8213,22 +8213,22 @@
   <properties>
    <property name="isFloor" type="bool" value="true"/>
   </properties>
-  <object id="22" x="94" y="160" width="128"/>
+  <object id="22" x="94" y="160" width="127"/>
   <object id="23" x="222" y="576" width="260"/>
-  <object id="24" x="482" y="512" width="188"/>
-  <object id="25" x="670" y="640" width="224"/>
-  <object id="26" x="962" y="640" width="256"/>
+  <object id="24" x="483" y="512" width="186"/>
+  <object id="25" x="670" y="640" width="223"/>
+  <object id="26" x="963" y="640" width="255"/>
  </objectgroup>
  <objectgroup id="4" name="Walls">
   <properties>
    <property name="isFloor" type="bool" value="false"/>
   </properties>
-  <object id="27" x="94" y="0" height="160"/>
-  <object id="28" x="222" y="160" height="416"/>
-  <object id="29" x="482" y="512" height="64"/>
-  <object id="30" x="670" y="512" height="128"/>
-  <object id="31" x="894" y="640" height="224"/>
-  <object id="32" x="962" y="640" height="224"/>
-  <object id="33" x="1218" y="0" height="640"/>
+  <object id="27" x="93" y="0" width="1" height="160"/>
+  <object id="28" x="221" y="160" width="1" height="416"/>
+  <object id="29" x="482" y="512" width="1" height="64"/>
+  <object id="30" x="669" y="512" width="1" height="128"/>
+  <object id="31" x="893" y="640" width="1" height="224"/>
+  <object id="32" x="962" y="640" width="1" height="224"/>
+  <object id="33" x="1218" y="0" width="1" height="640"/>
  </objectgroup>
 </map>
