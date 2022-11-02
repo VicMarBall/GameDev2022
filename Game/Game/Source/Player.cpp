@@ -69,7 +69,7 @@ bool Player::Update()
 	}
 
 
-	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN) {
 		if (onAir) {
 			velocity.y = 20;
 			velocity.x = 0;
