@@ -34,6 +34,8 @@ private:
 	bool onAir;
 	bool canDoubleJump;
 
+	bool groundPounding;
+
 	float maxSpeed;
 
 	//L02: DONE 1: Declare player parameters

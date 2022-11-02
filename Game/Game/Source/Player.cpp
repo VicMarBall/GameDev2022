@@ -54,21 +54,25 @@ bool Player::Update()
 {
 	// L07 TODO 5: Add physics to the player - updated player position using physics
 	b2Vec2 velocity = pBody->body->GetLinearVelocity();
+
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-		if (onAir) {
-			if (canDoubleJump) {
-				velocity.y = -10;
-				canDoubleJump = false;
+		if (!groundPounding) {
+			if (onAir) {
+				if (canDoubleJump) {
+					velocity.y = -10;
+					canDoubleJump = false;
+				}
 			}
-		}
-		else {
-			velocity.y = -10;
+			else {
+				velocity.y = -10;
+			}
 		}
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN) {
 		if (onAir) {
+			groundPounding = true;
 			velocity.y = 20;
 			velocity.x = 0;
 		}
@@ -76,26 +80,44 @@ bool Player::Update()
 	
 
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		if (velocity.x > -maxSpeed) {
-			velocity.x -= 3;
-		}
-		if (velocity.x < -maxSpeed) {
-			velocity.x = -maxSpeed;
+		if (!groundPounding) {
+			if (velocity.x > -maxSpeed) {
+				if (!onAir) {
+					pBody->body->ApplyForceToCenter({ -60,0 }, true);
+				}
+				else {
+					pBody->body->ApplyForceToCenter({ -30,0 }, true);
+				}
+
+				//velocity.x -= 3;
+			}
 		}
 	}
 
 
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		if (velocity.x < maxSpeed) {
-			velocity.x += 3;
-		}
-		if (velocity.x > maxSpeed) {
-			velocity.x = maxSpeed;
+		if (!groundPounding) {
+			if (velocity.x < maxSpeed) {
+				if (!onAir) {
+					pBody->body->ApplyForceToCenter({ 60,0 }, true);
+				}
+				else {
+					pBody->body->ApplyForceToCenter({ 30,0 }, true);
+				}
+
+				//velocity.x += 3;
+			}
 		}
 	}
 
-	pBody->body->SetLinearVelocity(velocity);
+	if (velocity.x < -maxSpeed) {
+		velocity.x = -maxSpeed;
+	}
+	if (velocity.x > maxSpeed) {
+		velocity.x = maxSpeed;
+	}
 
+	pBody->body->SetLinearVelocity(velocity);
 
 	pBody->GetPosition(position.x, position.y);
 	app->render->DrawTexture(texture, position.x, position.y);
@@ -114,6 +136,7 @@ void Player::OnCollision(PhysBody* otherBody)
 	if (otherBody->typeTerrain == FLOOR) {
 		onAir = false;
 		canDoubleJump = true;
+		groundPounding = false;
 	}
 }
 
