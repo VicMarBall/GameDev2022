@@ -20,6 +20,8 @@
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
 
+
+
 // types of bodies
 enum bodyType {
 	DYNAMIC,
@@ -27,11 +29,17 @@ enum bodyType {
 	KINEMATIC
 };
 
+enum TypeTerrain {
+	FLOOR,
+	WALL,
+	NO
+};
+
 // Small class to return to other modules to track position and rotation of physics bodies
 class PhysBody
 {
 public:
-	PhysBody() : listener(NULL), body(NULL), entity(NULL)
+	PhysBody() : listener(NULL), body(NULL), entity(NULL), typeTerrain(NO)
 	{}
 
 	void GetPosition(int& x, int& y) const;
@@ -44,6 +52,7 @@ public:
 	b2Body* body;
 	Module* listener;
 	Entity* entity;
+	TypeTerrain typeTerrain;
 };
 
 // Module --------------------------------------
