@@ -43,9 +43,14 @@ private:
 	SDL_Texture* texture;
 	const char* texturePath;
 
-	Animation idle;
-	Animation walking;
-	Animation jumping;
+	Animation idleRight;
+	Animation walkingRight;
+	Animation jumpingRight;
+	Animation idleLeft;
+	Animation walkingLeft;
+	Animation jumpingLeft;
+
+	Animation* previousAnimation;
 
 	// L07 TODO 5: Add physics to the player - declare a Physics body
 	PhysBody* pBody;

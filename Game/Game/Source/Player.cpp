@@ -39,21 +39,34 @@ bool Player::Start() {
 	//initilize textures
 	texture = app->tex->Load(texturePath);
 
-	idle.PushBack({0, 0, 32, 32});
-	idle.PushBack({ 32, 0, 32, 32 });
-	idle.speed = 0.1f;
+	idleRight.PushBack({0, 0, 32, 32});
+	idleRight.PushBack({ 32, 0, 32, 32 });
+	idleRight.speed = 0.1f;
 
-	walking.PushBack({ 0, 32, 32, 32 });
-	walking.PushBack({0, 0, 32, 32});
-	walking.speed = 0.2f;
+	idleLeft.PushBack({ 96, 0, 32, 32 });
+	idleLeft.PushBack({ 64, 0, 32, 32 });
+	idleLeft.speed = 0.1f;
 
-	jumping.PushBack({0, 32, 32, 32});
+	walkingRight.PushBack({ 0, 32, 32, 32 });
+	walkingRight.PushBack({0, 0, 32, 32});
+	walkingRight.speed = 0.2f;
+
+	walkingLeft.PushBack({ 96, 32, 32, 32 });
+	walkingLeft.PushBack({ 96, 0, 32, 32 });
+	walkingLeft.speed = 0.2f;
+
+	jumpingRight.PushBack({0, 32, 32, 32});
+
+	jumpingLeft.PushBack({ 96, 32, 32, 32 });
+
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);
 	pBody->body->SetFixedRotation(true);
 	pBody->listener = app->entityManager;
 	pBody->entity = this;
+
+	previousAnimation = &idleRight;
 
 	onAir = true;
 
@@ -66,10 +79,19 @@ bool Player::Update()
 {
 	// L07 TODO 5: Add physics to the player - updated player position using physics
 	b2Vec2 velocity = pBody->body->GetLinearVelocity();
-	Animation* currentAnimation = &idle;
+	Animation* currentAnimation = previousAnimation;
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
 
-
+	if (previousAnimation == &idleRight ||
+		previousAnimation == &walkingRight ||
+		previousAnimation == &jumpingRight) {
+		currentAnimation = &idleRight;
+	}
+	else if (previousAnimation == &idleLeft ||
+		previousAnimation == &walkingLeft ||
+		previousAnimation == &jumpingLeft) {
+		currentAnimation = &idleLeft;
+	}
 
 
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
@@ -97,9 +119,14 @@ bool Player::Update()
 		}
 	}
 	
-	if (abs(velocity.x) > 0) {
-		currentAnimation = &walking;
-		walking.speed = abs(velocity.x) * 0.03f;
+	if (velocity.x < 0) {
+		currentAnimation = &walkingLeft;
+		walkingLeft.speed = abs(velocity.x) * 0.03f;
+	}
+
+	if (velocity.x > 0) {
+		currentAnimation = &walkingRight;
+		walkingRight.speed = abs(velocity.x) * 0.03f;
 	}
 
 	// go left
@@ -115,8 +142,8 @@ bool Player::Update()
 
 				//velocity.x -= 3;
 			//}
-			currentAnimation = &walking;
-			walking.speed = 0.2f;
+			currentAnimation = &walkingLeft;
+			walkingLeft.speed = 0.2f;
 		//}
 	}
 
@@ -133,8 +160,8 @@ bool Player::Update()
 
 				//velocity.x += 3;
 			//}
-			currentAnimation = &walking;
-			walking.speed = 0.2f;
+			currentAnimation = &walkingRight;
+			walkingRight.speed = 0.2f;
 		//}
 	}
 
@@ -148,7 +175,16 @@ bool Player::Update()
 
 
 	if (onAir) {
-		currentAnimation = &jumping;
+		if (previousAnimation == &idleRight || 
+			previousAnimation == &walkingRight ||
+			previousAnimation == &jumpingRight) {
+			currentAnimation = &jumpingRight;
+		}
+		else if (previousAnimation == &idleLeft ||
+			previousAnimation == &walkingLeft ||
+			previousAnimation == &jumpingLeft) {
+			currentAnimation = &jumpingLeft;
+		}
 	}
 
 
@@ -157,6 +193,7 @@ bool Player::Update()
 	currentFrame = currentAnimation->GetCurrentFrame();
 	currentAnimation->Update();
 
+	previousAnimation = currentAnimation;
 
 	pBody->GetPosition(position.x, position.y);
 	app->render->DrawTexture(texture, position.x + 1, position.y + 1, &currentFrame);
