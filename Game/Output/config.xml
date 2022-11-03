@@ -36,6 +36,7 @@
   <!-- L02: DONE: Add an element for the entity manager and add the player parameters -->
   <level_one>
     <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
+    <camera x="-150" y="-288"/>
   </level_one>
 
   <map>
