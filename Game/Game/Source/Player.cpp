@@ -98,7 +98,7 @@ bool Player::Update()
 	// go left
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		if (!groundPounding) {
-			if (velocity.x > -maxSpeed) {
+			//if (velocity.x > -maxSpeed) {
 				if (!onAir) {
 					pBody->body->ApplyForceToCenter({ -60,0 }, true);
 				}
@@ -107,15 +107,16 @@ bool Player::Update()
 				}
 
 				//velocity.x -= 3;
-			}
+			//}
 			currentAnimation = &walking;
+			walking.speed = 0.2f;
 		}
 	}
 
 	// go right
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 		if (!groundPounding) {
-			if (velocity.x < maxSpeed) {
+			//if (velocity.x < maxSpeed) {
 				if (!onAir) {
 					pBody->body->ApplyForceToCenter({ 60,0 }, true);
 				}
@@ -124,15 +125,12 @@ bool Player::Update()
 				}
 
 				//velocity.x += 3;
-			}
+			//}
 			currentAnimation = &walking;
-
+			walking.speed = 0.2f;
 		}
 	}
 
-	if (onAir) {
-		currentAnimation = &jumping;
-	}
 
 	if (velocity.x < -maxSpeed) {
 		velocity.x = -maxSpeed;
@@ -140,6 +138,16 @@ bool Player::Update()
 	if (velocity.x > maxSpeed) {
 		velocity.x = maxSpeed;
 	}
+
+	if (abs(velocity.x) > 0) {
+		currentAnimation = &walking;
+		walking.speed = abs(velocity.x) * 0.03f;
+	}
+
+	if (onAir) {
+		currentAnimation = &jumping;
+	}
+
 
 	pBody->body->SetLinearVelocity(velocity);
 
@@ -164,6 +172,9 @@ void Player::OnCollision(PhysBody* otherBody)
 	if (otherBody->typeTerrain == FLOOR) {
 		onAir = false;
 		canDoubleJump = true;
+		groundPounding = false;
+	}
+	if (otherBody->typeTerrain == WALL) {
 		groundPounding = false;
 	}
 }
