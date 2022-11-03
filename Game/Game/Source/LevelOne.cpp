@@ -4,6 +4,7 @@
 #include "Audio.h"
 #include "Render.h"
 #include "Window.h"
+#include "ModuleFadeToBlack.h"
 #include "LevelOne.h"
 #include "EntityManager.h"
 #include "Map.h"

@@ -15,6 +15,7 @@ class Input;
 class Render;
 class Textures;
 class Audio;
+class ModuleFadeToBlack;
 class LevelOne;
 class EntityManager;
 class Map;
@@ -86,7 +87,8 @@ public:
 	Render* render;
 	Textures* tex;
 	Audio* audio;
-	LevelOne* levelOne;
+	ModuleFadeToBlack* fade;
+	LevelOne* level_one;
 	EntityManager* entityManager;
 	Map* map;
 	//L07 TODO 2: Add Physics module

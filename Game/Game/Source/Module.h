@@ -79,6 +79,22 @@ public:
 
 	}
 
+	// Switches isEnabled and calls Start() method
+	void Enable() {
+		if (!active) {
+			active = true;
+			Start();
+		}
+	}
+
+	// Switches isEnabled and calls CleanUp() method
+	void Disable() {
+		if (active) {
+			active = false;
+			CleanUp();
+		}
+	}
+
 public:
 
 	SString name;

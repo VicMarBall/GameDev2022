@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Window.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
+    <ClCompile Include="Source\LevelOne.cpp" />
     <ClCompile Include="Source\Render.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Input.cpp" />
@@ -19,13 +20,12 @@
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
-    <ClCompile Include="Source\LevelOne.cpp">
-      <Filter>Levels</Filter>
-    </ClCompile>
+    <ClCompile Include="Source\ModuleFadeToBlack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Textures.h" />
+    <ClInclude Include="Source\LevelOne.h" />
     <ClInclude Include="Source\Render.h" />
     <ClInclude Include="Source\Module.h" />
     <ClInclude Include="Source\Input.h" />
@@ -65,9 +65,7 @@
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Physics.h" />
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="Source\LevelOne.h">
-      <Filter>Levels</Filter>
-    </ClInclude>
+    <ClInclude Include="Source\ModuleFadeToBlack.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -78,9 +76,6 @@
     </Filter>
     <Filter Include="External\PugiXml">
       <UniqueIdentifier>{2855ff7f-53a1-413d-a75b-18b4ade921dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Levels">
-      <UniqueIdentifier>{7d00633c-f740-4414-9ced-dcb01476d927}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
