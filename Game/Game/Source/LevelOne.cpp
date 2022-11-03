@@ -27,6 +27,8 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	LOG("Loading Scene");
 	bool ret = true;
 
+	app->entityManager->Enable();
+
 	// iterate all objects in the scene
 	// Check https://pugixml.org/docs/quickstart.html#access
 	for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
@@ -42,6 +44,8 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
 
+	musicPath = (char*)config.child("audio").attribute("musicpath").as_string();
+
 	return ret;
 }
 
@@ -53,6 +57,7 @@ bool LevelOne::Start()
 	
 	// L03: DONE: Load map
 	app->map->Load();
+	app->audio->PlayMusic(musicPath, 1.0f);
 
 	// L04: DONE 7: Set the window title with map/tileset info
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",

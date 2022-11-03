@@ -47,7 +47,7 @@ bool SceneTitle::Update(float dt) {
 	
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || toSkip) {
-		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
 
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_REPEAT) {
@@ -63,7 +63,7 @@ bool SceneTitle::Update(float dt) {
 // Update: draw background
 bool SceneTitle::PostUpdate() {
 
-	app->render->DrawTexture(bgTexture, 0, 0, NULL);
+	app->render->DrawTexture(bgTexture, 0, 0);
 	
 	return true;
 }

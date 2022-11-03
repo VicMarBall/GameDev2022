@@ -25,18 +25,19 @@
   </fade>
   
   <scene_intro>
-    <textures texturepath="Assets/Textures/Logo.png"/>
+    <textures texturepath="Assets/Textures/logo.png"/>
   </scene_intro>
 
   <scene_title>
-    <textures texturepath="Assets/Textures/Menu.png"/>
-    <audio musicpath="Assets/Audio/Music/Menu-Theme.ogg"/>
+    <textures texturepath="Assets/Textures/menu.png"/>
+    <audio musicpath="Assets/Audio/Music/Menu-Theme_1.ogg"/>
   </scene_title>
 
   <!-- L02: DONE: Add an element for the entity manager and add the player parameters -->
   <level_one>
     <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
     <camera x="-150" y="-288"/>
+    <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
   </level_one>
 
   <map>

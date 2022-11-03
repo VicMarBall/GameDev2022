@@ -34,7 +34,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene_intro = new SceneIntro(true);
 	scene_title = new SceneTitle(false);
 	level_one = new LevelOne(false);
-	entityManager = new EntityManager();
+	entityManager = new EntityManager(false);
 	map = new Map();
 
 	// Ordered for awake / Start / Update

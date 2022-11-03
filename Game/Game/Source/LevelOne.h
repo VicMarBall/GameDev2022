@@ -43,6 +43,7 @@ public:
 
 private:
 	SDL_Texture* img;
+	char* musicPath;
 	int camX;
 	int camY;
 

@@ -43,7 +43,7 @@ public:
 	uint duration;
 
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* bgTexture;
 	const char* musicPath;
 
 	// Textures & Animations
