@@ -4,24 +4,24 @@
 #include "Audio.h"
 #include "Render.h"
 #include "Window.h"
-#include "Scene.h"
+#include "LevelOne.h"
 #include "EntityManager.h"
 #include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"
 
-Scene::Scene() : Module()
+LevelOne::LevelOne() : Module()
 {
-	name.Create("scene");
+	name.Create("levelOne");
 }
 
 // Destructor
-Scene::~Scene()
+LevelOne::~LevelOne()
 {}
 
 // Called before render is available
-bool Scene::Awake(pugi::xml_node& config)
+bool LevelOne::Awake(pugi::xml_node& config)
 {
 	LOG("Loading Scene");
 	bool ret = true;
@@ -42,7 +42,7 @@ bool Scene::Awake(pugi::xml_node& config)
 }
 
 // Called before the first frame
-bool Scene::Start()
+bool LevelOne::Start()
 {
 	//img = app->tex->Load("Assets/Textures/test.png");
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
@@ -64,13 +64,13 @@ bool Scene::Start()
 }
 
 // Called each loop iteration
-bool Scene::PreUpdate()
+bool LevelOne::PreUpdate()
 {
 	return true;
 }
 
 // Called each loop iteration
-bool Scene::Update(float dt)
+bool LevelOne::Update(float dt)
 {
 	// L03: DONE 3: Request App to Load / Save when pressing the keys F5 (save) / F6 (load)
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
@@ -122,7 +122,7 @@ bool Scene::Update(float dt)
 }
 
 // Called each loop iteration
-bool Scene::PostUpdate()
+bool LevelOne::PostUpdate()
 {
 	bool ret = true;
 
@@ -133,7 +133,7 @@ bool Scene::PostUpdate()
 }
 
 // L03: DONE 6: Implement a method to load the state load players's x and y
-bool Scene::LoadState(pugi::xml_node& data)
+bool LevelOne::LoadState(pugi::xml_node& data)
 {
 	player->position.x = data.child("player").attribute("x").as_int();
 	player->position.y = data.child("player").attribute("y").as_int();
@@ -143,7 +143,7 @@ bool Scene::LoadState(pugi::xml_node& data)
 
 // L03: DONE 8: Create a method to save the state of the player
 // using append_child and append_attribute
-bool Scene::SaveState(pugi::xml_node& data)
+bool LevelOne::SaveState(pugi::xml_node& data)
 {
 	pugi::xml_node play = data.append_child("player");
 
@@ -154,7 +154,7 @@ bool Scene::SaveState(pugi::xml_node& data)
 }
 
 // Called before quitting
-bool Scene::CleanUp()
+bool LevelOne::CleanUp()
 {
 	LOG("Freeing scene");
 
