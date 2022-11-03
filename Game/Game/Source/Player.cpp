@@ -73,7 +73,7 @@ bool Player::Update()
 	//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 	// jump
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-		if (!groundPounding) {
+		//if (!groundPounding) {
 			if (onAir) {
 				if (canDoubleJump) {
 					velocity.y = -10;
@@ -83,7 +83,7 @@ bool Player::Update()
 			else {
 				velocity.y = -10;
 			}
-		}
+		//}
 	}
 
 	// groundPound
@@ -102,7 +102,7 @@ bool Player::Update()
 
 	// go left
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-		if (!groundPounding) {
+		//if (!groundPounding) {
 			//if (velocity.x > -maxSpeed) {
 				if (!onAir) {
 					pBody->body->ApplyForceToCenter({ -60,0 }, true);
@@ -115,12 +115,12 @@ bool Player::Update()
 			//}
 			currentAnimation = &walking;
 			walking.speed = 0.2f;
-		}
+		//}
 	}
 
 	// go right
 	if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		if (!groundPounding) {
+		//if (!groundPounding) {
 			//if (velocity.x < maxSpeed) {
 				if (!onAir) {
 					pBody->body->ApplyForceToCenter({ 60,0 }, true);
@@ -133,7 +133,7 @@ bool Player::Update()
 			//}
 			currentAnimation = &walking;
 			walking.speed = 0.2f;
-		}
+		//}
 	}
 
 
@@ -176,7 +176,7 @@ void Player::OnCollision(PhysBody* otherBody)
 		groundPounding = false;
 	}
 	if (otherBody->typeTerrain == WALL) {
-		groundPounding = false;
+		//groundPounding = false;
 	}
 }
 
