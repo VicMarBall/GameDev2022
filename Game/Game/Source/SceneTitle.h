@@ -44,6 +44,7 @@ public:
 
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture;
+	const char* bgPath;
 	const char* musicPath;
 
 	// Textures & Animations

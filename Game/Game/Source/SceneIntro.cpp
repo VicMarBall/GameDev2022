@@ -17,7 +17,7 @@ SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled) {
 SceneIntro::~SceneIntro() {}
 
 bool SceneIntro::Awake(pugi::xml_node& config) {
-	bgTexture = app->tex->Load(config.child("textures").attribute("texturepath").as_string());
+	bgPath =config.child("textures").attribute("texturepath").as_string();
 	
 	return true;
 }
@@ -25,7 +25,7 @@ bool SceneIntro::Awake(pugi::xml_node& config) {
 // Load assets
 bool SceneIntro::Start() {
 	LOG("Loading background assets");
-
+	bgTexture = app->tex->Load(bgPath);
 	bool ret = true;
 
 	durationTimer = 0;

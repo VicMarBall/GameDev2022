@@ -17,9 +17,8 @@ SceneTitle::~SceneTitle() {}
 
 // Load assets
 bool SceneTitle::Awake(pugi::xml_node& config) {
-	bgTexture = app->tex->Load(config.child("textures").attribute("texturepath").as_string());
+	bgPath = config.child("textures").attribute("texturepath").as_string();
 	musicPath = config.child("audio").attribute("musicpath").as_string();
-
 	return true;
 }
 
@@ -27,7 +26,7 @@ bool SceneTitle::Start() {
 	bool ret = true;
 	
 	app->audio->PlayMusic(musicPath, 1.0f);
-
+	bgTexture = app->tex->Load(bgPath);
 	duration = 0;
 	
 

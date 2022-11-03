@@ -36,7 +36,8 @@ public:
 	bool CleanUp();
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* bgTexture;
+	const char* bgPath;
 
 	unsigned short durationTimer = 0;
 private:
