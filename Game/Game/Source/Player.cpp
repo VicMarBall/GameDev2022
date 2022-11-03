@@ -41,8 +41,8 @@ bool Player::Start() {
 	idle.PushBack({ 32, 0, 32, 32 });
 	idle.speed = 0.1f;
 
+	walking.PushBack({ 0, 32, 32, 32 });
 	walking.PushBack({0, 0, 32, 32});
-	walking.PushBack({0, 32, 32, 32});
 	walking.speed = 0.2f;
 
 	jumping.PushBack({0, 32, 32, 32});
@@ -95,6 +95,11 @@ bool Player::Update()
 		}
 	}
 	
+	if (abs(velocity.x) > 0) {
+		currentAnimation = &walking;
+		walking.speed = abs(velocity.x) * 0.03f;
+	}
+
 	// go left
 	if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 		if (!groundPounding) {
@@ -139,10 +144,6 @@ bool Player::Update()
 		velocity.x = maxSpeed;
 	}
 
-	if (abs(velocity.x) > 0) {
-		currentAnimation = &walking;
-		walking.speed = abs(velocity.x) * 0.03f;
-	}
 
 	if (onAir) {
 		currentAnimation = &jumping;
@@ -156,7 +157,7 @@ bool Player::Update()
 
 
 	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x, position.y, &currentFrame);
+	app->render->DrawTexture(texture, position.x + 1, position.y + 1, &currentFrame);
 
 	return true;
 }
