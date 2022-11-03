@@ -27,6 +27,12 @@ bool ModuleFadeToBlack::Start() {
 	return true;
 }
 
+// Called each loop iteration
+bool ModuleFadeToBlack::PreUpdate()
+{
+	return true;
+}
+
 bool ModuleFadeToBlack::Update(float dt) {
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return true;

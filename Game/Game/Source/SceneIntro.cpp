@@ -36,6 +36,12 @@ bool SceneIntro::Start() {
 	return ret;
 }
 
+// Called each loop iteration
+bool SceneIntro::PreUpdate()
+{
+	return true;
+}
+
 bool SceneIntro::Update(float dt) {
 	durationTimer++;
 	

@@ -7,7 +7,6 @@
 #include "Input.h"
 #include "Window.h"
 #include "ModuleFadeToBlack.h"
-#include "SceneIntro.h"
 #include "SDL/include/SDL_scancode.h"
 
 SceneTitle::SceneTitle(bool startEnabled) : Module(startEnabled) {
@@ -34,6 +33,12 @@ bool SceneTitle::Start() {
 
 
 	return ret;
+}
+
+// Called each loop iteration
+bool SceneTitle::PreUpdate()
+{
+	return true;
 }
 
 bool SceneTitle::Update(float dt) {

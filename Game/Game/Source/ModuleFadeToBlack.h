@@ -20,6 +20,9 @@ public:
 	// Enables the blending mode for transparency
 	bool Start() override;
 
+	// Called before all Updates
+	bool PreUpdate();
+
 	// Called at the middle of the application loop
 	// Updates the fade logic
 	bool Update(float dt) override;
