@@ -12,7 +12,7 @@
 #include "Defs.h"
 #include "Log.h"
 
-LevelOne::LevelOne() : Module()
+LevelOne::LevelOne(bool CurrentState) : Module(CurrentState)
 {
 	name.Create("level_one");
 }
@@ -39,6 +39,9 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->parameters = config.child("player");
 
+	camX = config.child("camera").attribute("x").as_int();
+	camY = config.child("camera").attribute("y").as_int();
+
 	return ret;
 }
 
@@ -60,6 +63,9 @@ bool LevelOne::Start()
 		app->map->mapData.tilesets.Count());
 
 	app->win->SetTitle(title.GetString());
+
+	app->render->camera.x = camX;
+	app->render->camera.y = camY;
 
 	return true;
 }
@@ -104,8 +110,8 @@ bool LevelOne::Update(float dt)
 	}
 
 	else {
-		if (player->position.x < app->render->camera.w/2) {
-			app->render->camera.x = 0;
+		if (player->position.x < app->win->GetWidth()/2 - camX) {
+			app->render->camera.x = camX;
 		}
 		else {
 			app->render->camera.x = -player->position.x + app->render->camera.w / 2;

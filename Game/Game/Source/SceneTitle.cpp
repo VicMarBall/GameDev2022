@@ -11,7 +11,7 @@
 #include "SDL/include/SDL_scancode.h"
 
 SceneTitle::SceneTitle(bool startEnabled) : Module(startEnabled) {
-	name.Create("sceneTitle");
+	name.Create("scene_title");
 }
 
 SceneTitle::~SceneTitle() {}
@@ -41,8 +41,8 @@ bool SceneTitle::Update(float dt) {
 	bool toSkip = false;
 	
 
-	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN || toSkip) {
-		app->fade->FadeToBlack(this, (Module*)app->levelOne, 0);
+	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || toSkip) {
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
 	}
 
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_REPEAT) {

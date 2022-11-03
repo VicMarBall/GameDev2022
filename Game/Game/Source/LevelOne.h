@@ -11,7 +11,7 @@ class LevelOne : public Module
 {
 public:
 
-	LevelOne();
+	LevelOne(bool CurrentState);
 
 	// Destructor
 	virtual ~LevelOne();
@@ -43,6 +43,8 @@ public:
 
 private:
 	SDL_Texture* img;
+	int camX;
+	int camY;
 
 };
 

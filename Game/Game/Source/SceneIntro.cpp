@@ -11,7 +11,7 @@
 #include "SDL/include/SDL_scancode.h"
 
 SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled) {
-	name.Create("sceneIntro");
+	name.Create("scene_intro");
 }
 
 SceneIntro::~SceneIntro() {}
@@ -43,7 +43,7 @@ bool SceneIntro::Update(float dt) {
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN ||
 		durationTimer >= 500) {
-		app->fade->FadeToBlack(this, (Module*)app->sceneTitle, 90);
+		app->fade->FadeToBlack(this, (Module*)app->scene_title, 90);
 	}
 	
 
