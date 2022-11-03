@@ -22,9 +22,9 @@
   </audio>
 
   <!-- L02: DONE: Add an element for the entity manager and add the player parameters -->
-  <levelOne>
+  <level_one>
     <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
-  </levelOne>
+  </level_one>
 
   <map>
     <mapfolder path="Assets/Maps/"/>

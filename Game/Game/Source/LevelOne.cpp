@@ -13,7 +13,7 @@
 
 LevelOne::LevelOne() : Module()
 {
-	name.Create("levelOne");
+	name.Create("level_one");
 }
 
 // Destructor
