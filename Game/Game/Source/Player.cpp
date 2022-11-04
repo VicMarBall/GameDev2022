@@ -101,7 +101,6 @@ bool Player::Update()
 			//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 		// jump
 			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-				//if (!groundPounding) {
 				if (onAir) {
 					if (canDoubleJump || godMode) {
 						velocity.y = -10;
@@ -111,7 +110,6 @@ bool Player::Update()
 				else {
 					velocity.y = -10;
 				}
-				//}
 			}
 
 			// groundPound
@@ -135,38 +133,26 @@ bool Player::Update()
 
 			// go left
 			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-				//if (!groundPounding) {
-					//if (velocity.x > -maxSpeed) {
 				if (!onAir) {
 					pBody->body->ApplyForceToCenter({ -60,0 }, true);
 				}
 				else {
 					pBody->body->ApplyForceToCenter({ -30,0 }, true);
 				}
-
-				//velocity.x -= 3;
-			//}
 				currentAnimation = &walkingLeft;
 				walkingLeft.speed = 0.2f;
-				//}
 			}
 
 			// go right
 			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-				//if (!groundPounding) {
-					//if (velocity.x < maxSpeed) {
 				if (!onAir) {
 					pBody->body->ApplyForceToCenter({ 60,0 }, true);
 				}
 				else {
 					pBody->body->ApplyForceToCenter({ 30,0 }, true);
 				}
-
-				//velocity.x += 3;
-			//}
 				currentAnimation = &walkingRight;
 				walkingRight.speed = 0.2f;
-				//}
 			}
 
 
@@ -244,10 +230,7 @@ bool Player::CleanUp()
 
 	death.FullReset();
 
-	//previousAnimation = nullptr;
-
 	app->physics->world->DestroyBody(pBody->body);
-	//pBody = nullptr;
 
 	active = false;
 

@@ -39,6 +39,7 @@ bool LevelOne::Awake(pugi::xml_node& config)
 
 	//L02: DONE 3: Instantiate the player using the entity manager
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
+	player->active = false;
 	player->parameters = config.child("player");
 
 	camX = config.child("camera").attribute("x").as_int();
@@ -180,6 +181,7 @@ bool LevelOne::CleanUp()
 {
 	LOG("Freeing scene");
 	player->CleanUp();
+	app->tex->UnLoad(img);
 
 	return true;
 }
