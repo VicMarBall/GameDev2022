@@ -158,8 +158,8 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 {
 	pugi::xml_node play = data.append_child("player");
 
-	play.append_attribute("x") = player->position.x;
-	play.append_attribute("y") = player->position.y;
+	play.append_attribute("x") = player->position.x + 16;
+	play.append_attribute("y") = player->position.y + 16;
 
 	return true;
 }
