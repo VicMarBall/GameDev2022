@@ -33,6 +33,10 @@ public:
 	void Die();
 public:
 
+	const bool Living() {
+		return isAlive;
+	}
+
 private:
 
 	bool onAir;

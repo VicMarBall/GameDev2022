@@ -84,6 +84,10 @@ bool LevelOne::PreUpdate()
 // Called each loop iteration
 bool LevelOne::Update(float dt)
 {
+	if (player->Living() == false) {
+
+		app->fade->FadeToBlack(this, (Module*)app->death_screen, 100);
+	}
 	// L03: DONE 3: Request App to Load / Save when pressing the keys F5 (save) / F6 (load)
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
