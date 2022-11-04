@@ -97,97 +97,117 @@ bool Player::Update()
 			currentAnimation = &idleLeft;
 		}
 
-
-		//L02: DONE 4: modify the position of the player using arrow keys and render the texture
+		if (!godMode) {
+			//L02: DONE 4: modify the position of the player using arrow keys and render the texture
 		// jump
-		if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
-			//if (!groundPounding) {
-			if (onAir) {
-				if (canDoubleJump || godMode) {
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
+				//if (!groundPounding) {
+				if (onAir) {
+					if (canDoubleJump || godMode) {
+						velocity.y = -10;
+						canDoubleJump = false;
+					}
+				}
+				else {
 					velocity.y = -10;
-					canDoubleJump = false;
+				}
+				//}
+			}
+
+			// groundPound
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN) {
+				if (onAir) {
+					groundPounding = true;
+					velocity.y = 20;
+					velocity.x = 0;
 				}
 			}
-			else {
-				velocity.y = -10;
-			}
-			//}
-		}
 
-		// groundPound
-		if (app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN) {
+			if (velocity.x < 0) {
+				currentAnimation = &walkingLeft;
+				walkingLeft.speed = abs(velocity.x) * 0.03f;
+			}
+
+			if (velocity.x > 0) {
+				currentAnimation = &walkingRight;
+				walkingRight.speed = abs(velocity.x) * 0.03f;
+			}
+
+			// go left
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+				//if (!groundPounding) {
+					//if (velocity.x > -maxSpeed) {
+				if (!onAir) {
+					pBody->body->ApplyForceToCenter({ -60,0 }, true);
+				}
+				else {
+					pBody->body->ApplyForceToCenter({ -30,0 }, true);
+				}
+
+				//velocity.x -= 3;
+			//}
+				currentAnimation = &walkingLeft;
+				walkingLeft.speed = 0.2f;
+				//}
+			}
+
+			// go right
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+				//if (!groundPounding) {
+					//if (velocity.x < maxSpeed) {
+				if (!onAir) {
+					pBody->body->ApplyForceToCenter({ 60,0 }, true);
+				}
+				else {
+					pBody->body->ApplyForceToCenter({ 30,0 }, true);
+				}
+
+				//velocity.x += 3;
+			//}
+				currentAnimation = &walkingRight;
+				walkingRight.speed = 0.2f;
+				//}
+			}
+
+
+			if (velocity.x < -maxSpeed) {
+				velocity.x = -maxSpeed;
+			}
+			if (velocity.x > maxSpeed) {
+				velocity.x = maxSpeed;
+			}
+
+
 			if (onAir) {
-				groundPounding = true;
-				velocity.y = 20;
-				velocity.x = 0;
+				if (previousAnimation == &idleRight ||
+					previousAnimation == &walkingRight ||
+					previousAnimation == &jumpingRight) {
+					currentAnimation = &jumpingRight;
+				}
+				else if (previousAnimation == &idleLeft ||
+					previousAnimation == &walkingLeft ||
+					previousAnimation == &jumpingLeft) {
+					currentAnimation = &jumpingLeft;
+				}
 			}
 		}
+		else {
+			velocity = { 0, 0 };
 
-		if (velocity.x < 0) {
-			currentAnimation = &walkingLeft;
-			walkingLeft.speed = abs(velocity.x) * 0.03f;
-		}
-
-		if (velocity.x > 0) {
-			currentAnimation = &walkingRight;
-			walkingRight.speed = abs(velocity.x) * 0.03f;
-		}
-
-		// go left
-		if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-			//if (!groundPounding) {
-				//if (velocity.x > -maxSpeed) {
-			if (!onAir) {
-				pBody->body->ApplyForceToCenter({ -60,0 }, true);
-			}
-			else {
-				pBody->body->ApplyForceToCenter({ -30,0 }, true);
+			if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT || app->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+				velocity = { velocity.x, -maxSpeed };
 			}
 
-			//velocity.x -= 3;
-		//}
-			currentAnimation = &walkingLeft;
-			walkingLeft.speed = 0.2f;
-			//}
-		}
-
-		// go right
-		if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-			//if (!groundPounding) {
-				//if (velocity.x < maxSpeed) {
-			if (!onAir) {
-				pBody->body->ApplyForceToCenter({ 60,0 }, true);
-			}
-			else {
-				pBody->body->ApplyForceToCenter({ 30,0 }, true);
+			if (app->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+				velocity = { velocity.x, maxSpeed };
 			}
 
-			//velocity.x += 3;
-		//}
-			currentAnimation = &walkingRight;
-			walkingRight.speed = 0.2f;
-			//}
-		}
-
-
-		if (velocity.x < -maxSpeed) {
-			velocity.x = -maxSpeed;
-		}
-		if (velocity.x > maxSpeed) {
-			velocity.x = maxSpeed;
-		}
-
-
-		if (onAir) {
-			if (previousAnimation == &idleRight ||
-				previousAnimation == &walkingRight ||
-				previousAnimation == &jumpingRight) {
-				currentAnimation = &jumpingRight;
+			if (app->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+				velocity = { -maxSpeed, velocity.y };
 			}
-			else if (previousAnimation == &idleLeft ||
-				previousAnimation == &walkingLeft ||
-				previousAnimation == &jumpingLeft) {
-				currentAnimation = &jumpingLeft;
+
+			if (app->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+				velocity = { maxSpeed, velocity.y };
 			}
 		}
 	}
@@ -245,8 +265,9 @@ void Player::SetPosition(int posX, int posY)
 
 void Player::Die()
 {
-	isAlive = false;
-
+	if (!godMode) {
+		isAlive = false;
+	}
 }
 
 void Player::GodSwitch() {
