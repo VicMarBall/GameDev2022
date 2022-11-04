@@ -9,11 +9,11 @@
 	<scene_intro />
 	<scene_title />
 	<level_one>
-		<player x="754" y="607" />
+		<player x="816" y="337" />
 	</level_one>
 	<entitymanager />
 	<map />
 	<renderer>
-		<camera x="-386" y="-288" />
+		<camera x="-445" y="-288" />
 	</renderer>
 </save_state>

@@ -147,8 +147,7 @@ bool LevelOne::PostUpdate()
 // L03: DONE 6: Implement a method to load the state load players's x and y
 bool LevelOne::LoadState(pugi::xml_node& data)
 {
-	player->position.x = data.child("player").attribute("x").as_int();
-	player->position.y = data.child("player").attribute("y").as_int();
+	player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
 	return true;
 }
