@@ -217,6 +217,9 @@ void Player::OnCollision(PhysBody* otherBody)
 	if (otherBody->typeTerrain == WALL) {
 		//groundPounding = false;
 	}
+	if (otherBody->typeTerrain == DEATH) {
+		Die();
+	}
 }
 
 void Player::EndCollision(PhysBody* otherBody)
@@ -230,4 +233,9 @@ void Player::SetPosition(int posX, int posY)
 {
 	b2Vec2 position = { PIXEL_TO_METERS(posX), PIXEL_TO_METERS(posY) };
 	pBody->body->SetTransform(position, 0);
+}
+
+void Player::Die()
+{
+
 }
