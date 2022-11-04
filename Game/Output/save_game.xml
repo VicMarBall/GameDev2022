@@ -4,7 +4,6 @@
 	<window />
 	<textures />
 	<audio />
-	<:anonymous />
 	<fade />
 	<scene_intro />
 	<scene_title />
