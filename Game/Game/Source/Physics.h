@@ -32,6 +32,7 @@ enum bodyType {
 enum TypeTerrain {
 	FLOOR,
 	WALL,
+	DEATH,
 	NO
 };
 

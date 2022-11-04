@@ -30,6 +30,7 @@ public:
 
 	void SetPosition(int posX, int posY);
 
+	void Die();
 public:
 
 private:
@@ -40,6 +41,8 @@ private:
 	bool groundPounding;
 
 	float maxSpeed;
+
+	bool isAlive;
 
 	bool godMode = false;
 
@@ -53,6 +56,8 @@ private:
 	Animation idleLeft;
 	Animation walkingLeft;
 	Animation jumpingLeft;
+
+	Animation death;
 
 	Animation* previousAnimation;
 
