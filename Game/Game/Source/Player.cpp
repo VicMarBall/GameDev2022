@@ -99,7 +99,7 @@ bool Player::Update()
 	if (app->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN) {
 		//if (!groundPounding) {
 			if (onAir) {
-				if (canDoubleJump) {
+				if (canDoubleJump || godMode) {
 					velocity.y = -10;
 					canDoubleJump = false;
 				}
@@ -224,4 +224,10 @@ void Player::EndCollision(PhysBody* otherBody)
 	if (otherBody->typeTerrain == FLOOR) {
 		onAir = true;
 	}
+}
+
+void Player::SetPosition(int posX, int posY)
+{
+	b2Vec2 position = { PIXEL_TO_METERS(posX), PIXEL_TO_METERS(posY) };
+	pBody->body->SetTransform(position, 0);
 }

@@ -28,6 +28,8 @@ public:
 
 	void EndCollision(PhysBody* otherBody);
 
+	void SetPosition(int posX, int posY);
+
 public:
 
 private:
@@ -38,6 +40,8 @@ private:
 	bool groundPounding;
 
 	float maxSpeed;
+
+	bool godMode = false;
 
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;
