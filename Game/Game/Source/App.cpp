@@ -8,6 +8,7 @@
 #include "SceneIntro.h"
 #include "SceneTitle.h"
 #include "LevelOne.h"
+#include "DeathScreen.h"
 #include "EntityManager.h"
 #include "Map.h"
 #include "Physics.h"
@@ -34,6 +35,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene_intro = new SceneIntro(true);
 	scene_title = new SceneTitle(false);
 	level_one = new LevelOne(false);
+	death_screen = new DeathScreen(false);
 	entityManager = new EntityManager(false);
 	map = new Map();
 
@@ -49,6 +51,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene_intro);
 	AddModule(scene_title);
 	AddModule(level_one);
+	AddModule(death_screen);
 	AddModule(entityManager);
 	AddModule(map);
 

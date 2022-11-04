@@ -40,6 +40,10 @@
     <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
   </level_one>
 
+  <death_screen>
+    <textures texturepath="Assets/Textures/death_screen.png"/>
+  </death_screen>
+
   <map>
     <mapfolder path="Assets/Maps/"/>
     <mapfile path="Assets/Maps/testgamedev4.tmx"/>

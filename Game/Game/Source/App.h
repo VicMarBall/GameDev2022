@@ -19,6 +19,7 @@ class ModuleFadeToBlack;
 class SceneIntro;
 class SceneTitle;
 class LevelOne;
+class DeathScreen;
 class EntityManager;
 class Map;
 class Physics;
@@ -93,6 +94,7 @@ public:
 	SceneIntro* scene_intro;
 	SceneTitle* scene_title;
 	LevelOne* level_one;
+	DeathScreen* death_screen;
 	EntityManager* entityManager;
 	Map* map;
 	//L07 TODO 2: Add Physics module
