@@ -59,6 +59,7 @@ bool LevelOne::Start()
 	app->map->Load();
 	app->audio->PlayMusic(musicPath, 1.0f);
 
+	player->active = true;
 	player->Start();
 
 	// L04: DONE 7: Set the window title with map/tileset info
@@ -178,6 +179,7 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 bool LevelOne::CleanUp()
 {
 	LOG("Freeing scene");
+	player->CleanUp();
 
 	return true;
 }

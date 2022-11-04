@@ -231,6 +231,25 @@ bool Player::Update()
 
 bool Player::CleanUp()
 {
+	app->tex->UnLoad(texture);
+	texture = nullptr;
+	texturePath = nullptr;
+
+	idleRight.FullReset();
+	walkingRight.FullReset();
+	jumpingRight.FullReset();
+	idleLeft.FullReset();
+	walkingLeft.FullReset();
+	jumpingLeft.FullReset();
+
+	death.FullReset();
+
+	//previousAnimation = nullptr;
+
+	app->physics->world->DestroyBody(pBody->body);
+	//pBody = nullptr;
+
+	active = false;
 
 	return true;
 }
