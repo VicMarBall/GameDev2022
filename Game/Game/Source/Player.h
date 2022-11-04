@@ -37,6 +37,12 @@ public:
 		return isAlive;
 	}
 
+	void GodSwitch();
+
+	const bool isGod() {
+		return godMode;
+	}
+
 private:
 
 	bool onAir;

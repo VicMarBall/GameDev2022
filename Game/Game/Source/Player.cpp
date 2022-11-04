@@ -248,3 +248,14 @@ void Player::Die()
 	isAlive = false;
 
 }
+
+void Player::GodSwitch() {
+	if (!godMode) {
+		godMode = true;
+		pBody->body->SetGravityScale(0);
+	}
+	else {
+		godMode = false;
+		pBody->body->SetGravityScale(1);
+	}
+}

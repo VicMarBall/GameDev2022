@@ -101,6 +101,10 @@ bool LevelOne::Update(float dt)
 		else
 			app->render->DebugCamera = false;
 	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
+		player->GodSwitch();
+	}
 		
 
 	if (app->render->DebugCamera == true) {
