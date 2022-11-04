@@ -32,6 +32,9 @@
     <ClCompile Include="Source\DeathScreen.cpp">
       <Filter>Screens</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LevelTransition.cpp">
+      <Filter>Screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -86,6 +89,9 @@
       <Filter>Screens</Filter>
     </ClInclude>
     <ClInclude Include="Source\DeathScreen.h">
+      <Filter>Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LevelTransition.h">
       <Filter>Screens</Filter>
     </ClInclude>
   </ItemGroup>

@@ -19,6 +19,7 @@ class ModuleFadeToBlack;
 class SceneIntro;
 class SceneTitle;
 class LevelOne;
+class LevelTransition;
 class DeathScreen;
 class EntityManager;
 class Map;
@@ -94,6 +95,7 @@ public:
 	SceneIntro* scene_intro;
 	SceneTitle* scene_title;
 	LevelOne* level_one;
+	LevelTransition* level_transition;
 	DeathScreen* death_screen;
 	EntityManager* entityManager;
 	Map* map;

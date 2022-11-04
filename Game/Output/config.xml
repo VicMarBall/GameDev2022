@@ -40,6 +40,10 @@
     <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
   </level_one>
 
+  <level_transition>
+    <textures texturepath="Assets/Textures/win_screen.png"/>
+  </level_transition>
+
   <death_screen>
     <textures texturepath="Assets/Textures/death_screen.png"/>
   </death_screen>
