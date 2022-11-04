@@ -36,7 +36,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene_title = new SceneTitle(false);
 	level_one = new LevelOne(false);
 	death_screen = new DeathScreen(false);
-	entityManager = new EntityManager(false);
+	entityManager = new EntityManager();
 	map = new Map();
 
 	// Ordered for awake / Start / Update
@@ -119,7 +119,10 @@ bool App::Start()
 
 	while (item != NULL && ret == true)
 	{
-		ret = item->data->Start();
+		if (item->data->active == true) {
+			ret = item->data->Start();
+
+		}
 		item = item->next;
 	}
 

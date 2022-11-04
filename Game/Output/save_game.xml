@@ -9,12 +9,12 @@
 	<scene_intro />
 	<scene_title />
 	<level_one>
-		<player x="604" y="495" />
+		<player x="574" y="434" />
 	</level_one>
 	<death_screen />
 	<entitymanager />
 	<map />
 	<renderer>
-		<camera x="-220" y="-288" />
+		<camera x="-190" y="-288" />
 	</renderer>
 </save_state>

@@ -27,7 +27,7 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	LOG("Loading Scene");
 	bool ret = true;
 
-	app->entityManager->Enable();
+	//app->entityManager->Enable();
 
 	// iterate all objects in the scene
 	// Check https://pugixml.org/docs/quickstart.html#access
@@ -58,6 +58,8 @@ bool LevelOne::Start()
 	// L03: DONE: Load map
 	app->map->Load();
 	app->audio->PlayMusic(musicPath, 1.0f);
+
+	player->Start();
 
 	// L04: DONE 7: Set the window title with map/tileset info
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
