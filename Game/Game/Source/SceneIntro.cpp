@@ -50,7 +50,7 @@ bool SceneIntro::Update(float dt) {
 	
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN ||
-		durationTimer >= 300) {
+		durationTimer >= 150) {
 		app->fade->FadeToBlack(this, (Module*)app->scene_title, 90);
 	}
 
