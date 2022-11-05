@@ -78,7 +78,7 @@ private:
 	Animation* previousAnimation;
 
 	// L07 TODO 5: Add physics to the player - declare a Physics body
-	PhysBody* pBody;
+	PhysBody* pBody = nullptr;
 
 };
 
