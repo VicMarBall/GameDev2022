@@ -92,6 +92,19 @@ bool LevelOne::Update(float dt)
 
 		app->fade->FadeToBlack(this, (Module*)app->death_screen, 100);
 	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+	}
+
 	// L03: DONE 3: Request App to Load / Save when pressing the keys F5 (save) / F6 (load)
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();

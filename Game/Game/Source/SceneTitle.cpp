@@ -27,7 +27,6 @@ bool SceneTitle::Start() {
 	
 	app->audio->PlayMusic(musicPath, 1.0f);
 	bgTexture = app->tex->Load(bgPath);
-	duration = 0;
 	
 
 
@@ -53,8 +52,13 @@ bool SceneTitle::Update(float dt) {
 		return false;
 	}
 
+	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+	}
 
-	++duration;
+	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
+
+	}
 
 	return true;
 }
