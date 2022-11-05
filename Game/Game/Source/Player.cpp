@@ -230,7 +230,11 @@ bool Player::CleanUp()
 
 	death.FullReset();
 
-	app->physics->world->DestroyBody(pBody->body);
+	if (pBody != nullptr) {
+		app->physics->world->DestroyBody(pBody->body);
+	}
+
+	
 
 	active = false;
 

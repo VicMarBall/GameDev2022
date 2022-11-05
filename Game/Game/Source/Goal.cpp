@@ -64,8 +64,10 @@ bool Goal::CleanUp()
 	app->tex->UnLoad(texture);
 	texture = nullptr;
 	texturePath = nullptr;
-
-	app->physics->world->DestroyBody(pBody->body);
+	if (pBody != nullptr) {
+		app->physics->world->DestroyBody(pBody->body);
+	}
+	
 
 	active = false;
 

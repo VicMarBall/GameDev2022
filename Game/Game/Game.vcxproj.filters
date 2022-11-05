@@ -14,9 +14,6 @@
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp">
       <Filter>External\PugiXml</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EntityManager.cpp" />
-    <ClCompile Include="Source\Player.cpp" />
-    <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\Map.cpp" />
     <ClCompile Include="Source\Physics.cpp" />
     <ClCompile Include="Source\ModuleFadeToBlack.cpp" />
@@ -35,7 +32,18 @@
     <ClCompile Include="Source\LevelTransition.cpp">
       <Filter>Screens</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Goal.cpp" />
+    <ClCompile Include="Source\EntityManager.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Goal.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -72,10 +80,6 @@
     <ClInclude Include="Source\Queue.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Source\EntityManager.h" />
-    <ClInclude Include="Source\Player.h" />
-    <ClInclude Include="Source\Entity.h" />
-    <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Physics.h" />
     <ClInclude Include="Animation.h" />
@@ -95,7 +99,21 @@
     <ClInclude Include="Source\LevelTransition.h">
       <Filter>Screens</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Goal.h" />
+    <ClInclude Include="Source\Entity.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EntityManager.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Goal.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Item.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -109,6 +127,9 @@
     </Filter>
     <Filter Include="Screens">
       <UniqueIdentifier>{b8c38f36-79e5-47b3-8722-adc46f670ea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities">
+      <UniqueIdentifier>{279a56d5-ba9f-410a-8c50-868e1f1f1b52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
