@@ -1,7 +1,7 @@
 # GameDev2022
 Project created by:
-Ariadna Sevcik ()
-Victor Martin ()
+Ariadna Sevcik ([AriSevcik](https://github.com/AriSevcik))
+Victor Martin ([VicMarBall](https://github.com/VicMarBall))
 
 How to play: 
 Press ENTER in the Scenes to skip them
