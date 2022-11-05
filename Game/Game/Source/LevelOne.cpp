@@ -174,8 +174,8 @@ bool LevelOne::Update(float dt)
 		else {
 			app->render->camera.x = -player->position.x + app->render->camera.w / 2;
 		}
-		if (app->render->camera.y < 0 && app->render->camera.y > -500 - app->win->GetWidth())
-		app->render->camera.y = -player->position.y + app->render->camera.h / 2;
+		if (-player->position.y + app->render->camera.h / 2 < 0 && -player->position.y + app->render->camera.h / 2 > -app->map->mapData.height* app->map->mapData.tileHeight + app->win->GetHeight())
+		app->render->camera.y = -player->position.y + app->win->GetHeight() / 2;
 	}
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more

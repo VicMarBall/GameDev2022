@@ -8219,7 +8219,7 @@
   <object id="25" x="669" y="640" width="224"/>
   <object id="26" x="963" y="640" width="256"/>
  </objectgroup>
- <objectgroup id="4" name="Walls" visible="0">
+ <objectgroup id="4" name="Walls">
   <properties>
    <property name="ColType" type="int" value="1"/>
   </properties>
@@ -8228,7 +8228,6 @@
   <object id="30" x="482" y="512" width="188" height="128"/>
   <object id="31" x="670" y="640" width="224" height="224"/>
   <object id="32" x="962" y="640" width="256" height="224"/>
-  <object id="33" x="1218" y="0" width="2" height="640"/>
  </objectgroup>
  <objectgroup id="5" name="Dead" visible="0">
   <properties>
