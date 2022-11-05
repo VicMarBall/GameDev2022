@@ -243,7 +243,7 @@ bool Player::CleanUp()
 
 void Player::OnCollision(PhysBody* otherBody)
 {
-	if (otherBody->typeTerrain == FLOOR) {
+	if (otherBody->typeTerrain == FLOOR || otherBody->typeTerrain == FLOATING) {
 		onAir = false;
 		canDoubleJump = true;
 		groundPounding = false;
@@ -258,7 +258,7 @@ void Player::OnCollision(PhysBody* otherBody)
 
 void Player::EndCollision(PhysBody* otherBody)
 {
-	if (otherBody->typeTerrain == FLOOR) {
+	if (otherBody->typeTerrain == FLOOR || otherBody->typeTerrain == FLOATING) {
 		onAir = true;
 	}
 }

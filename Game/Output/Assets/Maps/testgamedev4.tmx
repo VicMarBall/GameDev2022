@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="128" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="36">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="128" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="37">
  <tileset firstgid="1" name="tilemap_packed_big" tilewidth="32" tileheight="32" tilecount="60" columns="10">
   <image source="tilemap_packed_big.png" width="320" height="192"/>
  </tileset>
@@ -2080,11 +2080,11 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="25"/>
+   <tile gid="5"/>
+   <tile gid="5"/>
+   <tile gid="5"/>
+   <tile gid="24"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -8235,5 +8235,11 @@
    <property name="ColType" type="int" value="2"/>
   </properties>
   <object id="35" x="894.667" y="767.333" width="66.6667" height="32"/>
+ </objectgroup>
+ <objectgroup id="6" name="Floating">
+  <properties>
+   <property name="ColType" type="int" value="3"/>
+  </properties>
+  <object id="36" x="794" y="512" width="108"/>
  </objectgroup>
 </map>

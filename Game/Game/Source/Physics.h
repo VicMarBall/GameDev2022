@@ -33,6 +33,7 @@ enum TypeTerrain {
 	FLOOR,
 	WALL,
 	DEATH,
+	FLOATING,
 	NO
 };
 

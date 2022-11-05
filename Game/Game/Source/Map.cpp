@@ -210,6 +210,8 @@ bool Map::Load()
 			case 2:
 				pBody->typeTerrain = DEATH;
 				break;
+			case 3:
+				pBody->typeTerrain = FLOATING;
 			default:
 				break;
 			}
