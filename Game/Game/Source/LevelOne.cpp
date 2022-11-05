@@ -101,7 +101,7 @@ bool LevelOne::Update(float dt)
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
-		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
@@ -109,7 +109,7 @@ bool LevelOne::Update(float dt)
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
-		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
 
 	// L03: DONE 3: Request App to Load / Save when pressing the keys F5 (save) / F6 (load)
@@ -153,8 +153,8 @@ bool LevelOne::Update(float dt)
 		else {
 			app->render->camera.x = -player->position.x + app->render->camera.w / 2;
 		}
-
-
+		if (app->render->camera.y < 0 && app->render->camera.y > -500 - app->win->GetWidth())
+		app->render->camera.y = -player->position.y + app->render->camera.h / 2;
 	}
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
