@@ -38,8 +38,6 @@ bool DeathScreen::Start() {
 // Called each loop iteration
 bool DeathScreen::PreUpdate()
 {
-	app->render->camera.x = 0;
-	app->render->camera.y = 0;
 	return true;
 }
 

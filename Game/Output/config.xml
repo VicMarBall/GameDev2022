@@ -36,7 +36,7 @@
   <!-- L02: DONE: Add an element for the entity manager and add the player parameters -->
   <level_one>
 	  <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
-	  <goal x="1120" y="608" texturepath="Assets/Textures/goal.png"/>
+	  <goal x="3920" y="368" texturepath="Assets/Textures/goal.png"/>
 	  <camera x="-150" y="-288"/>
 	  <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
   </level_one>

@@ -171,7 +171,7 @@ bool LevelOne::Update(float dt)
 		if (player->position.x < app->win->GetWidth()/2 - camX) {
 			app->render->camera.x = camX;
 		}
-		else {
+		else if (player->position.x < app->map->mapData.width*app->map->mapData.tileWidth - app->win->GetWidth() / 2){
 			app->render->camera.x = -player->position.x + app->render->camera.w / 2;
 		}
 		if (-player->position.y + app->render->camera.h / 2 < 0 && -player->position.y + app->render->camera.h / 2 > -app->map->mapData.height* app->map->mapData.tileHeight + app->win->GetHeight())
