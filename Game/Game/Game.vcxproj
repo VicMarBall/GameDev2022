@@ -97,6 +97,7 @@
   <ItemGroup>
     <ClCompile Include="Source\DeathScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\Goal.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\LevelTransition.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="Source\DeathScreen.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
+    <ClInclude Include="Source\Goal.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\LevelTransition.h" />
     <ClInclude Include="Source\Map.h" />

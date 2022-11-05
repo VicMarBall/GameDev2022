@@ -1,56 +1,57 @@
 <config>
   <app>
-    <title>A Forest Adventure</title>
-    <organization>UPC</organization>
+	<title>A Forest Adventure</title>
+	<organization>UPC</organization>
   </app>
 
   <renderer>
-    <vsync value="true"/>
+	<vsync value="true"/>
   </renderer>
 
   <window>
-    <resolution width="736" height="480" scale="1"/>
-    <fullscreen value="false"/>
-    <borderless value="false"/>
-    <resizable value="false"/>
-    <fullscreen_window value="false"/>
+	<resolution width="736" height="480" scale="1"/>
+	<fullscreen value="false"/>
+	<borderless value="false"/>
+	<resizable value="false"/>
+	<fullscreen_window value="false"/>
   </window>
 
   <audio>
-    <music volume="128"/>
-    <fx volume="128"/>
+	<music volume="128"/>
+	<fx volume="128"/>
   </audio>
 
   <fade>
   </fade>
   
   <scene_intro>
-    <textures texturepath="Assets/Textures/logo.png"/>
+	<textures texturepath="Assets/Textures/logo.png"/>
   </scene_intro>
 
   <scene_title>
-    <textures texturepath="Assets/Textures/menu.png"/>
-    <audio musicpath="Assets/Audio/Music/Menu-Theme_1.ogg"/>
+	<textures texturepath="Assets/Textures/menu.png"/>
+	<audio musicpath="Assets/Audio/Music/Menu-Theme_1.ogg"/>
   </scene_title>
 
   <!-- L02: DONE: Add an element for the entity manager and add the player parameters -->
   <level_one>
-    <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
-    <camera x="-150" y="-288"/>
-    <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
+	<player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
+	  <goal x="1120" y="608" texturepath="Assets/Textures/goal.png"/>
+	<camera x="-150" y="-288"/>
+	<audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
   </level_one>
 
   <level_transition>
-    <textures texturepath="Assets/Textures/win_screen.png"/>
+	<textures texturepath="Assets/Textures/win_screen.png"/>
   </level_transition>
 
   <death_screen>
-    <textures texturepath="Assets/Textures/death_screen.png"/>
+	<textures texturepath="Assets/Textures/death_screen.png"/>
   </death_screen>
 
   <map>
-    <mapfolder path="Assets/Maps/"/>
-    <mapfile path="Assets/Maps/testgamedev4.tmx"/>
+	<mapfolder path="Assets/Maps/"/>
+	<mapfile path="Assets/Maps/testgamedev4.tmx"/>
   </map>
   
 </config>
