@@ -74,16 +74,6 @@ bool LevelOne::Start()
 	goal->active = true;
 	goal->Start();
 
-	// L04: DONE 7: Set the window title with map/tileset info
-	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-		app->map->mapData.width,
-		app->map->mapData.height,
-		app->map->mapData.tileWidth,
-		app->map->mapData.tileHeight,
-		app->map->mapData.tilesets.Count());
-
-	app->win->SetTitle(title.GetString());
-
 	app->render->camera.x = camX;
 	app->render->camera.y = camY;
 

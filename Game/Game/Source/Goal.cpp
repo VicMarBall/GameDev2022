@@ -43,8 +43,11 @@ bool Goal::Start() {
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, STATIC);
 	pBody->body->SetFixedRotation(true);
+	pBody->body->SetActive(true);
 	pBody->listener = app->entityManager;
 	pBody->entity = this;
+
+	win = false;
 
 	return true;
 }
@@ -53,8 +56,14 @@ bool Goal::Update()
 {
 	// L07 TODO 5: Add physics to the player - updated player position using physics
 
-	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x + 1, position.y + 1);
+	if (!win) {
+		pBody->GetPosition(position.x, position.y);
+		app->render->DrawTexture(texture, position.x + 1, position.y + 1);
+	}
+	else {
+		pBody->body->SetActive(false);
+	}
+
 
 	return true;
 }
@@ -78,7 +87,7 @@ void Goal::OnCollision(PhysBody* otherBody)
 {
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::PLAYER) {
-			// win
+			win = true;
 			LOG("WIN");
 		}
 	}

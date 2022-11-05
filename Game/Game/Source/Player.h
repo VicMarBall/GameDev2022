@@ -44,11 +44,11 @@ public:
 	}
 
 	const bool Won() {
-		return Win;
+		return win;
 	}
 
 private:
-	bool Win = false;
+	bool win = false;
 	bool onAir;
 	bool canDoubleJump;
 
@@ -72,6 +72,8 @@ private:
 	Animation jumpingLeft;
 
 	Animation death;
+
+	Animation winning;
 
 	Animation* previousAnimation;
 

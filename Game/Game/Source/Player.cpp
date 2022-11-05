@@ -61,6 +61,8 @@ bool Player::Start() {
 
 	death.PushBack({32, 32, 32, 32});
 
+	winning.PushBack({ 64, 32, 32, 32 });
+
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);
 	pBody->body->SetFixedRotation(true);
@@ -69,7 +71,7 @@ bool Player::Start() {
 
 	isAlive = true;
 
-	Win = false;
+	win = false;
 
 	previousAnimation = &idleRight;
 
@@ -87,7 +89,7 @@ bool Player::Update()
 	Animation* currentAnimation = previousAnimation;
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
 
-	if (isAlive) {
+	if (isAlive && !win) {
 		if (previousAnimation == &idleRight ||
 			previousAnimation == &walkingRight ||
 			previousAnimation == &jumpingRight) {
@@ -199,8 +201,11 @@ bool Player::Update()
 			}
 		}
 	}
-	else {
+	else if (!isAlive) {
 		currentAnimation = &death;
+	}
+	else {
+		currentAnimation = &winning;
 	}
 	
 
@@ -258,7 +263,7 @@ void Player::OnCollision(PhysBody* otherBody)
 	}
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::GOAL) {
-			Win = true;
+			win = true;
 			// win
 			LOG("WIN");
 		}
