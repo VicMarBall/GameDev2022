@@ -18,6 +18,7 @@ LevelTransition::~LevelTransition() {}
 
 bool LevelTransition::Awake(pugi::xml_node& config) {
 	bgPath = config.child("textures").attribute("texturepath").as_string();
+	musicPath = (char*)config.child("audio").attribute("musicpath").as_string();
 
 	return true;
 }
@@ -26,6 +27,7 @@ bool LevelTransition::Awake(pugi::xml_node& config) {
 bool LevelTransition::Start() {
 	LOG("Loading background assets");
 	bgTexture = app->tex->Load(bgPath);
+	app->audio->PlayMusic(musicPath, 1.0f);
 	bool ret = true;
 
 

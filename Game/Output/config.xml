@@ -44,10 +44,12 @@
 
   <level_transition>
 	  <textures texturepath="Assets/Textures/win_screen.png"/>
+    <audio musicpath="Assets/Audio/Music/Lively Meadow Victory Fanfare.ogg"/>
   </level_transition>
 
   <death_screen>
 	  <textures texturepath="Assets/Textures/death_screen.png"/>
+    <audio musicpath="Assets/Audio/Music/ThisGameIsOver.ogg"/>
   </death_screen>
 
   <map>
