@@ -242,7 +242,7 @@ bool Map::Load()
 		tileset = mapData.tilesets.start;
 
 		while (tileset != NULL) {
-			LOG("name : %s firstgid : %d",tileset->data->name.GetString(), tileset->data->firstgid);
+			//LOG("name : %s firstgid : %d",tileset->data->name.GetString(), tileset->data->firstgid);
 			LOG("tile width : %d tile height : %d", tileset->data->tileWidth, tileset->data->tileHeight);
 			LOG("spacing : %d margin : %d", tileset->data->spacing, tileset->data->margin);
 			tileset = tileset->next;
@@ -276,25 +276,25 @@ bool Map::UnLoad()
 	//	app->physics->world->DestroyBody(b);
 	//}
 
-	//ListItem<TileSet*>* item;
-	//item = mapData.tilesets.start;
+	ListItem<TileSet*>* item;
+	item = mapData.tilesets.start;
 
-	//while (item != NULL)
-	//{
-	//	RELEASE(item->data);
-	//	item = item->next;
-	//}
-	//mapData.tilesets.Clear();
+	while (item != NULL)
+	{
+		RELEASE(item->data);
+		item = item->next;
+	}
+	mapData.tilesets.Clear();
 
-	//ListItem<MapLayer*>* layerItem;
-	//layerItem = mapData.maplayers.start;
+	ListItem<MapLayer*>* layerItem;
+	layerItem = mapData.maplayers.start;
 
-	//while (layerItem != NULL)
-	//{
-	//	RELEASE(layerItem->data);
-	//	layerItem = layerItem->next;
-	//}
-	//mapData.maplayers.Clear();
+	while (layerItem != NULL)
+	{
+		RELEASE(layerItem->data);
+		layerItem = layerItem->next;
+	}
+	mapData.maplayers.Clear();
 
 	mapLoaded = false;
 
