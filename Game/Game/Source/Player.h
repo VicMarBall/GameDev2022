@@ -43,8 +43,12 @@ public:
 		return godMode;
 	}
 
-private:
+	const bool Won() {
+		return Win;
+	}
 
+private:
+	bool Win = false;
 	bool onAir;
 	bool canDoubleJump;
 

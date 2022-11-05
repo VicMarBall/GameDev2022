@@ -69,6 +69,8 @@ bool Player::Start() {
 
 	isAlive = true;
 
+	Win = false;
+
 	previousAnimation = &idleRight;
 
 	onAir = true;
@@ -253,6 +255,13 @@ void Player::OnCollision(PhysBody* otherBody)
 	}
 	if (otherBody->typeTerrain == DEATH) {
 		Die();
+	}
+	if (otherBody->entity != nullptr) {
+		if (otherBody->entity->type == EntityType::GOAL) {
+			Win = true;
+			// win
+			LOG("WIN");
+		}
 	}
 }
 
