@@ -30,7 +30,7 @@ F9: See colliders
 F10: GodMode
 
 ## GodMode:
-Invincibility
+### Invincibility
 
 ### Movement: 
 W: Move Up
