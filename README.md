@@ -1,6 +1,7 @@
 # GameDev2022
 ## Project created by:
 Ariadna Sevcik ([AriSevcik](https://github.com/AriSevcik))
+
 Victor Martin ([VicMarBall](https://github.com/VicMarBall))
 
 ## How to play: 
