@@ -42,6 +42,10 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	player->active = false;
 	player->parameters = config.child("player");
 
+	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
+	goal->active = false;
+	goal->parameters = config.child("goal");
+
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
 
@@ -62,6 +66,9 @@ bool LevelOne::Start()
 
 	player->active = true;
 	player->Start();
+
+	goal->active = true;
+	goal->Start();
 
 	// L04: DONE 7: Set the window title with map/tileset info
 	SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",

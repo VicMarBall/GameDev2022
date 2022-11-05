@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Player.h"
+#include "Goal.h"
 #include "Item.h"
 
 struct SDL_Texture;
@@ -38,6 +39,7 @@ public:
 
 	//L02: DONE 3: Declare a Player attribute 
 	Player* player;
+	Goal* goal;
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
 
