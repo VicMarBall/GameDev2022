@@ -1,4 +1,6 @@
 # GameDev2022
+GitHub: https://github.com/VicMarBall/GameDev2022
+
 ## Project created by:
 Ariadna Sevcik ([AriSevcik](https://github.com/AriSevcik))
 
