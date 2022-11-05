@@ -46,6 +46,7 @@ public:
 private:
 	SDL_Texture* img;
 	char* musicPath;
+	SString mapFileName;
 	int camX;
 	int camY;
 

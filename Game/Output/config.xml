@@ -39,6 +39,7 @@
 	  <goal x="3920" y="368" texturepath="Assets/Textures/goal.png"/>
 	  <camera x="-150" y="-288"/>
 	  <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
+	  <mapfile path="Assets/Maps/testgamedev4.tmx"/>
   </level_one>
 
   <level_transition>

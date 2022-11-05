@@ -52,6 +52,8 @@ bool LevelOne::Awake(pugi::xml_node& config)
 
 	musicPath = (char*)config.child("audio").attribute("musicpath").as_string();
 
+	mapFileName = config.child("mapfile").attribute("path").as_string();
+
 	return ret;
 }
 
@@ -62,6 +64,7 @@ bool LevelOne::Start()
 	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
 	
 	// L03: DONE: Load map
+	app->map->SetMapFileName(mapFileName);
 	app->map->Load();
 	app->audio->PlayMusic(musicPath, 1.0f);
 
@@ -174,8 +177,8 @@ bool LevelOne::Update(float dt)
 		else if (player->position.x < app->map->mapData.width*app->map->mapData.tileWidth - app->win->GetWidth() / 2){
 			app->render->camera.x = -player->position.x + app->render->camera.w / 2;
 		}
-		if (-player->position.y + app->render->camera.h / 2 < 0 && -player->position.y + app->render->camera.h / 2 > -app->map->mapData.height* app->map->mapData.tileHeight + app->win->GetHeight())
-		app->render->camera.y = -player->position.y + app->win->GetHeight() / 2;
+		if (app->render->camera.y < 0 && app->render->camera.y > -500 - app->win->GetWidth())
+		app->render->camera.y = -player->position.y + app->render->camera.h / 2;
 	}
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
@@ -222,6 +225,7 @@ bool LevelOne::CleanUp()
 {
 	LOG("Freeing scene");
 	player->CleanUp();
+	app->map->UnLoad();
 	app->tex->UnLoad(img);
 
 	return true;

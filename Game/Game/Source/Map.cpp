@@ -26,7 +26,6 @@ bool Map::Awake(pugi::xml_node& config)
 	LOG("Loading Map Parser");
 	bool ret = true;
 
-	mapFileName = config.child("mapfile").attribute("path").as_string();
 	mapFolder = config.child("mapfolder").attribute("path").as_string();
 
 	return ret;
@@ -94,6 +93,11 @@ iPoint Map::MapToWorld(int x, int y) const
 	ret.y = y * mapData.tileHeight;
 
 	return ret;
+}
+
+void Map::SetMapFileName(SString fileName)
+{
+	mapFileName = fileName;
 }
 
 // Get relative Tile rectangle
@@ -260,6 +264,41 @@ bool Map::Load()
 	mapLoaded = ret;
 
 	return ret;
+}
+
+bool Map::UnLoad()
+{
+	//b2Body* bNext = app->physics->world->GetBodyList()->GetNext();
+	//for (b2Body* b = app->physics->world->GetBodyList(); b; b = bNext)
+	//{
+	//	bNext = b->GetNext();
+	//	
+	//	app->physics->world->DestroyBody(b);
+	//}
+
+	//ListItem<TileSet*>* item;
+	//item = mapData.tilesets.start;
+
+	//while (item != NULL)
+	//{
+	//	RELEASE(item->data);
+	//	item = item->next;
+	//}
+	//mapData.tilesets.Clear();
+
+	//ListItem<MapLayer*>* layerItem;
+	//layerItem = mapData.maplayers.start;
+
+	//while (layerItem != NULL)
+	//{
+	//	RELEASE(layerItem->data);
+	//	layerItem = layerItem->next;
+	//}
+	//mapData.maplayers.Clear();
+
+	mapLoaded = false;
+
+	return true;
 }
 
 // L04: DONE 3: Implement LoadMap to load the map properties

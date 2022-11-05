@@ -128,8 +128,12 @@ public:
     // Load new map
     bool Load();
 
+	bool UnLoad();
+
 	// L05: DONE 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint MapToWorld(int x, int y) const;
+
+	void SetMapFileName(SString fileName);
 
 private:
 
