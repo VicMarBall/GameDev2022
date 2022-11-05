@@ -1,16 +1,16 @@
 # GameDev2022
-Project created by:
+## Project created by:
 Ariadna Sevcik ([AriSevcik](https://github.com/AriSevcik))
 Victor Martin ([VicMarBall](https://github.com/VicMarBall))
 
-How to play: 
+## How to play: 
 Press ENTER in the Scenes to skip them
 A: Move Left
 D: Move Right
 S: Ground Pound
 SPACE: Jump/Double Jump
 
-Debug options: 
+## Debug options: 
 F1: Go to the start of the first level
 
 F3: Go to the start of the current level
@@ -20,7 +20,7 @@ F8: Free the camera
 F9: See colliders
 F10: GodMode
 
-GodMode:
+## GodMode:
 Invincibility
 Movement: 
 W: Move Up
