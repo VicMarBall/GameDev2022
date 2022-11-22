@@ -44,6 +44,7 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PathFinding.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -114,6 +115,7 @@
     <ClInclude Include="Source\Player.h">
       <Filter>Entities</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PathFinding.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">

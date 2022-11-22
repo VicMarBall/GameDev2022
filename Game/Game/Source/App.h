@@ -24,6 +24,7 @@ class DeathScreen;
 class EntityManager;
 class Map;
 class Physics;
+class PathFinding;
 //L07 TODO 2: Add Physics module
 
 class App
@@ -101,6 +102,7 @@ public:
 	Map* map;
 	//L07 TODO 2: Add Physics module
 	Physics* physics;
+	PathFinding* pathfinding;
 
 private:
 

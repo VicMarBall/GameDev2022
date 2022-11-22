@@ -13,6 +13,7 @@
 #include "EntityManager.h"
 #include "Map.h"
 #include "Physics.h"
+#include "PathFinding.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -40,6 +41,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	death_screen = new DeathScreen(false);
 	entityManager = new EntityManager();
 	map = new Map();
+	pathfinding = new PathFinding();
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -57,6 +59,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(death_screen);
 	AddModule(entityManager);
 	AddModule(map);
+	AddModule(pathfinding);
 
 	// Render last to swap buffer
 	AddModule(render);
