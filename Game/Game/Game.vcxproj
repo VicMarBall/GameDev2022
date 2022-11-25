@@ -119,11 +119,11 @@
     <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="Enemies.h" />
-    <ClInclude Include="FlyingEnemy.h" />
     <ClInclude Include="Source\DeathScreen.h" />
+    <ClInclude Include="Source\Enemies.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
+    <ClInclude Include="Source\FlyingEnemy.h" />
     <ClInclude Include="Source\Goal.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\LevelTransition.h" />
@@ -143,6 +143,7 @@
     <ClInclude Include="Source\SceneIntro.h" />
     <ClInclude Include="Source\SceneTitle.h" />
     <ClInclude Include="Source\Textures.h" />
+    <ClInclude Include="Source\WalkingEnemy.h" />
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Defs.h" />
     <ClInclude Include="Source\List.h" />
@@ -154,7 +155,6 @@
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
-    <ClInclude Include="WalkingEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
