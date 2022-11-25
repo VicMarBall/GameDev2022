@@ -11,6 +11,8 @@ enum class EntityType
 	PLAYER,
 	ITEM,
 	GOAL,
+	WALKINGENEMY,
+	FLYINGENEMY,
 	UNKNOWN
 };
 
