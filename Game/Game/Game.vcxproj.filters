@@ -45,6 +45,12 @@
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Source\PathFinding.cpp" />
+    <ClCompile Include="WalkingEnemy.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="FlyingEnemy.cpp">
+      <Filter>Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -116,6 +122,15 @@
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\PathFinding.h" />
+    <ClInclude Include="Enemies.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="WalkingEnemy.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="FlyingEnemy.h">
+      <Filter>Entities\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -132,6 +147,9 @@
     </Filter>
     <Filter Include="Entities">
       <UniqueIdentifier>{279a56d5-ba9f-410a-8c50-868e1f1f1b52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entities\Enemies">
+      <UniqueIdentifier>{dddb82fd-7b1d-42a3-8276-64da8072ed06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -95,6 +95,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FlyingEnemy.cpp" />
     <ClCompile Include="Source\DeathScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\Goal.cpp" />
@@ -115,7 +116,10 @@
     <ClCompile Include="Source\SceneTitle.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="WalkingEnemy.cpp" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Enemies.h" />
+    <ClInclude Include="FlyingEnemy.h" />
     <ClInclude Include="Source\DeathScreen.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
@@ -148,6 +152,7 @@
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
+    <ClInclude Include="WalkingEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
