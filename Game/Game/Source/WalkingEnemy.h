@@ -1,1 +1,39 @@
-#pragma once
+#ifndef __WALKINGENEMY_H__
+#define __WALKINGENEMY_H__
+
+#include "Enemies.h"
+#include "Point.h"
+#include "SDL/include/SDL.h"
+
+struct SDL_Texture;
+
+class WalkingEnemy : public Enemy
+{
+public:
+
+	WalkingEnemy();
+	virtual ~WalkingEnemy();
+
+	bool Awake();
+
+	bool Start();
+
+	bool Update();
+
+	bool CleanUp();
+
+public:
+
+
+
+private:
+
+	SDL_Texture* texture;
+	const char* texturePath;
+
+	//TODO 4: Add a physics to an item
+	PhysBody* pBody;
+
+};
+
+#endif // __WALKINGENEMY_H__

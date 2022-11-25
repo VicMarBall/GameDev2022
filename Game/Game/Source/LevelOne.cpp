@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "ModuleFadeToBlack.h"
 #include "LevelOne.h"
+#include "LevelTwo.h"
 #include "EntityManager.h"
 #include "Map.h"
 #include "Physics.h"
