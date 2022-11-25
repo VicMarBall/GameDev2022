@@ -20,6 +20,7 @@ class SceneIntro;
 class SceneTitle;
 class LevelOne;
 class LevelTransition;
+class LevelTwo;
 class DeathScreen;
 class EntityManager;
 class Map;
@@ -97,6 +98,7 @@ public:
 	SceneTitle* scene_title;
 	LevelOne* level_one;
 	LevelTransition* level_transition;
+	LevelTwo* level_two;
 	DeathScreen* death_screen;
 	EntityManager* entityManager;
 	Map* map;

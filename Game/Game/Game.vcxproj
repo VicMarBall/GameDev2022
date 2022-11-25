@@ -95,12 +95,13 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FlyingEnemy.cpp" />
     <ClCompile Include="Source\DeathScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\FlyingEnemy.cpp" />
     <ClCompile Include="Source\Goal.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\LevelTransition.cpp" />
+    <ClCompile Include="Source\LevelTwo.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\App.cpp" />
     <ClCompile Include="Source\Audio.cpp" />
@@ -115,8 +116,8 @@
     <ClCompile Include="Source\SceneIntro.cpp" />
     <ClCompile Include="Source\SceneTitle.cpp" />
     <ClCompile Include="Source\Textures.cpp" />
+    <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
-    <ClCompile Include="WalkingEnemy.cpp" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Enemies.h" />
     <ClInclude Include="FlyingEnemy.h" />
@@ -126,6 +127,7 @@
     <ClInclude Include="Source\Goal.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\LevelTransition.h" />
+    <ClInclude Include="Source\LevelTwo.h" />
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\ModuleFadeToBlack.h" />
     <ClInclude Include="Source\PathFinding.h" />

@@ -45,10 +45,13 @@
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Source\PathFinding.cpp" />
-    <ClCompile Include="WalkingEnemy.cpp">
+    <ClCompile Include="Source\LevelTwo.cpp">
+      <Filter>Screens</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FlyingEnemy.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="FlyingEnemy.cpp">
+    <ClCompile Include="Source\WalkingEnemy.cpp">
       <Filter>Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="FlyingEnemy.h">
       <Filter>Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LevelTwo.h">
+      <Filter>Screens</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
