@@ -8,25 +8,48 @@
 
 struct SDL_Texture;
 
+
 class Enemy : public Entity
 {
 public:
 
-	Enemy();
+	Enemy(EntityType enemyType) :Entity(enemyType) {
 
-	virtual ~Enemy();
+	}
 
-	virtual bool Awake();
+	virtual ~Enemy() {
 
-	virtual bool Start();
+	};
 
-	virtual bool Update();
+	virtual bool Awake(){
+		return true;
+	}
 
-	virtual bool CleanUp();
+	virtual bool Start(){
+		return true;
+	}
 
-	virtual void OnCollision(PhysBody* otherBody);
+	virtual bool Update(){
+		return true;
+	}
+
+	virtual bool CleanUp(){
+		return true;
+	}
+
+	virtual void OnCollision(PhysBody* otherBody) {
+
+	};
 
 public:
+
+	virtual void SetPosition(int posX, int posY) {
+
+	};
+
+	virtual void Die() {
+
+	};
 
 private:
 

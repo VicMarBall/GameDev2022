@@ -24,12 +24,22 @@ public:
 
 public:
 
-	
+	void SetPosition(int posX, int posY);
+
+	void Die();
 
 private:
 
+	bool isAlive;
+
 	SDL_Texture* texture;
 	const char* texturePath;
+
+	Animation flyingRight;
+	Animation flyingLeft;
+	Animation death;
+
+	Animation* previousAnimation;
 
 	//TODO 4: Add a physics to an item
 	PhysBody* pBody;
