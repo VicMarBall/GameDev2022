@@ -61,10 +61,42 @@ bool FlyingEnemy::Start() {
 }
 
 bool FlyingEnemy::Update() {
+
+	b2Vec2 velocity = pBody->body->GetLinearVelocity();
+	Animation* currentAnimation = previousAnimation;
+	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
+
+	pBody->body->SetLinearVelocity(velocity);
+
+	currentFrame = currentAnimation->GetCurrentFrame();
+	currentAnimation->Update();
+
+	previousAnimation = currentAnimation;
+
+	pBody->GetPosition(position.x, position.y);
+	app->render->DrawTexture(texture, position.x + 1, position.y + 1, &currentFrame);
+
 	return true;
 }
 
 bool FlyingEnemy::CleanUp() {
+	app->tex->UnLoad(texture);
+	texture = nullptr;
+	texturePath = nullptr;
+
+	flyingRight.FullReset();
+	flyingLeft.FullReset();
+
+	death.FullReset();
+
+	if (pBody != nullptr) {
+		app->physics->world->DestroyBody(pBody->body);
+	}
+
+
+
+	active = false;
+
 	return true;
 }
 
