@@ -199,8 +199,8 @@ bool LevelOne::Update(float dt)
 
 	int mouseX, mouseY;
 	app->input->GetMousePosition(mouseX, mouseY);
-	iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x - app->map->mapData.tileWidth / 2,
-		mouseY - app->render->camera.y - app->map->mapData.tileHeight / 2);
+	iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x,
+		mouseY - app->render->camera.y);
 
 	//Convert again the tile coordinates to world coordinates to render the texture of the tile
 	iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);
