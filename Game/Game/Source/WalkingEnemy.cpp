@@ -36,15 +36,16 @@ bool WalkingEnemy::Start() {
 	//initilize textures
 	texture = app->tex->Load(texturePath);
 
-	walkingRight.PushBack({ 0, 32, 32, 32 });
+	walkingRight.PushBack({ 32, 0, 32, 32 });
 	walkingRight.PushBack({ 0, 0, 32, 32 });
 	walkingRight.speed = 0.2f;
 
-	walkingLeft.PushBack({ 96, 32, 32, 32 });
-	walkingLeft.PushBack({ 96, 0, 32, 32 });
+	walkingLeft.PushBack({ 32, 32, 32, 32 });
+	walkingLeft.PushBack({ 0, 32, 32, 32 });
 	walkingLeft.speed = 0.2f;
 
-	death.PushBack({ 32, 32, 32, 32 });
+	death.PushBack({ 32, 64, 32, 32 });
+	death.PushBack({ 0, 64, 32, 32 });
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);

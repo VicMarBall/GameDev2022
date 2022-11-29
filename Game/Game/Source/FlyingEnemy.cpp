@@ -36,15 +36,16 @@ bool FlyingEnemy::Start() {
 	//initilize textures
 	texture = app->tex->Load(texturePath);
 
-	flyingRight.PushBack({ 0, 32, 32, 32 });
+	flyingRight.PushBack({ 32, 0, 32, 32 });
 	flyingRight.PushBack({ 0, 0, 32, 32 });
 	flyingRight.speed = 0.2f;
 
-	flyingLeft.PushBack({ 96, 32, 32, 32 });
-	flyingLeft.PushBack({ 96, 0, 32, 32 });
+	flyingLeft.PushBack({ 32, 32, 32, 32 });
+	flyingLeft.PushBack({ 0, 32, 32, 32 });
 	flyingLeft.speed = 0.2f;
 
-	death.PushBack({ 32, 32, 32, 32 });
+	death.PushBack({ 32, 64, 32, 32 });
+	death.PushBack({ 0, 64, 32, 32 });
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);

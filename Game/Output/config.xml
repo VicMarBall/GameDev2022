@@ -44,6 +44,9 @@
 
   <level_two>
     <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
+    <walking_enemy x="368" y="560" texturepath="Assets/Textures/walking_enemy_spritesheet.png"/>
+    <flying_enemy x="368" y="560" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png"/>
+    <flying_enemy x="368" y="560" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png"/>
     <goal x="3920" y="368" texturepath="Assets/Textures/goal.png"/>
     <camera x="-150" y="-288"/>
     <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
