@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Goal.h"
 #include "Item.h"
+#include "Enemies.h"
 #include "App.h"
 #include "Textures.h"
 #include "LevelOne.h"
@@ -96,6 +97,12 @@ Entity* EntityManager::CreateEntity(EntityType type)
 		break;
 	case EntityType::ITEM:
 		entity = new Item();
+		break;
+	case EntityType::WALKINGENEMY:
+		entity = new Enemy(EntityType::WALKINGENEMY);
+		break;
+	case EntityType::FLYINGENEMY:
+		entity = new Enemy(EntityType::FLYINGENEMY);
 		break;
 
 	default: break;

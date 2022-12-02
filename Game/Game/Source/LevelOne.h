@@ -37,10 +37,11 @@ public:
 	bool CleanUp();
 
 public:
-
 	//L02: DONE 3: Declare a Player attribute 
 	Player* player;
 	Goal* goal;
+	List<Enemy*>* enemy;
+
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
 
@@ -58,6 +59,8 @@ private:
 
 	int camX;
 	int camY;
+
+	
 
 };
 

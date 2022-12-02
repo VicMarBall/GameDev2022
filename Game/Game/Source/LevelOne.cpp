@@ -49,6 +49,20 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	goal->active = false;
 	goal->parameters = config.child("goal");
 
+	for (pugi::xml_node walkEnemyNode = config.child("walking_enemy"); walkEnemyNode; walkEnemyNode = walkEnemyNode.next_sibling("walking_enemy")) {
+		Enemy* currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
+		currentEnemy->active = false;
+		currentEnemy->parameters = walkEnemyNode;
+		enemy->Add(currentEnemy);
+	}
+
+	for (pugi::xml_node flyEnemyNode = config.child("flying_enemy"); flyEnemyNode; flyEnemyNode = flyEnemyNode.next_sibling("flying_enemy")) {
+		Enemy* currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
+		currentEnemy->active = false;
+		currentEnemy->parameters = flyEnemyNode;
+		enemy->Add(currentEnemy);
+	}
+
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
 
@@ -89,6 +103,11 @@ bool LevelOne::Start()
 
 	goal->active = true;
 	goal->Start();
+
+	/*for (ListItem<Enemy*>* currentEnemy = enemy->start; currentEnemy != nullptr; currentEnemy = currentEnemy->next) {
+		currentEnemy->data->active = true;
+		currentEnemy->data->Start();
+	}*/
 
 	app->render->camera.x = camX;
 	app->render->camera.y = camY;
