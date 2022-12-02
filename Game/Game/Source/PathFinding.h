@@ -103,4 +103,15 @@ struct PathList
 	List<PathNode> list;
 };
 
+// Path struct for the enemies
+struct Path {
+
+
+	List<PathNode> path;
+
+	bool loop;
+
+	iPoint objective;
+
+};
 #endif // __PATHFINDING_H__
