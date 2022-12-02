@@ -9,6 +9,7 @@
 #include "EntityManager.h"
 #include "Map.h"
 #include "Physics.h"
+#include "PathFinding.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -175,6 +176,45 @@ bool LevelTwo::Update(float dt)
 
 	// Draw map
 	app->map->Draw();
+
+	if (app->physics->debug) {
+		int mouseX, mouseY;
+		app->input->GetMousePosition(mouseX, mouseY);
+		iPoint mouseTile = app->map->WorldToMap(mouseX - app->render->camera.x,
+			mouseY - app->render->camera.y);
+
+		//Convert again the tile coordinates to world coordinates to render the texture of the tile
+		iPoint highlightedTileWorld = app->map->MapToWorld(mouseTile.x, mouseTile.y);
+		app->render->DrawTexture(mouseTileTex, highlightedTileWorld.x, highlightedTileWorld.y);
+
+		//Test compute path function
+		if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KEY_DOWN)
+		{
+			if (originSelected == true)
+			{
+				app->pathfinding->CreatePath(origin, mouseTile);
+				originSelected = false;
+			}
+			else
+			{
+				origin = mouseTile;
+				originSelected = true;
+				app->pathfinding->ClearLastPath();
+			}
+		}
+
+		// L12: Get the latest calculated path and draw
+		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+		}
+
+		// L12: Debug pathfinding
+		iPoint originScreen = app->map->MapToWorld(origin.x, origin.y);
+		app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
+	}
 
 	return true;
 }

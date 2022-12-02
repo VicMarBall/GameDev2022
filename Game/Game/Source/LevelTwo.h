@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Goal.h"
 #include "Item.h"
+#include "Enemies.h"
 
 struct SDL_Texture;
 
@@ -47,6 +48,14 @@ private:
 	SDL_Texture* img;
 	char* musicPath;
 	SString mapFileName;
+
+	SDL_Texture* mouseTileTex = nullptr;
+	SDL_Texture* originTex = nullptr;
+
+	// L12: Debug pathfing
+	iPoint origin;
+	bool originSelected = false;
+
 	int camX;
 	int camY;
 
