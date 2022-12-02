@@ -50,7 +50,7 @@
     <goal x="3920" y="368" texturepath="Assets/Textures/goal.png"/>
     <camera x="-150" y="-288"/>
     <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
-    <mapfile path="Assets/Maps/map_level1.tmx"/>
+    <mapfile path="Assets/Maps/map_level2.tmx"/>
   </level_two>
 
   <level_transition>
