@@ -6,6 +6,7 @@
 #include "Goal.h"
 #include "Item.h"
 #include "Enemies.h"
+#include "List.h"
 
 struct SDL_Texture;
 
@@ -40,7 +41,7 @@ public:
 	//L02: DONE 3: Declare a Player attribute 
 	Player* player;
 	Goal* goal;
-	List<Enemy*>* enemy;
+	Enemy* enemy;
 
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);

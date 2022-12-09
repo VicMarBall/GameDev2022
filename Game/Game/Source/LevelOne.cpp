@@ -49,19 +49,22 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	goal->active = false;
 	goal->parameters = config.child("goal");
 
-	for (pugi::xml_node walkEnemyNode = config.child("walking_enemy"); walkEnemyNode; walkEnemyNode = walkEnemyNode.next_sibling("walking_enemy")) {
-		Enemy* currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
+	
+	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
+	enemy->active = false;
+	enemy->parameters = config.child("enemy");
+	
+	/*/for (pugi::xml_node EnemyNode = config.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
+		
+		Enemy* currentEnemy;
+		if (EnemyNode.attribute("type").as_int()==1){
+			currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);}
+		else {
+			currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);}
 		currentEnemy->active = false;
-		currentEnemy->parameters = walkEnemyNode;
-		enemy->Add(currentEnemy);
-	}
-
-	for (pugi::xml_node flyEnemyNode = config.child("flying_enemy"); flyEnemyNode; flyEnemyNode = flyEnemyNode.next_sibling("flying_enemy")) {
-		Enemy* currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
-		currentEnemy->active = false;
-		currentEnemy->parameters = flyEnemyNode;
-		enemy->Add(currentEnemy);
-	}
+		currentEnemy->parameters = EnemyNode;
+		//enemy->Add(currentEnemy);
+	//}*/
 
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
@@ -104,7 +107,10 @@ bool LevelOne::Start()
 	goal->active = true;
 	goal->Start();
 
-	/*for (ListItem<Enemy*>* currentEnemy = enemy->start; currentEnemy != nullptr; currentEnemy = currentEnemy->next) {
+	enemy->active = true;
+	enemy->Start();
+
+	/*for (ListItem<Enemy*>* currentEnemy = enemy->start; currentEnemy; currentEnemy = currentEnemy->next) {
 		currentEnemy->data->active = true;
 		currentEnemy->data->Start();
 	}*/
@@ -288,6 +294,14 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 	play.append_attribute("x") = player->position.x + 16;
 	play.append_attribute("y") = player->position.y + 16;
 
+	pugi::xml_node enem = data.append_child("enemies");
+
+	/*for (ListItem<Enemy*>* currentEnemy = enemy->start; currentEnemy->data; currentEnemy = currentEnemy->next) {
+		pugi::xml_node curEnem = enem.append_child("enemy");
+		curEnem.append_attribute()
+
+	}*/
+
 	return true;
 }
 
@@ -296,6 +310,8 @@ bool LevelOne::CleanUp()
 {
 	LOG("Freeing scene");
 	player->CleanUp();
+	enemy->CleanUp();
+	goal->CleanUp();
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
 
