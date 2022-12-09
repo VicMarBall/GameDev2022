@@ -120,7 +120,9 @@ void EntityManager::DestroyEntity(Entity* entity)
 
 	for (item = entities.start; item != NULL; item = item->next)
 	{
-		if (item->data == entity) entities.Del(item);
+		if (item->data == entity) {
+			entity->pendingToDelete = true;
+		}
 	}
 }
 
@@ -155,6 +157,11 @@ bool EntityManager::Update(float dt)
 
 		if (pEntity->active == false) continue;
 		ret = item->data->Update();
+
+		if (pEntity->pendingToDelete == true) {
+			item->data->CleanUp();
+			entities.Del(item);
+		}
 	}
 
 	return ret;
