@@ -319,6 +319,9 @@ bool LevelOne::CleanUp()
 	goal->CleanUp();
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
+	app->tex->UnLoad(mouseTileTex);
+	app->tex->UnLoad(originTex);
+
 
 	return true;
 }
