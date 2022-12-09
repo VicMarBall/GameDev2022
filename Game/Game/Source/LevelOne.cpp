@@ -282,6 +282,8 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 {
 	player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
+	enemy->SetPosition(data.child("enemies").child("enemy").attribute("x").as_int(), data.child("enemies").child("enemy").attribute("y").as_int());
+
 	return true;
 }
 
@@ -295,6 +297,9 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 	play.append_attribute("y") = player->position.y + 16;
 
 	pugi::xml_node enem = data.append_child("enemies");
+	pugi::xml_node curEnem = enem.append_child("enemy");
+	curEnem.append_attribute("x") = enemy->position.x;
+	curEnem.append_attribute("y") = enemy->position.y;
 
 	/*for (ListItem<Enemy*>* currentEnemy = enemy->start; currentEnemy->data; currentEnemy = currentEnemy->next) {
 		pugi::xml_node curEnem = enem.append_child("enemy");

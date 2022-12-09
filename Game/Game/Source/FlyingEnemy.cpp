@@ -48,7 +48,7 @@ bool FlyingEnemy::Start() {
 	death.PushBack({ 0, 64, 32, 32 });
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
-	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, DYNAMIC);
+	pBody = app->physics->CreateRectangle(position.x, position.y, 16, 16, DYNAMIC);
 	pBody->body->SetFixedRotation(true);
 	pBody->listener = app->entityManager;
 	pBody->entity = this;
@@ -74,7 +74,7 @@ bool FlyingEnemy::Update() {
 	previousAnimation = currentAnimation;
 
 	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x + 1, position.y + 1, &currentFrame);
+	app->render->DrawTexture(texture, position.x -8, position.y -16, &currentFrame);
 
 	return true;
 }
