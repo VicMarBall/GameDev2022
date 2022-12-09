@@ -118,7 +118,7 @@
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
-    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\DeathScreen.h" />
     <ClInclude Include="Source\Enemies.h" />
     <ClInclude Include="Source\Entity.h" />

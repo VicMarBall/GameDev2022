@@ -92,7 +92,6 @@
     </ClInclude>
     <ClInclude Include="Source\Map.h" />
     <ClInclude Include="Source\Physics.h" />
-    <ClInclude Include="Animation.h" />
     <ClInclude Include="Source\ModuleFadeToBlack.h" />
     <ClInclude Include="Source\LevelOne.h">
       <Filter>Screens</Filter>
@@ -137,6 +136,7 @@
     <ClInclude Include="Source\WalkingEnemy.h">
       <Filter>Entities\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
