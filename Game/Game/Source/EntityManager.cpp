@@ -1,4 +1,5 @@
 #include "EntityManager.h"
+#include "Bullet.h"
 #include "Player.h"
 #include "Goal.h"
 #include "Item.h"
@@ -106,7 +107,9 @@ Entity* EntityManager::CreateEntity(EntityType type)
 	case EntityType::FLYINGENEMY:
 		entity = new FlyingEnemy();
 		break;
-
+	case EntityType::BULLET:
+		entity = new Bullet();
+		break;
 	default: break;
 	}
 

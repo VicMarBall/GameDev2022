@@ -13,6 +13,7 @@ enum class EntityType
 	GOAL,
 	WALKINGENEMY,
 	FLYINGENEMY,
+	BULLET, 
 	UNKNOWN
 };
 

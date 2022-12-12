@@ -80,6 +80,8 @@ bool Player::Start() {
 
 	maxSpeed = 6;
 
+	storedBullet = nullptr;
+
 	return true;
 }
 
@@ -100,6 +102,15 @@ bool Player::Update()
 			previousAnimation == &walkingLeft ||
 			previousAnimation == &jumpingLeft) {
 			currentAnimation = &idleLeft;
+		}
+
+		if (shooting) {
+			storedBullet->SetBullet(Bullet::DIRECTIONS::RIGHT, {position.x + 40, position.y + 16});
+			shooting = false;
+			storedBullet = nullptr;
+		}
+		if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN) {
+			Shoot();
 		}
 
 		if (!godMode) {
@@ -300,4 +311,11 @@ void Player::GodSwitch() {
 		godMode = false;
 		pBody->body->SetGravityScale(1);
 	}
+}
+
+void Player::Shoot()
+{
+	storedBullet = (Bullet*)app->entityManager->CreateEntity(EntityType::BULLET);
+
+	shooting = true;
 }

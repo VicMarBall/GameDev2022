@@ -1,5 +1,5 @@
-#ifndef __GOAL_H__
-#define __GOAL_H__
+#ifndef __BULLET_H__
+#define __BULLET_H__
 
 #include "Entity.h"
 #include "Point.h" 
@@ -8,13 +8,13 @@
 
 struct SDL_Texture;
 
-class Goal : public Entity
+class Bullet : public Entity
 {
 public:
 
-	Goal();
+	Bullet();
 
-	virtual ~Goal();
+	virtual ~Bullet();
 
 	bool Awake();
 
@@ -28,16 +28,25 @@ public:
 
 public:
 
+	enum DIRECTIONS {
+		LEFT,
+		RIGHT
+	};
+
+	void SetBullet(DIRECTIONS direction, iPoint pos);
+
 private:
 
-	bool win;
+	float timer;
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;
 	const char* texturePath;
+
+	float velocity;
 
 	// L07 TODO 5: Add physics to the player - declare a Physics body
 	PhysBody* pBody;
 
 };
 
-#endif // __GOAL_H__
+#endif // __BULLET_H__

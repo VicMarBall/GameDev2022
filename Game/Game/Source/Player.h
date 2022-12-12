@@ -4,6 +4,7 @@
 #include "Entity.h"
 #include "Point.h"
 #include "Animation.h"
+#include "Bullet.h"
 #include "SDL/include/SDL.h"
 
 struct SDL_Texture;
@@ -47,10 +48,15 @@ public:
 		return win;
 	}
 
+	void Shoot();
+
 private:
 	bool win = false;
 	bool onAir;
 	bool canDoubleJump;
+
+	bool shooting;
+	Bullet* storedBullet;
 
 	bool groundPounding;
 

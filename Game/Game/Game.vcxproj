@@ -95,6 +95,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\DeathScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
     <ClCompile Include="Source\FlyingEnemy.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
     <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\DeathScreen.h" />
     <ClInclude Include="Source\Enemies.h" />
     <ClInclude Include="Source\Entity.h" />

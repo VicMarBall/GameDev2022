@@ -89,13 +89,14 @@ bool WalkingEnemy::CleanUp() {
 
 	death.FullReset();
 
+	active = false;
+
 	if (pBody != nullptr) {
 		app->physics->world->DestroyBody(pBody->body);
 	}
 
 
 
-	active = false;
 
 	return true;
 }
