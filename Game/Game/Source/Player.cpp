@@ -74,6 +74,8 @@ bool Player::Start() {
 
 	win = false;
 
+	facing = RIGHT;
+
 	previousAnimation = &idleRight;
 
 	onAir = true;
@@ -93,25 +95,34 @@ bool Player::Update()
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
 
 	if (isAlive && !win) {
-		if (previousAnimation == &idleRight ||
-			previousAnimation == &walkingRight ||
-			previousAnimation == &jumpingRight) {
+		if (facing == RIGHT) {
 			currentAnimation = &idleRight;
 		}
-		else if (previousAnimation == &idleLeft ||
-			previousAnimation == &walkingLeft ||
-			previousAnimation == &jumpingLeft) {
+		else {
 			currentAnimation = &idleLeft;
 		}
 
+		// shooting
 		if (shooting) {
-			storedBullet->SetBullet(Bullet::DIRECTIONS::RIGHT, {position.x + 40, position.y + 16});
+			switch (facing)
+			{
+			case Player::LEFT:
+				storedBullet->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x - 32, position.y + 16 });
+				break;
+			case Player::RIGHT:
+				storedBullet->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
+				break;
+			default:
+				break;
+			}
 			shooting = false;
 			storedBullet = nullptr;
 		}
 		if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN) {
-			Shoot();
+			storedBullet = (Bullet*)app->entityManager->CreateEntity(EntityType::BULLET);
+			shooting = true;
 		}
+
 
 		if (!godMode) {
 			//L02: DONE 4: modify the position of the player using arrow keys and render the texture
@@ -140,11 +151,13 @@ bool Player::Update()
 			if (velocity.x < 0) {
 				currentAnimation = &walkingLeft;
 				walkingLeft.speed = abs(velocity.x) * 0.03f;
+				facing = LEFT;
 			}
 
 			if (velocity.x > 0) {
 				currentAnimation = &walkingRight;
 				walkingRight.speed = abs(velocity.x) * 0.03f;
+				facing = RIGHT;
 			}
 
 			// go left
@@ -157,6 +170,7 @@ bool Player::Update()
 				}
 				currentAnimation = &walkingLeft;
 				walkingLeft.speed = 0.2f;
+				facing = LEFT;
 			}
 
 			// go right
@@ -169,6 +183,7 @@ bool Player::Update()
 				}
 				currentAnimation = &walkingRight;
 				walkingRight.speed = 0.2f;
+				facing = RIGHT;
 			}
 
 
@@ -185,11 +200,13 @@ bool Player::Update()
 					previousAnimation == &walkingRight ||
 					previousAnimation == &jumpingRight) {
 					currentAnimation = &jumpingRight;
+					facing = RIGHT;
 				}
 				else if (previousAnimation == &idleLeft ||
 					previousAnimation == &walkingLeft ||
 					previousAnimation == &jumpingLeft) {
 					currentAnimation = &jumpingLeft;
+					facing = LEFT;
 				}
 			}
 		}
@@ -311,11 +328,4 @@ void Player::GodSwitch() {
 		godMode = false;
 		pBody->body->SetGravityScale(1);
 	}
-}
-
-void Player::Shoot()
-{
-	storedBullet = (Bullet*)app->entityManager->CreateEntity(EntityType::BULLET);
-
-	shooting = true;
 }

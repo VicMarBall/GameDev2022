@@ -34,6 +34,11 @@ public:
 	void Die();
 public:
 
+	enum Directions {
+		LEFT,
+		RIGHT
+	};
+
 	const bool Living() {
 		return isAlive;
 	}
@@ -47,8 +52,6 @@ public:
 	const bool Won() {
 		return win;
 	}
-
-	void Shoot();
 
 private:
 	bool win = false;
@@ -69,6 +72,8 @@ private:
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;
 	const char* texturePath;
+
+	Directions facing;
 
 	Animation idleRight;
 	Animation walkingRight;
