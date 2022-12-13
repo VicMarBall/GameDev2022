@@ -47,6 +47,8 @@ private:
 	// L07 TODO 5: Add physics to the player - declare a Physics body
 	PhysBody* pBody;
 
+	Animation leftAnimation;
+	Animation rightAnimation;
 };
 
 #endif // __BULLET_H__

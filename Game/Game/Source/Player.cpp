@@ -107,10 +107,10 @@ bool Player::Update()
 			switch (facing)
 			{
 			case Player::LEFT:
-				storedBullet->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x - 32, position.y + 16 });
+				storedBullet->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x, position.y + 16 });
 				break;
 			case Player::RIGHT:
-				storedBullet->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
+				storedBullet->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 64, position.y + 16 });
 				break;
 			default:
 				break;

@@ -37,10 +37,20 @@ bool Bullet::Start() {
 
 	// texturePath = parameters.attribute("texturepath").as_string();
 
-	texturePath = "Assets/Textures/gun.png";
+	texturePath = "Assets/Textures/bullet.png";
 
 	//initilize textures
 	texture = app->tex->Load(texturePath);
+
+	rightAnimation.PushBack({ 0, 0, 32, 32 });
+	rightAnimation.PushBack({ 32, 0, 32, 32 });
+	rightAnimation.speed = 0.5f;
+	rightAnimation.loop = false;
+
+	leftAnimation.PushBack({ 0, 32, 32, 32 });
+	leftAnimation.PushBack({ 32, 32, 32, 32 });
+	leftAnimation.speed = 0.5f;
+	leftAnimation.loop = false;
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangleSensor(position.x, position.y, 32, 32, DYNAMIC);
@@ -57,12 +67,23 @@ bool Bullet::Start() {
 
 bool Bullet::Update()
 {
+	Animation* currentAnimation;
+	if (velocity < 0) {
+		currentAnimation = &leftAnimation;
+	}
+	else {
+		currentAnimation = &rightAnimation;
+	}
+
+	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
+	currentAnimation->Update();
+
 	// L07 TODO 5: Add physics to the player - updated player position using physics
 	if (pBody != nullptr) {
 		if (timer < 10) {
 			pBody->body->SetLinearVelocity({ velocity, 0 });
 			pBody->GetPosition(position.x, position.y);
-			app->render->DrawTexture(texture, position.x + 1, position.y + 1);
+			app->render->DrawTexture(texture, position.x, position.y + 16, &currentFrame);
 		}
 		else {
 			app->entityManager->DestroyEntity(this);

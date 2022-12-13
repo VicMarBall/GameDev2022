@@ -46,6 +46,8 @@ bool WalkingEnemy::Start() {
 
 	death.PushBack({ 32, 64, 32, 32 });
 	death.PushBack({ 0, 64, 32, 32 });
+	death.speed = 0.1f;
+	death.loop = false;
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 16, 16, DYNAMIC);
@@ -68,17 +70,21 @@ bool WalkingEnemy::Update() {
 
 	pBody->body->SetLinearVelocity(velocity);
 
-	currentFrame = currentAnimation->GetCurrentFrame();
-	currentAnimation->Update();
-
-	previousAnimation = currentAnimation;
-
-	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x-8, position.y-15, &currentFrame);
-
 	if (!isAlive) {
 		currentAnimation = &death;
 	}
+
+	currentFrame = currentAnimation->GetCurrentFrame();
+	currentAnimation->Update();
+
+	pBody->GetPosition(position.x, position.y);
+	app->render->DrawTexture(texture, position.x - 8, position.y - 15, &currentFrame);
+
+	if (death.HasFinished()) {
+		app->entityManager->DestroyEntity(this);
+	}
+
+	previousAnimation = currentAnimation;
 
 	return true;
 }
