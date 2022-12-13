@@ -42,7 +42,7 @@ bool Goal::Start() {
 	texture = app->tex->Load(texturePath);
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
-	pBody = app->physics->CreateRectangle(position.x, position.y, 32, 32, STATIC);
+	pBody = app->physics->CreateRectangleSensor(position.x, position.y, 32, 32, STATIC);
 	pBody->body->SetFixedRotation(true);
 	pBody->body->SetActive(true);
 	pBody->listener = app->entityManager;
