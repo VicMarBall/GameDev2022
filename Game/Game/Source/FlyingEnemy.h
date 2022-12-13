@@ -24,6 +24,8 @@ public:
 
 public:
 
+	void OnCollision(PhysBody* otherBody);
+
 	void SetPosition(int posX, int posY);
 
 	void Die();

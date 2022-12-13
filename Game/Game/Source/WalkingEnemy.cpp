@@ -76,6 +76,10 @@ bool WalkingEnemy::Update() {
 	pBody->GetPosition(position.x, position.y);
 	app->render->DrawTexture(texture, position.x-8, position.y-15, &currentFrame);
 
+	if (!isAlive) {
+		currentAnimation = &death;
+	}
+
 	return true;
 }
 
@@ -101,10 +105,19 @@ bool WalkingEnemy::CleanUp() {
 	return true;
 }
 
-void WalkingEnemy::SetPosition(int posX, int posY) {
+void WalkingEnemy::OnCollision(PhysBody* otherBody) {
+	if (otherBody->entity != nullptr) {
+		if (otherBody->entity->type == EntityType::BULLET) {
+			Die();
+		}
+	}
+}
 
+void WalkingEnemy::SetPosition(int posX, int posY) {
+	b2Vec2 position = { PIXEL_TO_METERS(posX), PIXEL_TO_METERS(posY) };
+	pBody->body->SetTransform(position, 0);
 }
 
 void WalkingEnemy::Die() {
-
+	isAlive = false;
 }

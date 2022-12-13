@@ -76,6 +76,10 @@ bool FlyingEnemy::Update() {
 	pBody->GetPosition(position.x, position.y);
 	app->render->DrawTexture(texture, position.x -8, position.y -16, &currentFrame);
 
+	if (!isAlive) {
+	currentAnimation = &death;
+	}
+
 	return true;
 }
 
@@ -100,10 +104,19 @@ bool FlyingEnemy::CleanUp() {
 	return true;
 }
 
-void FlyingEnemy::SetPosition(int posX, int posY) {
+void FlyingEnemy::OnCollision(PhysBody* otherBody) {
+	if (otherBody->entity != nullptr) {
+		if (otherBody->entity->type == EntityType::BULLET) {
+			Die();
+		}
+	}
+}
 
+void FlyingEnemy::SetPosition(int posX, int posY) {
+	b2Vec2 position = { PIXEL_TO_METERS(posX), PIXEL_TO_METERS(posY) };
+	pBody->body->SetTransform(position, 0);
 }
 
 void FlyingEnemy::Die() {
-
+	isAlive = false;
 }
