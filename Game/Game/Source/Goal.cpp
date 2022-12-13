@@ -90,7 +90,7 @@ void Goal::OnCollision(PhysBody* otherBody)
 		if (otherBody->entity->type == EntityType::PLAYER) {
 			win = true;
 			LOG("WIN");
-			app->entityManager->DestroyEntity(this);
+			//app->entityManager->DestroyEntity(this);
 		}
 	}
 }

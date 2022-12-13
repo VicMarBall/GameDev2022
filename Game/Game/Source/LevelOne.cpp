@@ -132,15 +132,17 @@ bool LevelOne::PreUpdate()
 	for (b2Body* b = app->physics->world->GetBodyList(); b; b = b->GetNext())
 	{
 		PhysBody* pB = (PhysBody*)b->GetUserData();
-		if (pB->typeTerrain == FLOATING) {
-			int posX = 0;
-			int posY = 0;
-			pB->GetPosition(posX, posY);
-			if (posY < player->position.y + 32) {
-				pB->body->SetActive(false);
-			}
-			else {
-				pB->body->SetActive(true);
+		if (pB != nullptr) {
+			if (pB->typeTerrain == FLOATING) {
+				int posX = 0;
+				int posY = 0;
+				pB->GetPosition(posX, posY);
+				if (posY < player->position.y + 32) {
+					pB->body->SetActive(false);
+				}
+				else {
+					pB->body->SetActive(true);
+				}
 			}
 		}
 	}
