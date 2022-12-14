@@ -75,7 +75,7 @@ bool Goal::CleanUp()
 	texture = nullptr;
 	texturePath = nullptr;
 	if (pBody != nullptr) {
-		app->physics->world->DestroyBody(pBody->body);
+		//app->physics->world->DestroyBody(pBody->body);
 	}
 	
 

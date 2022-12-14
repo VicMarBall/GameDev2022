@@ -163,12 +163,13 @@ bool LevelOne::Update(float dt)
 	}
 
 	if (enemy != nullptr) {
-		enemy->SetObjective(player->position);
-		app->pathfinding->CreatePath(app->map->WorldToMap(enemy->position.x, enemy->position.y), 
+		iPoint playerCenter;
+		playerCenter.Create(player->position.x + 16, player->position.y + 16);
+		enemy->SetObjective(playerCenter);
+		app->pathfinding->CreatePath(app->map->WorldToMap(enemy->position.x + 8, enemy->position.y + 8), 
 			app->map->WorldToMap(enemy->GetObjective().x, enemy->GetObjective().y));
 		
 		enemy->SetPath(app->pathfinding->GetLastPath());
-
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
