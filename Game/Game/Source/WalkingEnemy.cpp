@@ -81,7 +81,9 @@ bool WalkingEnemy::Update() {
 	app->render->DrawTexture(texture, position.x - 8, position.y - 15, &currentFrame);
 
 	if (death.HasFinished()) {
-		app->entityManager->DestroyEntity(this);
+		pBody->body->SetActive(false);
+		active = false;
+		//app->entityManager->DestroyEntity(this);
 	}
 
 	previousAnimation = currentAnimation;
