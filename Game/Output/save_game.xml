@@ -9,12 +9,20 @@
 	<scene_intro />
 	<scene_title />
 	<level_one>
-		<player x="574" y="434" />
+		<player x="368" y="559" />
+		<enemies>
+			<enemy x="390" y="559" />
+		</enemies>
 	</level_one>
+	<level_transition />
+	<level_two>
+		<player x="66423532" y="66423544" />
+	</level_two>
 	<death_screen />
 	<entitymanager />
 	<map />
+	<pathfinding />
 	<renderer>
-		<camera x="-190" y="-288" />
+		<camera x="-150" y="-303" />
 	</renderer>
 </save_state>

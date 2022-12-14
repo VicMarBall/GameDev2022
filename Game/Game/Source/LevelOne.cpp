@@ -162,6 +162,15 @@ bool LevelOne::Update(float dt)
 		app->fade->FadeToBlack(this, (Module*)app->level_transition, 100);
 	}
 
+	if (enemy != nullptr) {
+		enemy->SetObjective(player->position);
+		app->pathfinding->CreatePath(app->map->WorldToMap(enemy->position.x, enemy->position.y), 
+			app->map->WorldToMap(enemy->GetObjective().x, enemy->GetObjective().y));
+		
+		enemy->SetPath(app->pathfinding->GetLastPath());
+
+	}
+
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
@@ -240,6 +249,7 @@ bool LevelOne::Update(float dt)
 			if (originSelected == true)
 			{
 				app->pathfinding->CreatePath(origin, mouseTile);
+				debugPath = app->pathfinding->GetLastPath();
 				originSelected = false;
 			}
 			else
@@ -250,12 +260,28 @@ bool LevelOne::Update(float dt)
 			}
 		}
 
-		// L12: Get the latest calculated path and draw
-		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
-		for (uint i = 0; i < path->Count(); ++i)
 		{
-			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-			app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+			// L12: Get the latest calculated path and draw
+			const DynArray<iPoint>* path = debugPath;
+			if (path != nullptr) {
+				for (uint i = 0; i < path->Count(); ++i)
+				{
+					iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+					app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+				}
+			}
+		}
+
+		{
+			// L12: Get the latest calculated path and draw
+			const DynArray<iPoint>* path = enemy->GetPath();
+			if (path != nullptr) {
+				for (uint i = 0; i < path->Count(); ++i)
+				{
+					iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+					app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+				}
+			}
 		}
 
 		// L12: Debug pathfinding

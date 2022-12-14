@@ -61,7 +61,7 @@ private:
 	int camX;
 	int camY;
 
-	
+	const DynArray<iPoint>* debugPath = nullptr;
 
 };
 

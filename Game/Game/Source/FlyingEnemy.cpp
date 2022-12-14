@@ -46,6 +46,8 @@ bool FlyingEnemy::Start() {
 
 	death.PushBack({ 32, 64, 32, 32 });
 	death.PushBack({ 0, 64, 32, 32 });
+	death.speed = 0.1f;
+	death.loop = false;
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangle(position.x, position.y, 16, 16, DYNAMIC);

@@ -3,6 +3,7 @@
 
 #include "Enemies.h"
 #include "Point.h"
+#include "DynArray.h"
 #include "SDL/include/SDL.h"
 
 struct SDL_Texture;
@@ -30,6 +31,14 @@ public:
 
 	void Die();
 
+	void SetObjective(iPoint pos);
+
+	iPoint GetObjective();
+
+	void SetPath(const DynArray<iPoint>* p);
+
+	const DynArray<iPoint>* GetPath();
+
 private:
 
 	SDL_Texture* texture;
@@ -44,6 +53,10 @@ private:
 
 	//TODO 4: Add a physics to an item
 	PhysBody* pBody;
+
+	const DynArray<iPoint>* path;
+
+	iPoint objective;
 
 };
 
