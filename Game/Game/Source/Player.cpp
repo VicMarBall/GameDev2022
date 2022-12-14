@@ -82,7 +82,10 @@ bool Player::Start() {
 
 	maxSpeed = 6;
 
-	storedBullet = nullptr;
+	for (int i = 0; i < 10; ++i)
+	{
+		storedBullets.Add((Bullet*)app->entityManager->CreateEntity(EntityType::BULLET));
+	}
 
 	return true;
 }
@@ -103,24 +106,24 @@ bool Player::Update()
 		}
 
 		// shooting
-		if (shooting) {
-			switch (facing)
-			{
-			case Player::LEFT:
-				storedBullet->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x, position.y + 16 });
-				break;
-			case Player::RIGHT:
-				storedBullet->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 64, position.y + 16 });
-				break;
-			default:
-				break;
-			}
-			shooting = false;
-			storedBullet = nullptr;
-		}
 		if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN) {
-			storedBullet = (Bullet*)app->entityManager->CreateEntity(EntityType::BULLET);
-			shooting = true;
+
+			for (ListItem<Bullet*>* bullet = storedBullets.start; bullet != NULL; bullet = bullet->next) {
+				if (bullet->data->active == false) {
+					switch (facing)
+					{
+					case Player::LEFT:
+						bullet->data->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x - 32, position.y + 16 });
+						break;
+					case Player::RIGHT:
+						bullet->data->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
+						break;
+					default:
+						break;
+					}
+					break;
+				}
+			}
 		}
 
 

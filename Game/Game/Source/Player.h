@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include "Point.h"
+#include "List.h"
 #include "Animation.h"
 #include "Bullet.h"
 #include "SDL/include/SDL.h"
@@ -58,9 +59,8 @@ private:
 	bool onAir;
 	bool canDoubleJump;
 
-	bool shooting;
-	Bullet* storedBullet;
-
+	List<Bullet*> storedBullets;
+	
 	bool groundPounding;
 
 	float maxSpeed;

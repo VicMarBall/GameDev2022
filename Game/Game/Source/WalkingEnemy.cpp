@@ -105,9 +105,6 @@ bool WalkingEnemy::CleanUp() {
 		app->physics->world->DestroyBody(pBody->body);
 	}
 
-
-
-
 	return true;
 }
 

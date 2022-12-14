@@ -54,6 +54,7 @@ bool Bullet::Start() {
 
 	// L07 TODO 5: Add physics to the player - initialize physics body
 	pBody = app->physics->CreateRectangleSensor(position.x, position.y, 32, 32, DYNAMIC);
+	pBody->body->SetBullet(true);
 	pBody->body->SetFixedRotation(true);
 	pBody->body->SetActive(true);
 	pBody->body->SetGravityScale(0);
@@ -62,11 +63,18 @@ bool Bullet::Start() {
 
 	timer = 0;
 
+	active = false;
+
 	return true;
 }
 
 bool Bullet::Update()
 {
+	if (toDisable) {
+		active = false;
+		pBody->body->SetActive(false);
+	}
+
 	Animation* currentAnimation;
 	if (velocity < 0) {
 		currentAnimation = &leftAnimation;
@@ -86,7 +94,7 @@ bool Bullet::Update()
 			app->render->DrawTexture(texture, position.x, position.y + 16, &currentFrame);
 		}
 		else {
-			app->entityManager->DestroyEntity(this);
+			DisableBullet();
 		}
 	}
 
@@ -114,15 +122,15 @@ bool Bullet::CleanUp()
 void Bullet::OnCollision(PhysBody* otherBody)
 {
 	if (otherBody->typeTerrain == WALL) {
-		app->entityManager->DestroyEntity(this);
+		DisableBullet();
 	}
 
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::WALKINGENEMY) {
-			app->entityManager->DestroyEntity(this);
+			DisableBullet();
 		}
 		if (otherBody->entity->type == EntityType::FLYINGENEMY) {
-			app->entityManager->DestroyEntity(this);
+			DisableBullet();
 		}
 	}
 
@@ -130,17 +138,28 @@ void Bullet::OnCollision(PhysBody* otherBody)
 
 void Bullet::SetBullet(DIRECTIONS direction, iPoint pos)
 {
+	toDisable = false;
+
+	timer = 0;
+
+	pBody->body->SetActive(true);
+
+	active = true;
+
 	if (pBody != nullptr) {
 		b2Vec2 position = { PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y) };
 		pBody->body->SetTransform(position, 0);
 
+		leftAnimation.Reset();
+		rightAnimation.Reset();
+
 		switch (direction)
 		{
 		case Bullet::LEFT:
-			velocity = -25;
+			velocity = -20;
 			break;
 		case Bullet::RIGHT:
-			velocity = 25;
+			velocity = 20;
 			break;
 		default:
 			break;
@@ -148,4 +167,9 @@ void Bullet::SetBullet(DIRECTIONS direction, iPoint pos)
 
 	}
 	
+}
+
+void Bullet::DisableBullet()
+{
+	toDisable = true;
 }

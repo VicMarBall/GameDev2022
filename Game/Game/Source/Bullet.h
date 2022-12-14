@@ -35,6 +35,8 @@ public:
 
 	void SetBullet(DIRECTIONS direction, iPoint pos);
 
+	void DisableBullet();
+
 private:
 
 	float timer;
@@ -43,6 +45,8 @@ private:
 	const char* texturePath;
 
 	float velocity;
+
+	bool toDisable;
 
 	// L07 TODO 5: Add physics to the player - declare a Physics body
 	PhysBody* pBody;
