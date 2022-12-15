@@ -109,11 +109,11 @@ bool Player::Update()
 		if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN) {
 
 			for (ListItem<Bullet*>* bullet = storedBullets.start; bullet != NULL; bullet = bullet->next) {
-				if (bullet->data->active == false) {
+				if (bullet->data->IsAvailable() == true) {
 					switch (facing)
 					{
 					case Player::LEFT:
-						bullet->data->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x - 32, position.y + 16 });
+						bullet->data->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x, position.y + 16 });
 						break;
 					case Player::RIGHT:
 						bullet->data->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
@@ -256,6 +256,13 @@ bool Player::Update()
 
 bool Player::CleanUp()
 {
+
+	for (ListItem<Bullet*>* b = storedBullets.end; b != NULL; b = b->prev) {
+		app->entityManager->DestroyEntity(b->data);
+	}
+
+	storedBullets.Clear();
+
 	app->tex->UnLoad(texture);
 	texture = nullptr;
 	texturePath = nullptr;

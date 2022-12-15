@@ -1,5 +1,8 @@
 #include "App.h"
+#include "Textures.h"
+#include "Render.h"
 #include "PathFinding.h"
+#include "Map.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -13,6 +16,13 @@ PathFinding::PathFinding() : Module(), map(NULL), lastPath(DEFAULT_PATH_LENGTH),
 PathFinding::~PathFinding()
 {
 	RELEASE_ARRAY(map);
+}
+
+bool PathFinding::Start()
+{
+	mouseTileTex = app->tex->Load("Assets/Maps/path.png");
+
+	return true;
 }
 
 // Called before quitting
@@ -58,6 +68,17 @@ uchar PathFinding::GetTileAt(const iPoint& pos) const
 		return map[(pos.y * width) + pos.x];
 
 	return INVALID_WALK_CODE;
+}
+
+void PathFinding::DrawPath(const DynArray<iPoint>* path) const
+{
+	if (path != nullptr) {
+		for (uint i = 0; i < path->Count(); ++i)
+		{
+			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+			app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+		}
+	}
 }
 
 // To request all tiles involved in the last generated path

@@ -16,6 +16,8 @@
 // Details: http://theory.stanford.edu/~amitp/GameProgramming/
 // --------------------------------------------------
 
+struct SDL_Texture;
+
 class PathFinding : public Module
 {
 public:
@@ -24,6 +26,8 @@ public:
 
 	// Destructor
 	~PathFinding();
+
+	bool Start();
 
 	// Called before quitting
 	bool CleanUp();
@@ -49,6 +53,8 @@ public:
 	// Utility: return the walkability value of a tile
 	uchar GetTileAt(const iPoint& pos) const;
 
+	void DrawPath(const DynArray<iPoint>* path) const;
+
 private:
 
 	// size of the map
@@ -57,6 +63,8 @@ private:
 
 	// all map walkability values [0..255]
 	uchar* map;
+
+	SDL_Texture* mouseTileTex = nullptr;
 
 	// we store the created path here
 	DynArray<iPoint> lastPath;

@@ -63,7 +63,7 @@ bool Bullet::Start() {
 
 	timer = 0;
 
-	active = false;
+	isAvailable = true;
 
 	return true;
 }
@@ -71,7 +71,7 @@ bool Bullet::Start() {
 bool Bullet::Update()
 {
 	if (toDisable) {
-		active = false;
+		isAvailable = true;
 		pBody->body->SetActive(false);
 	}
 
@@ -87,11 +87,11 @@ bool Bullet::Update()
 	currentAnimation->Update();
 
 	// L07 TODO 5: Add physics to the player - updated player position using physics
-	if (pBody != nullptr) {
+	if (pBody != nullptr && !isAvailable) {
 		if (timer < 10) {
 			pBody->body->SetLinearVelocity({ velocity, 0 });
 			pBody->GetPosition(position.x, position.y);
-			app->render->DrawTexture(texture, position.x, position.y + 16, &currentFrame);
+			app->render->DrawTexture(texture, position.x + 16, position.y + 16, &currentFrame);
 		}
 		else {
 			DisableBullet();
@@ -144,7 +144,7 @@ void Bullet::SetBullet(DIRECTIONS direction, iPoint pos)
 
 	pBody->body->SetActive(true);
 
-	active = true;
+	isAvailable = false;
 
 	if (pBody != nullptr) {
 		b2Vec2 position = { PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y) };
@@ -172,4 +172,9 @@ void Bullet::SetBullet(DIRECTIONS direction, iPoint pos)
 void Bullet::DisableBullet()
 {
 	toDisable = true;
+}
+
+bool Bullet::IsAvailable()
+{
+	return isAvailable;
 }

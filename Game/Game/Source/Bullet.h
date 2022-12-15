@@ -37,6 +37,8 @@ public:
 
 	void DisableBullet();
 
+	bool IsAvailable();
+
 private:
 
 	float timer;
@@ -45,6 +47,8 @@ private:
 	const char* texturePath;
 
 	float velocity;
+
+	bool isAvailable;
 
 	bool toDisable;
 
