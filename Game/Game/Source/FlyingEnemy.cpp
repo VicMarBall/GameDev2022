@@ -1,9 +1,9 @@
 #include "FlyingEnemy.h"
-#include "Player.h"
 #include "App.h"
 #include "Textures.h"
 #include "Audio.h"
 #include "Input.h"
+#include "PathFinding.h"
 #include "Render.h"
 #include "LevelOne.h"
 #include "LevelTwo.h"
@@ -121,4 +121,24 @@ void FlyingEnemy::SetPosition(int posX, int posY) {
 
 void FlyingEnemy::Die() {
 	isAlive = false;
+}
+
+void FlyingEnemy::SetObjective(iPoint pos)
+{
+	objective = pos;
+}
+
+iPoint FlyingEnemy::GetObjective()
+{
+	return objective;
+}
+
+void FlyingEnemy::SetPath(const DynArray<iPoint>* p)
+{
+	path = p;
+}
+
+const DynArray<iPoint>* FlyingEnemy::GetPath()
+{
+	return path;
 }

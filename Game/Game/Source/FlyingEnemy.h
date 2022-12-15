@@ -30,6 +30,14 @@ public:
 
 	void Die();
 
+	void SetObjective(iPoint pos);
+
+	iPoint GetObjective();
+
+	void SetPath(const DynArray<iPoint>* p);
+
+	const DynArray<iPoint>* GetPath();
+
 private:
 
 	bool isAlive;
@@ -45,6 +53,10 @@ private:
 
 	//TODO 4: Add a physics to an item
 	PhysBody* pBody;
+
+	const DynArray<iPoint>* path;
+
+	iPoint objective;
 
 };
 

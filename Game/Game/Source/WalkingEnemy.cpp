@@ -3,6 +3,7 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Input.h"
+#include "PathFinding.h"
 #include "Render.h"
 #include "LevelOne.h"
 #include "LevelTwo.h"
