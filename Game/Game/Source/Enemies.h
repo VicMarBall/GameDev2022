@@ -70,7 +70,10 @@ public:
 	}
 
 	virtual const DynArray<iPoint>* GetPath() {
-		DynArray<iPoint>* ret;
+		DynArray<iPoint>* ret{};
+		iPoint i;
+		i.Create(0, 0);
+		ret->PushBack(i);
 
 		return ret;
 	}
