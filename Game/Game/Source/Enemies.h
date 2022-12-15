@@ -52,35 +52,42 @@ public:
 
 	};
 
-	virtual void SetObjective(iPoint pos) {
 
+
+	void SetObjective(iPoint pos)
+	{
+		objective = pos;
 	}
 
-	virtual iPoint GetObjective() {
-
-		iPoint ret;
-		ret.x = 0;
-		ret.y = 0;
-
-		return ret;
+	iPoint GetObjective()
+	{
+		return objective;
 	}
 
-	virtual void SetPath(const DynArray<iPoint>* p) {
-
+	void SetPath(const DynArray<iPoint>* p)
+	{
+		path = p;
 	}
 
-	virtual const DynArray<iPoint>* GetPath() {
-		DynArray<iPoint>* ret{};
-		iPoint i;
-		i.Create(0, 0);
-		ret->PushBack(i);
-
-		return ret;
+	const DynArray<iPoint>* GetPath()
+	{
+		return path;
 	}
 
+	int GetRadiusPath() {
+		return radiusPath;
+	}
+
+
+protected:
+
+	int radiusPath;
 
 private:
 
+	const DynArray<iPoint>* path;
+
+	iPoint objective;
 
 };
 

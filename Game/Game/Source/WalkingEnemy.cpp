@@ -59,6 +59,8 @@ bool WalkingEnemy::Start() {
 
 	previousAnimation = &walkingLeft;
 
+	radiusPath = 100;
+
 	return true;
 }
 
@@ -125,24 +127,4 @@ void WalkingEnemy::SetPosition(int posX, int posY) {
 
 void WalkingEnemy::Die() {
 	isAlive = false;
-}
-
-void WalkingEnemy::SetObjective(iPoint pos)
-{
-	objective = pos;
-}
-
-iPoint WalkingEnemy::GetObjective()
-{
-	return objective;
-}
-
-void WalkingEnemy::SetPath(const DynArray<iPoint>* p)
-{
-	path = p;
-}
-
-const DynArray<iPoint>* WalkingEnemy::GetPath()
-{
-	return path;
 }
