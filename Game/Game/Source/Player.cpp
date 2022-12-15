@@ -306,6 +306,10 @@ void Player::OnCollision(PhysBody* otherBody)
 			// win
 			LOG("WIN");
 		}
+
+		if (otherBody->entity->type == EntityType::WALKINGENEMY || otherBody->entity->type == EntityType::FLYINGENEMY) {
+			Die();
+		}
 	}
 }
 
