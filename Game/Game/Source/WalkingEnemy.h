@@ -27,10 +27,13 @@ public:
 
 	void OnCollision(PhysBody* otherBody);
 
+	void EndCollision(PhysBody* otherBody);
+
 	void SetPosition(int posX, int posY);
 
 	void Die();
 
+	void Move();
 
 private:
 
@@ -47,7 +50,7 @@ private:
 	//TODO 4: Add a physics to an item
 	PhysBody* pBody;
 
-
+	PhysBody* ground = nullptr;
 
 };
 

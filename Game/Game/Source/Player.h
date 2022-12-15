@@ -35,11 +35,6 @@ public:
 	void Die();
 public:
 
-	enum Directions {
-		LEFT,
-		RIGHT
-	};
-
 	const bool Living() {
 		return isAlive;
 	}

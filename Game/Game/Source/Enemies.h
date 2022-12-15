@@ -42,6 +42,11 @@ public:
 
 	};
 
+	virtual void EndCollision(PhysBody* otherBody) {
+
+	};
+
+
 public:
 
 	virtual void SetPosition(int posX, int posY) {
@@ -86,11 +91,11 @@ protected:
 
 	int radiusPath;
 
-private:
-
-	const DynArray<iPoint>* path;
+	const DynArray<iPoint>* path = nullptr;
 
 	iPoint objective;
+
+	Directions facing = RIGHT;
 
 };
 

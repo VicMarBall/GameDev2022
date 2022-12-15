@@ -60,21 +60,28 @@ bool WalkingEnemy::Start() {
 
 	previousAnimation = &walkingLeft;
 
-	radiusPath = 100;
+	radiusPath = 120;
 
 	return true;
 }
 
 bool WalkingEnemy::Update() {
 
-	b2Vec2 velocity = pBody->body->GetLinearVelocity();
 	Animation* currentAnimation = previousAnimation;
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
 
-	pBody->body->SetLinearVelocity(velocity);
-
-	if (!isAlive) {
+	if (isAlive) {
+		Move();
+	}
+	else {
 		currentAnimation = &death;
+	}
+
+	if (facing == LEFT) {
+		currentAnimation = &walkingLeft;
+	}
+	else if (facing == RIGHT) {
+		currentAnimation = &walkingRight;
 	}
 
 	currentFrame = currentAnimation->GetCurrentFrame();
@@ -95,6 +102,8 @@ bool WalkingEnemy::Update() {
 }
 
 bool WalkingEnemy::CleanUp() {
+	ground = nullptr;
+
 	app->tex->UnLoad(texture);
 	texture = nullptr;
 	texturePath = nullptr;
@@ -114,10 +123,23 @@ bool WalkingEnemy::CleanUp() {
 }
 
 void WalkingEnemy::OnCollision(PhysBody* otherBody) {
+	if (otherBody->typeTerrain == TypeTerrain::FLOOR) {
+		ground = otherBody;
+	}
+	if (otherBody->typeTerrain == TypeTerrain::DEATH) {
+		Die();
+	}
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::BULLET) {
 			Die();
 		}
+	}
+}
+
+void WalkingEnemy::EndCollision(PhysBody* otherBody)
+{
+	if (otherBody->typeTerrain == TypeTerrain::FLOOR) {
+		ground = nullptr;
 	}
 }
 
@@ -128,4 +150,48 @@ void WalkingEnemy::SetPosition(int posX, int posY) {
 
 void WalkingEnemy::Die() {
 	isAlive = false;
+	facing = NO;
+}
+
+void WalkingEnemy::Move()
+{
+	b2Vec2 velocity = pBody->body->GetLinearVelocity();
+
+	if (IsInRadius(objective)) {
+		if (objective.x > position.x) {
+			facing = RIGHT;
+		}
+		if (objective.x < position.x) {
+			facing = LEFT;
+		}
+	}
+	else {
+		if (ground != nullptr) {
+			int posGroundX;
+			int posGroundY;
+			ground->GetPosition(posGroundX, posGroundY);
+			if (position.x + 8 < posGroundX + 16) {
+				facing = RIGHT;
+			}
+			else if (position.x + 8 > posGroundX + (2*ground->width) - 16) {
+				facing = LEFT;
+			}
+		}
+	}
+
+	switch (facing)
+	{
+	case Entity::LEFT:
+		velocity.x = -2;
+		break;
+	case Entity::RIGHT:
+		velocity.x = 2;
+		break;
+	case Entity::NO:
+		break;
+	default:
+		break;
+	}
+
+	pBody->body->SetLinearVelocity(velocity);
 }

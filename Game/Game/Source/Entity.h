@@ -79,6 +79,12 @@ public:
 
 	};
 
+	enum Directions {
+		LEFT,
+		RIGHT,
+		NO
+	};
+
 public:
 
 	SString name;
