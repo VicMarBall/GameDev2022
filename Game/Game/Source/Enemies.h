@@ -78,6 +78,9 @@ public:
 		return radiusPath;
 	}
 
+	bool IsInRadius(iPoint p) {
+		return position.DistanceTo(p) < radiusPath;
+	}
 
 protected:
 

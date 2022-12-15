@@ -166,7 +166,7 @@ bool LevelOne::Update(float dt)
 		iPoint playerCenter;
 		playerCenter.Create(player->position.x + 16, player->position.y + 16);
 		enemy->SetObjective(playerCenter);
-		if (abs(playerCenter.x - enemy->position.x) < enemy->GetRadiusPath()) {
+		if (enemy->IsInRadius(playerCenter)) {
 			app->pathfinding->CreatePath(app->map->WorldToMap(enemy->position.x + 8, enemy->position.y + 8),
 				app->map->WorldToMap(enemy->GetObjective().x, enemy->GetObjective().y));
 
