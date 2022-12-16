@@ -82,6 +82,8 @@ bool Player::Start() {
 
 	maxSpeed = 6;
 
+	godMode = false;
+
 	for (int i = 0; i < 10; ++i)
 	{
 		storedBullets.Add((Bullet*)app->entityManager->CreateEntity(EntityType::BULLET));
