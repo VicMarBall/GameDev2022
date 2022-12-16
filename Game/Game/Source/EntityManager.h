@@ -37,6 +37,7 @@ public:
 
 	void EndCollision(PhysBody* pBody1, PhysBody* pBody2);
 
+	void DestroyAllActiveEntities();
 
 public:
 

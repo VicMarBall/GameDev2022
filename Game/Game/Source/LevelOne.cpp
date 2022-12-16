@@ -332,9 +332,10 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 bool LevelOne::CleanUp()
 {
 	LOG("Freeing scene");
-	player->CleanUp();
-	enemy->CleanUp();
-	goal->CleanUp();
+	app->entityManager->DestroyAllActiveEntities();
+	//player->CleanUp();
+	//enemy->CleanUp();
+	//goal->CleanUp();
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
 	app->tex->UnLoad(mouseTileTex);

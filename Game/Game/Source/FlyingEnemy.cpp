@@ -93,7 +93,7 @@ bool FlyingEnemy::Update() {
 	if (death.HasFinished()) {
 		pBody->body->SetActive(false);
 		active = false;
-		//app->entityManager->DestroyEntity(this);
+		app->entityManager->DestroyEntity(this);
 	}
 
 	previousAnimation = currentAnimation;

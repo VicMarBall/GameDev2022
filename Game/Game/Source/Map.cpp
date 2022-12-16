@@ -345,13 +345,16 @@ bool Map::Load()
 
 bool Map::UnLoad()
 {
-	//b2Body* bNext = app->physics->world->GetBodyList()->GetNext();
-	//for (b2Body* b = app->physics->world->GetBodyList(); b; b = bNext)
-	//{
-	//	bNext = b->GetNext();
-	//	
-	//	app->physics->world->DestroyBody(b);
-	//}
+
+	// delete bodies of terrain
+	b2Body* bNext = nullptr;
+	for (b2Body* b = app->physics->world->GetBodyList(); b != NULL; b = bNext) {
+		b2Body* bNext = b->GetNext();
+		PhysBody* pBody = (PhysBody*)b->GetUserData();
+		if (pBody->typeTerrain != TypeTerrain::NO) {
+			app->physics->world->DestroyBody(b);
+		}
+	}
 
 	ListItem<TileSet*>* item;
 	item = mapData.tilesets.start;

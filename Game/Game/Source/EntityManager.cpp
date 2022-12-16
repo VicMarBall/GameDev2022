@@ -150,6 +150,19 @@ void EntityManager::EndCollision(PhysBody* pBody1, PhysBody* pBody2)
 	}
 }
 
+void EntityManager::DestroyAllActiveEntities()
+{
+	for (int i = entities.Count() - 1; i >= 0; --i) {
+		Entity* entity = entities.At(i)->data;
+		if (entity !=  nullptr) {
+			if (entity->active) {
+				DestroyEntity(entity);
+			}
+		}
+	}
+	// entities.Clear();
+}
+
 bool EntityManager::Update(float dt)
 {
 	bool ret = true;
