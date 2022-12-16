@@ -47,7 +47,7 @@
   </level_one>
 
   <level_two>
-    <player x="160" y="128" texturepath="Assets/Textures/player_tileset.png"/>
+    <player x="160" y="128" texturepath="Assets/Textures/player_tileset_gun.png"/>
     <enemy x="368" y="560" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
     <enemy x="368" y="560" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="2"/>
     <enemy x="368" y="560" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="2"/>
