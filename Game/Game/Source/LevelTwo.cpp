@@ -278,9 +278,20 @@ bool LevelTwo::PostUpdate()
 // L03: DONE 6: Implement a method to load the state load players's x and y
 bool LevelTwo::LoadState(pugi::xml_node& data)
 {
-	player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
+	if (data.child("state").attribute("state").as_bool()) {
+		if (!active) {
+			Enable();
+		}
+		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
-	enemy->SetPosition(data.child("enemies").child("enemy").attribute("x").as_int(), data.child("enemies").child("enemy").attribute("y").as_int());
+		enemy->SetPosition(data.child("enemies").child("enemy").attribute("x").as_int(), data.child("enemies").child("enemy").attribute("y").as_int());
+	}
+	else {
+		if (active) {
+			Disable();
+		}
+	}
+	
 
 	return true;
 }
@@ -289,16 +300,26 @@ bool LevelTwo::LoadState(pugi::xml_node& data)
 // using append_child and append_attribute
 bool LevelTwo::SaveState(pugi::xml_node& data)
 {
-	pugi::xml_node play = data.append_child("player");
+	pugi::xml_node state = data.append_child("state");
 
-	play.append_attribute("x") = player->position.x + 16;
-	play.append_attribute("y") = player->position.y + 16;
+	if (active) {
+		state.append_attribute("state") = true;
+
+		pugi::xml_node play = data.append_child("player");
+
+		play.append_attribute("x") = player->position.x + 16;
+		play.append_attribute("y") = player->position.y + 16;
 
 
-	pugi::xml_node enem = data.append_child("enemies");
-	pugi::xml_node curEnem = enem.append_child("enemy");
-	curEnem.append_attribute("x") = enemy->position.x;
-	curEnem.append_attribute("y") = enemy->position.y;
+		pugi::xml_node enem = data.append_child("enemies");
+		pugi::xml_node curEnem = enem.append_child("enemy");
+		curEnem.append_attribute("x") = enemy->position.x;
+		curEnem.append_attribute("y") = enemy->position.y;
+	}
+	else {
+		state.append_attribute("state") = false;
+	}
+
 
 	return true;
 }
