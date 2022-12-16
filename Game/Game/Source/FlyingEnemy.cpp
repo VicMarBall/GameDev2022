@@ -54,33 +54,49 @@ bool FlyingEnemy::Start() {
 	pBody->body->SetFixedRotation(true);
 	pBody->listener = app->entityManager;
 	pBody->entity = this;
+	pBody->body->SetGravityScale(0);
 
 	isAlive = true;
 
 	previousAnimation = &flyingLeft;
+
+	radiusPath = 200;
 
 	return true;
 }
 
 bool FlyingEnemy::Update() {
 
-	b2Vec2 velocity = pBody->body->GetLinearVelocity();
 	Animation* currentAnimation = previousAnimation;
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
 
-	pBody->body->SetLinearVelocity(velocity);
+	if (isAlive) {
+		Move();
+	}
+	else {
+		currentAnimation = &death;
+	}
+
+	if (facing == LEFT) {
+		currentAnimation = &flyingLeft;
+	}
+	else if (facing == RIGHT) {
+		currentAnimation = &flyingRight;
+	}
 
 	currentFrame = currentAnimation->GetCurrentFrame();
 	currentAnimation->Update();
 
-	previousAnimation = currentAnimation;
-
 	pBody->GetPosition(position.x, position.y);
 	app->render->DrawTexture(texture, position.x -8, position.y -16, &currentFrame);
 
-	if (!isAlive) {
-	currentAnimation = &death;
+	if (death.HasFinished()) {
+		pBody->body->SetActive(false);
+		active = false;
+		//app->entityManager->DestroyEntity(this);
 	}
+
+	previousAnimation = currentAnimation;
 
 	return true;
 }
@@ -95,13 +111,11 @@ bool FlyingEnemy::CleanUp() {
 
 	death.FullReset();
 
+	active = false;
+
 	if (pBody != nullptr) {
 		app->physics->world->DestroyBody(pBody->body);
 	}
-
-
-
-	active = false;
 
 	return true;
 }
@@ -123,22 +137,59 @@ void FlyingEnemy::Die() {
 	isAlive = false;
 }
 
-void FlyingEnemy::SetObjective(iPoint pos)
-{
-	objective = pos;
-}
 
-iPoint FlyingEnemy::GetObjective()
+void FlyingEnemy::Move()
 {
-	return objective;
-}
+	b2Vec2 velocity = pBody->body->GetLinearVelocity();
 
-void FlyingEnemy::SetPath(const DynArray<iPoint>* p)
-{
-	path = p;
-}
+	if (IsInRadius(objective)) {
+		if (objective.x > position.x) {
+			facing = RIGHT;
+		}
+		if (objective.x < position.x) {
+			facing = LEFT;
+		}
+		if (objective.y < position.y) {
+			elevate = UP;
+		}
+		if (objective.y > position.y) {
+			elevate = DOWN;
+		}
+	}
+	else {
+		facing = NO;
+		elevate = NO;
+	}
 
-const DynArray<iPoint>* FlyingEnemy::GetPath()
-{
-	return path;
+	switch (facing)
+	{
+	case Entity::LEFT:
+		velocity.x = -2;
+		break;
+	case Entity::RIGHT:
+		velocity.x = 2;
+		break;
+	case Entity::NO:
+		velocity.x = 0;
+		break;
+	default:
+		break;
+	}
+
+	switch (elevate)
+	{
+	case Entity::UP:
+		velocity.y = -2;
+		break;
+	case Entity::DOWN:
+		velocity.y = 2;
+		break;
+	case Entity::NO:
+		velocity.y = 0;
+		break;
+	default:
+		break;
+	}
+
+	pBody->body->SetLinearVelocity(velocity);
 }

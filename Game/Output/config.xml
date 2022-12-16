@@ -37,10 +37,11 @@
   <level_one>
 	  <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
 	  <goal x="3920" y="368" texturepath="Assets/Textures/gun.png"/>
-    <enemy x="600" y="500" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
-    <enemy x="368" y="590" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="2"/>
+   
+    <enemy x="600" y="400" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="2"/>
     <enemy x="398" y="590" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="2"/>
-	  <camera x="-150" y="-288"/>
+    <enemy x="600" y="500" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
+    <camera x="-150" y="-288"/>
 	  <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
 	  <mapfile path="Assets/Maps/map_level1.tmx"/>
   </level_one>

@@ -50,7 +50,7 @@ bool LevelOne::Awake(pugi::xml_node& config)
 	goal->parameters = config.child("goal");
 
 	
-	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
+	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
 	enemy->active = false;
 	enemy->parameters = config.child("enemy");
 	

@@ -1,6 +1,7 @@
 #ifndef __FLYINGENEMY_H__
 #define __FLYINGENEMY_H__
 
+#include "Entity.h"
 #include "Enemies.h"
 #include "Point.h"
 #include "SDL/include/SDL.h"
@@ -32,11 +33,7 @@ public:
 
 	void SetObjective(iPoint pos);
 
-	iPoint GetObjective();
-
-	void SetPath(const DynArray<iPoint>* p);
-
-	const DynArray<iPoint>* GetPath();
+	void Move();
 
 private:
 
@@ -54,9 +51,7 @@ private:
 	//TODO 4: Add a physics to an item
 	PhysBody* pBody;
 
-	const DynArray<iPoint>* path;
-
-	iPoint objective;
+	Directions elevate = Directions::NO;
 
 };
 
