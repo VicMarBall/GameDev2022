@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="128" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="34">
+<map version="1.2" tiledversion="1.3.5" orientation="orthogonal" renderorder="right-down" width="128" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="74">
  <tileset firstgid="1" name="tilemap_packed_big" tilewidth="32" tileheight="32" tilecount="60" columns="10">
   <image source="tilemap_packed_big.png" width="320" height="192"/>
  </tileset>
@@ -75,28 +75,65 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="Floor" visible="0">
+ <objectgroup id="3" name="Floor">
   <properties>
    <property name="ColType" type="int" value="0"/>
   </properties>
+  <object id="35" x="94" y="160" width="191.333"/>
+  <object id="36" x="354" y="480" width="123.636" height="0.363636"/>
+  <object id="37" x="578.091" y="448" width="59.9091"/>
+  <object id="38" x="738" y="384" width="27.9091" height="0.0909091"/>
+  <object id="39" x="834" y="384" width="159.818" height="0.181818"/>
+  <object id="40" x="994.25" y="256" width="155.25"/>
+  <object id="41" x="1218.25" y="384" width="187.5" height="0.5"/>
+  <object id="42" x="1406" y="512" width="163.75"/>
+  <object id="43" x="1570" y="480" width="91.5"/>
+  <object id="44" x="1762.25" y="576" width="59.5" height="0.5"/>
+  <object id="45" x="1822" y="607.818" width="131.818" height="0.181818"/>
+  <object id="46" x="1954.25" y="544" width="155.5"/>
+  <object id="47" x="2110.33" y="671.333" width="227" height="0.333333"/>
+  <object id="48" x="2338" y="608" width="91.3333"/>
+  <object id="49" x="2530" y="416" width="59.3333" height="0.333333"/>
+  <object id="50" x="2590" y="767.667" width="192" height="0.666667"/>
+  <object id="51" x="3202" y="767.25" width="191.75" height="0.75"/>
+  <object id="52" x="3394" y="416" width="91.4545"/>
+  <object id="53" x="3486.18" y="480" width="127.636"/>
  </objectgroup>
  <objectgroup id="4" name="Walls">
   <properties>
    <property name="ColType" type="int" value="1"/>
   </properties>
+  <object id="54" x="-0.25" y="0" width="94" height="160.25"/>
+  <object id="55" x="89.5" y="160.5" width="196" height="223"/>
+  <object id="56" x="353.75" y="480.25" width="123.75" height="95"/>
+  <object id="57" x="578" y="448.25" width="59.75" height="31.625"/>
+  <object id="58" x="738" y="384.125" width="27.75" height="61.75"/>
+  <object id="59" x="834" y="384.5" width="162.25" height="31"/>
+  <object id="60" x="994" y="256.333" width="155.667" height="127"/>
+  <object id="61" x="1218.25" y="384.25" width="187.25" height="127.75"/>
+  <object id="62" x="1405.5" y="512.25" width="164.25" height="30.75"/>
+  <object id="63" x="1569.75" y="480.25" width="92" height="63.25"/>
+  <object id="64" x="1762.33" y="576.333" width="58.6667" height="128"/>
+  <object id="65" x="1821.33" y="607.667" width="133.333" height="95.3333"/>
+  <object id="66" x="1954" y="544" width="155.667" height="159.333"/>
+  <object id="67" x="2110" y="671.667" width="227" height="32.3333"/>
+  <object id="68" x="2337.75" y="608.25" width="91.75" height="63"/>
+  <object id="69" x="2530" y="416.5" width="59" height="351.5"/>
+  <object id="70" x="2589" y="768.25" width="192.5" height="31.25"/>
+  <object id="71" x="3201.5" y="768" width="192.5" height="31"/>
+  <object id="72" x="3394" y="417" width="92" height="350"/>
+  <object id="73" x="3486.33" y="480" width="127" height="31.3333"/>
  </objectgroup>
  <objectgroup id="5" name="Dead">
   <properties>
    <property name="ColType" type="int" value="2"/>
   </properties>
   <object id="3" x="0" y="576.042" width="384" height="31.9169"/>
-  <object id="4" x="480" y="544" width="385" height="32"/>
-  <object id="5" x="1088" y="448" width="160" height="32"/>
+  <object id="4" x="477.5" y="544" width="387.5" height="32"/>
+  <object id="5" x="1088" y="448" width="130.25" height="32"/>
   <object id="6" x="1631" y="672" width="129" height="32"/>
   <object id="7" x="1600" y="544" width="32" height="128"/>
-  <object id="8" x="1248" y="416" width="32" height="32"/>
   <object id="9" x="864" y="416" width="32" height="128"/>
-  <object id="10" x="384" y="512" width="32" height="64"/>
   <object id="12" x="2400" y="672" width="160" height="32"/>
   <object id="15" x="2720" y="928" width="545" height="32"/>
   <object id="16" x="2688" y="800" width="32" height="128"/>
