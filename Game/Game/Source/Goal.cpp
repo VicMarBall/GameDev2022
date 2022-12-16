@@ -59,7 +59,7 @@ bool Goal::Update()
 
 	if (!win) {
 		pBody->GetPosition(position.x, position.y);
-		app->render->DrawTexture(texture, position.x + 1, position.y + 1);
+		app->render->DrawTexture(texture, position.x + 16, position.y + 16);
 	}
 	else {
 		pBody->body->SetActive(false);
