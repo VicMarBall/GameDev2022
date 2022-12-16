@@ -116,7 +116,7 @@ bool WalkingEnemy::CleanUp() {
 	active = false;
 
 	if (pBody != nullptr) {
-		app->physics->world->DestroyBody(pBody->body);
+		app->physics->DeleteBody(pBody);
 	}
 
 	return true;

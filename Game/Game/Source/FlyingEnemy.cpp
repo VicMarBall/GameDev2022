@@ -58,6 +58,8 @@ bool FlyingEnemy::Start() {
 
 	isAlive = true;
 
+	pBody->body->SetActive(true);
+
 	previousAnimation = &flyingLeft;
 
 	radiusPath = 200;
@@ -74,6 +76,7 @@ bool FlyingEnemy::Update() {
 		Move();
 	}
 	else {
+		pBody->body->SetActive(false);
 		currentAnimation = &death;
 	}
 
@@ -114,7 +117,7 @@ bool FlyingEnemy::CleanUp() {
 	active = false;
 
 	if (pBody != nullptr) {
-		app->physics->world->DestroyBody(pBody->body);
+		app->physics->DeleteBody(pBody);
 	}
 
 	return true;
