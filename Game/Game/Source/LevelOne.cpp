@@ -266,25 +266,13 @@ bool LevelOne::Update(float dt)
 		{
 			// L12: Get the latest calculated path and draw
 			const DynArray<iPoint>* path = debugPath;
-			if (path != nullptr) {
-				for (uint i = 0; i < path->Count(); ++i)
-				{
-					iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-					app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
-				}
-			}
+			app->pathfinding->DrawPath(path);
 		}
 
 		{
 			// L12: Get the latest calculated path and draw
 			const DynArray<iPoint>* path = enemy->GetPath();
-			if (path != NULL && path->Count() > 0) {
-				for (uint i = 0; i < path->Count(); ++i)
-				{
-					iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-					app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
-				}
-			}
+			app->pathfinding->DrawPath(path);
 		}
 
 		// L12: Debug pathfinding
