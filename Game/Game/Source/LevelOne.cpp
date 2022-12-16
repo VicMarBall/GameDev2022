@@ -33,25 +33,19 @@ bool LevelOne::Awake(pugi::xml_node& config)
 
 	// iterate all objects in the scene
 	// Check https://pugixml.org/docs/quickstart.html#access
-	for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
+	/*for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
 	{
 		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::ITEM);
 		item->parameters = itemNode;
-	}
+	}*/
 
 	//L02: DONE 3: Instantiate the player using the entity manager
-	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
-	player->active = false;
-	player->parameters = config.child("player");
-
-	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
-	goal->active = false;
-	goal->parameters = config.child("goal");
-
 	
-	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
-	enemy->active = false;
-	enemy->parameters = config.child("enemy");
+	playerParameters = config.child("player");
+
+	goalParameters = config.child("goal");
+
+	enemyParameters = config.child("enemy");
 	
 	/*/for (pugi::xml_node EnemyNode = config.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
 		
@@ -78,6 +72,18 @@ bool LevelOne::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelOne::Start()
 {
+	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
+	player->active = false;
+	player->parameters = playerParameters;
+
+	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
+	goal->active = false;
+	goal->parameters = goalParameters;
+
+	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
+	enemy->active = false;
+	enemy->parameters = enemyParameters;
+
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 

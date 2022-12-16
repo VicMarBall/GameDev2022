@@ -39,6 +39,10 @@ public:
 
 public:
 	//L02: DONE 3: Declare a Player attribute 
+	pugi::xml_node playerParameters;
+	pugi::xml_node goalParameters;
+	pugi::xml_node enemyParameters;
+
 	Player* player;
 	Goal* goal;
 	Enemy* enemy;

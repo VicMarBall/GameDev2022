@@ -33,24 +33,13 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 
 	// iterate all objects in the scene
 	// Check https://pugixml.org/docs/quickstart.html#access
-	for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
-	{
-		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::ITEM);
-		item->parameters = itemNode;
-	}
 
 	//L02: DONE 3: Instantiate the player using the entity manager
-	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
-	player->active = false;
-	player->parameters = config.child("player");
+	playerParameters = config.child("player");
 
-	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
-	goal->active = false;
-	goal->parameters = config.child("goal");
+	goalParameters = config.child("goal");
 
-	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
-	enemy->active = false;
-	enemy->parameters = config.child("enemy");
+	enemyParameters = config.child("enemy");
 
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
@@ -65,6 +54,18 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelTwo::Start()
 {
+	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
+	player->active = false;
+	player->parameters = playerParameters;
+
+	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
+	goal->active = false;
+	goal->parameters = goalParameters;
+
+	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
+	enemy->active = false;
+	enemy->parameters = enemyParameters;
+
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 	bool retLoad = app->map->Load();
