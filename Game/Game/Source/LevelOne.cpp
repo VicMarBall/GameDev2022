@@ -252,7 +252,12 @@ bool LevelOne::Update(float dt)
 			if (originSelected == true)
 			{
 				app->pathfinding->CreatePath(origin, mouseTile);
-				debugPath = app->pathfinding->GetLastPath();
+				const DynArray<iPoint>* p = app->pathfinding->GetLastPath();
+				debugPath.Clear();
+				for (int i = 0; i < p->Count(); ++i) {
+					debugPath.PushBack(*p->At(i));
+				}
+
 				originSelected = false;
 			}
 			else
@@ -265,7 +270,7 @@ bool LevelOne::Update(float dt)
 
 		{
 			// L12: Get the latest calculated path and draw
-			const DynArray<iPoint>* path = debugPath;
+			const DynArray<iPoint>* path = &debugPath;
 			app->pathfinding->DrawPath(path);
 		}
 

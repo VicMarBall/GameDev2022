@@ -71,12 +71,15 @@ public:
 
 	void SetPath(const DynArray<iPoint>* p)
 	{
-		path = p;
+		path.Clear();
+		for (int i = 0; i < p->Count(); ++i) {
+			path.PushBack(*p->At(i));
+		}
 	}
 
 	const DynArray<iPoint>* GetPath()
 	{
-		return path;
+		return &path;
 	}
 
 	int GetRadiusPath() {
@@ -91,7 +94,7 @@ protected:
 
 	int radiusPath;
 
-	const DynArray<iPoint>* path = nullptr;
+	DynArray<iPoint> path;
 
 	iPoint objective;
 
