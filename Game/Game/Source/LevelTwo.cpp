@@ -66,7 +66,19 @@ bool LevelTwo::Start()
 
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
-	app->map->Load();
+	bool retLoad = app->map->Load();
+
+	// L12 Create walkability map
+	if (retLoad) {
+		int w, h;
+		uchar* data = NULL;
+
+		bool retWalkMap = app->map->CreateWalkabilityMap(w, h, &data);
+		if (retWalkMap) app->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+
+	}
 	app->audio->PlayMusic(musicPath, 1.0f);
 
 	player->active = true;
@@ -78,6 +90,11 @@ bool LevelTwo::Start()
 	app->render->camera.x = camX;
 	app->render->camera.y = camY;
 
+	// Texture to highligh mouse position 
+	mouseTileTex = app->tex->Load("Assets/Maps/path.png");
+	// Texture to show path origin 
+	originTex = app->tex->Load("Assets/Maps/x.png");
+
 	return true;
 }
 
@@ -87,15 +104,17 @@ bool LevelTwo::PreUpdate()
 	for (b2Body* b = app->physics->world->GetBodyList(); b; b = b->GetNext())
 	{
 		PhysBody* pB = (PhysBody*)b->GetUserData();
-		if (pB->typeTerrain == FLOATING) {
-			int posX = 0;
-			int posY = 0;
-			pB->GetPosition(posX, posY);
-			if (posY < player->position.y + 32) {
-				pB->body->SetActive(false);
-			}
-			else {
-				pB->body->SetActive(true);
+		if (pB != nullptr) {
+			if (pB->typeTerrain == FLOATING) {
+				int posX = 0;
+				int posY = 0;
+				pB->GetPosition(posX, posY);
+				if (posY < player->position.y + 32) {
+					pB->body->SetActive(false);
+				}
+				else {
+					pB->body->SetActive(true);
+				}
 			}
 		}
 	}
@@ -112,7 +131,7 @@ bool LevelTwo::Update(float dt)
 	}
 
 	if (player->Won() == true) {
-		app->fade->FadeToBlack(this, (Module*)app->level_transition, 100);
+		app->fade->FadeToBlack(this, (Module*)app->win_screen, 100);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
@@ -172,8 +191,6 @@ bool LevelTwo::Update(float dt)
 			app->render->camera.y = -player->position.y + app->win->GetHeight() / 2;
 	}
 
-	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
-
 	// Draw map
 	app->map->Draw();
 
@@ -193,6 +210,12 @@ bool LevelTwo::Update(float dt)
 			if (originSelected == true)
 			{
 				app->pathfinding->CreatePath(origin, mouseTile);
+				const DynArray<iPoint>* p = app->pathfinding->GetLastPath();
+				debugPath.Clear();
+				for (int i = 0; i < p->Count(); ++i) {
+					debugPath.PushBack(*p->At(i));
+				}
+
 				originSelected = false;
 			}
 			else
@@ -209,6 +232,18 @@ bool LevelTwo::Update(float dt)
 		{
 			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
 			app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
+		}
+
+		{
+			// L12: Get the latest calculated path and draw
+			const DynArray<iPoint>* path = &debugPath;
+			app->pathfinding->DrawPath(path);
+		}
+
+		{
+			// L12: Get the latest calculated path and draw
+			const DynArray<iPoint>* path = enemy->GetPath();
+			app->pathfinding->DrawPath(path);
 		}
 
 		// L12: Debug pathfinding
@@ -235,6 +270,10 @@ bool LevelTwo::LoadState(pugi::xml_node& data)
 {
 	player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
+	player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
+
+	enemy->SetPosition(data.child("enemies").child("enemy").attribute("x").as_int(), data.child("enemies").child("enemy").attribute("y").as_int());
+
 	return true;
 }
 
@@ -247,6 +286,12 @@ bool LevelTwo::SaveState(pugi::xml_node& data)
 	play.append_attribute("x") = player->position.x + 16;
 	play.append_attribute("y") = player->position.y + 16;
 
+
+	pugi::xml_node enem = data.append_child("enemies");
+	pugi::xml_node curEnem = enem.append_child("enemy");
+	curEnem.append_attribute("x") = enemy->position.x;
+	curEnem.append_attribute("y") = enemy->position.y;
+
 	return true;
 }
 
@@ -255,8 +300,12 @@ bool LevelTwo::CleanUp()
 {
 	LOG("Freeing scene");
 	player->CleanUp();
+	enemy->CleanUp();
+	goal->CleanUp();
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
+	app->tex->UnLoad(mouseTileTex);
+	app->tex->UnLoad(originTex);
 
 	return true;
 }

@@ -41,6 +41,7 @@ public:
 	//L02: DONE 3: Declare a Player attribute 
 	Player* player;
 	Goal* goal;
+	Enemy* enemy;
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
 
@@ -58,6 +59,8 @@ private:
 
 	int camX;
 	int camY;
+
+	DynArray<iPoint> debugPath;
 
 };
 

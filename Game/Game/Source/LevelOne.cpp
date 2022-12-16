@@ -231,8 +231,6 @@ bool LevelOne::Update(float dt)
 			app->render->camera.y = -player->position.y + app->win->GetHeight() / 2;
 	}
 
-	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
-
 	// Draw map
 	app->map->Draw();
 

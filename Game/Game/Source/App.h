@@ -22,6 +22,7 @@ class LevelOne;
 class LevelTransition;
 class LevelTwo;
 class DeathScreen;
+class WinScreen;
 class EntityManager;
 class Map;
 class Physics;
@@ -100,6 +101,7 @@ public:
 	LevelTransition* level_transition;
 	LevelTwo* level_two;
 	DeathScreen* death_screen;
+	WinScreen* win_screen;
 	EntityManager* entityManager;
 	Map* map;
 	//L07 TODO 2: Add Physics module

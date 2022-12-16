@@ -11,6 +11,7 @@
 #include "LevelTransition.h"
 #include "LevelTwo.h"
 #include "DeathScreen.h"
+#include "WinScreen.h"
 #include "EntityManager.h"
 #include "Map.h"
 #include "Physics.h"
@@ -41,6 +42,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	level_transition = new LevelTransition(false);
 	level_two = new LevelTwo(false);
 	death_screen = new DeathScreen(false);
+	win_screen = new WinScreen(false);
 	entityManager = new EntityManager();
 	map = new Map();
 	pathfinding = new PathFinding();
@@ -60,6 +62,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(level_transition);
 	AddModule(level_two);
 	AddModule(death_screen);
+	AddModule(win_screen);
 	AddModule(entityManager);
 	AddModule(map);
 	AddModule(pathfinding);
