@@ -38,11 +38,11 @@ bool FlyingEnemy::Start() {
 
 	flyingRight.PushBack({ 32, 0, 32, 32 });
 	flyingRight.PushBack({ 0, 0, 32, 32 });
-	flyingRight.speed = 0.2f;
+	flyingRight.speed = 0.1f;
 
 	flyingLeft.PushBack({ 32, 32, 32, 32 });
 	flyingLeft.PushBack({ 0, 32, 32, 32 });
-	flyingLeft.speed = 0.2f;
+	flyingLeft.speed = 0.1f;
 
 	death.PushBack({ 32, 64, 32, 32 });
 	death.PushBack({ 0, 64, 32, 32 });
@@ -135,6 +135,7 @@ void FlyingEnemy::SetPosition(int posX, int posY) {
 
 void FlyingEnemy::Die() {
 	isAlive = false;
+	facing = NO;
 }
 
 
