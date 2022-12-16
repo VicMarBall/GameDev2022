@@ -6,6 +6,7 @@
 #include "Goal.h"
 #include "Item.h"
 #include "Enemies.h"
+#include "List.h"
 
 struct SDL_Texture;
 

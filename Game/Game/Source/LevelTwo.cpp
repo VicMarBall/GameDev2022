@@ -48,6 +48,10 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 	goal->active = false;
 	goal->parameters = config.child("goal");
 
+	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
+	enemy->active = false;
+	enemy->parameters = config.child("enemy");
+
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
 
@@ -61,9 +65,6 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelTwo::Start()
 {
-	//img = app->tex->Load("Assets/Textures/test.png");
-	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
-
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 	bool retLoad = app->map->Load();
@@ -86,6 +87,9 @@ bool LevelTwo::Start()
 
 	goal->active = true;
 	goal->Start();
+
+	enemy->active = true;
+	enemy->Start();
 
 	app->render->camera.x = camX;
 	app->render->camera.y = camY;
@@ -133,6 +137,19 @@ bool LevelTwo::Update(float dt)
 	if (player->Won() == true) {
 		app->fade->FadeToBlack(this, (Module*)app->win_screen, 100);
 	}
+
+	if (enemy != nullptr) {
+		iPoint playerCenter;
+		playerCenter.Create(player->position.x + 16, player->position.y + 16);
+		enemy->SetObjective(playerCenter);
+		if (enemy->IsInRadius(playerCenter)) {
+			app->pathfinding->CreatePath(app->map->WorldToMap(enemy->position.x + 8, enemy->position.y + 8),
+				app->map->WorldToMap(enemy->GetObjective().x, enemy->GetObjective().y));
+
+			enemy->SetPath(app->pathfinding->GetLastPath());
+		}
+	}
+
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
@@ -226,14 +243,6 @@ bool LevelTwo::Update(float dt)
 			}
 		}
 
-		// L12: Get the latest calculated path and draw
-		const DynArray<iPoint>* path = app->pathfinding->GetLastPath();
-		for (uint i = 0; i < path->Count(); ++i)
-		{
-			iPoint pos = app->map->MapToWorld(path->At(i)->x, path->At(i)->y);
-			app->render->DrawTexture(mouseTileTex, pos.x, pos.y);
-		}
-
 		{
 			// L12: Get the latest calculated path and draw
 			const DynArray<iPoint>* path = &debugPath;
@@ -268,8 +277,6 @@ bool LevelTwo::PostUpdate()
 // L03: DONE 6: Implement a method to load the state load players's x and y
 bool LevelTwo::LoadState(pugi::xml_node& data)
 {
-	player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
-
 	player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
 	enemy->SetPosition(data.child("enemies").child("enemy").attribute("x").as_int(), data.child("enemies").child("enemy").attribute("y").as_int());

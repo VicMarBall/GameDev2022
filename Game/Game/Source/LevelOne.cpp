@@ -6,7 +6,6 @@
 #include "Window.h"
 #include "ModuleFadeToBlack.h"
 #include "LevelOne.h"
-#include "LevelTwo.h"
 #include "EntityManager.h"
 #include "Map.h"
 #include "Physics.h"
@@ -79,9 +78,6 @@ bool LevelOne::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelOne::Start()
 {
-	//img = app->tex->Load("Assets/Textures/test.png");
-	//app->audio->PlayMusic("Assets/Audio/Music/music_spy.ogg");
-	
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 
