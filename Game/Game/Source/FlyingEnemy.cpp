@@ -88,7 +88,7 @@ bool FlyingEnemy::Update() {
 	currentAnimation->Update();
 
 	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x -8, position.y -16, &currentFrame);
+	app->render->DrawTexture(texture, position.x -8, position.y -8, &currentFrame);
 
 	if (death.HasFinished()) {
 		pBody->body->SetActive(false);
