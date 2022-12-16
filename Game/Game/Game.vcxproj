@@ -119,6 +119,7 @@
     <ClCompile Include="Source\Textures.cpp" />
     <ClCompile Include="Source\WalkingEnemy.cpp" />
     <ClCompile Include="Source\Window.cpp" />
+    <ClCompile Include="Source\WinScreen.cpp" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\DeathScreen.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Source\External\PugiXml\src\pugiconfig.hpp" />
     <ClInclude Include="Source\External\PugiXml\src\pugixml.hpp" />
     <ClCompile Include="Source\External\PugiXml\src\pugixml.cpp" />
+    <ClInclude Include="Source\WinScreen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

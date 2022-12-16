@@ -120,11 +120,11 @@ bool LevelTwo::Update(float dt)
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
-
+		app->fade->FadeToBlack(this, (Module*)app->level_two, 30);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
-		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
+		app->fade->FadeToBlack(this, (Module*)app->level_two, 30);
 	}
 
 	// L03: DONE 3: Request App to Load / Save when pressing the keys F5 (save) / F6 (load)

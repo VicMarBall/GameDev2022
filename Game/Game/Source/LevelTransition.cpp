@@ -48,7 +48,7 @@ bool LevelTransition::Update(float dt) {
 
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
-		app->fade->FadeToBlack(this, (Module*)app->scene_title, 90);
+		app->fade->FadeToBlack(this, (Module*)app->level_two, 90);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_REPEAT) {

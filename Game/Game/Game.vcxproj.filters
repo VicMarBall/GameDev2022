@@ -57,6 +57,9 @@
     <ClCompile Include="Source\Bullet.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Source\WinScreen.cpp">
+      <Filter>Screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -142,6 +145,9 @@
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Bullet.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WinScreen.h">
+      <Filter>Screens</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
