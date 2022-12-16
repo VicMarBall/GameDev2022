@@ -3,6 +3,8 @@
 
 #include "Box2D/Box2D/Box2D.h"
 
+#include "List.h"
+
 #include "EntityManager.h"
 
 #define GRAVITY_X 0.0f
@@ -79,10 +81,7 @@ public:
 	b2WeldJoint* CreateWeldJoint(PhysBody* A, b2Vec2 anchorA, PhysBody* B, b2Vec2 anchorB, float angle, bool collideConnected, bool enableLimit);
 	
 	// b2
-	
-	
-	
-	
+	void DeleteBody(PhysBody* b);
 	
 	// Listener ---
 	void BeginContact(b2Contact* contact);
@@ -92,8 +91,8 @@ public:
 	b2World* world;
 	bool debug = false;
 
+	List<PhysBody*> pendingToDelete;
+
 private:
 
-	b2MouseJoint* mouse_joint;
-	b2Body* ground;
 };

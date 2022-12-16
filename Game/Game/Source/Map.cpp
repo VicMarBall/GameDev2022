@@ -348,11 +348,10 @@ bool Map::UnLoad()
 
 	// delete bodies of terrain
 	b2Body* bNext = nullptr;
-	for (b2Body* b = app->physics->world->GetBodyList(); b != NULL; b = bNext) {
-		b2Body* bNext = b->GetNext();
+	for (b2Body* b = app->physics->world->GetBodyList(); b != NULL; b = b->GetNext()) {
 		PhysBody* pBody = (PhysBody*)b->GetUserData();
 		if (pBody->typeTerrain != TypeTerrain::NO) {
-			app->physics->world->DestroyBody(b);
+			app->physics->DeleteBody(pBody);
 		}
 	}
 

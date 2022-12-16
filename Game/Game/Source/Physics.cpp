@@ -20,7 +20,6 @@
 Physics::Physics() : Module()
 {
 	world = NULL;
-	mouse_joint = NULL;
 
 }
 
@@ -61,10 +60,16 @@ bool Physics::PreUpdate()
 		debug = !debug;
 	}
 
+	while (pendingToDelete.Count() > 0) {
+		ListItem<PhysBody*>* pB = pendingToDelete.start;
+
+		world->DestroyBody(pendingToDelete.start->data->body);
+
+		pendingToDelete.Del(pB);
+	}
+
 	return ret;
 }
-
-
 
 PhysBody* Physics::CreateRectangle(int x, int y, int width, int height, bodyType type)
 {
@@ -428,4 +433,9 @@ b2WeldJoint* Physics::CreateWeldJoint(PhysBody* A, b2Vec2 anchorA, PhysBody* B, 
 	weldJointDef.referenceAngle = 0;
 
 	return (b2WeldJoint*)world->CreateJoint(&weldJointDef);
+}
+
+void Physics::DeleteBody(PhysBody* b)
+{
+	pendingToDelete.Add(b);
 }
