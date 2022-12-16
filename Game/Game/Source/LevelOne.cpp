@@ -75,6 +75,7 @@ bool LevelOne::Start()
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->active = false;
 	player->parameters = playerParameters;
+	player->CanShoot(false);
 
 	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
 	goal->active = false;

@@ -108,26 +108,27 @@ bool Player::Update()
 		}
 
 		// shooting
-		if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN) {
-
-			for (ListItem<Bullet*>* bullet = storedBullets.start; bullet != NULL; bullet = bullet->next) {
-				if (bullet->data->IsAvailable() == true) {
-					switch (facing)
-					{
-					case Player::LEFT:
-						bullet->data->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x, position.y + 16 });
-						break;
-					case Player::RIGHT:
-						bullet->data->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
-						break;
-					default:
+		if (canShoot) {
+			if (app->input->GetKey(SDL_SCANCODE_Z) == KEY_DOWN) {
+				for (ListItem<Bullet*>* bullet = storedBullets.start; bullet != NULL; bullet = bullet->next) {
+					if (bullet->data->IsAvailable() == true) {
+						switch (facing)
+						{
+						case Player::LEFT:
+							bullet->data->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x, position.y + 16 });
+							break;
+						case Player::RIGHT:
+							bullet->data->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
+							break;
+						default:
+							break;
+						}
 						break;
 					}
-					break;
 				}
 			}
 		}
-
+		
 
 		if (!godMode) {
 			//L02: DONE 4: modify the position of the player using arrow keys and render the texture
@@ -344,4 +345,9 @@ void Player::GodSwitch() {
 		godMode = false;
 		pBody->body->SetGravityScale(1);
 	}
+}
+
+void Player::CanShoot(bool can)
+{
+	canShoot = can;
 }

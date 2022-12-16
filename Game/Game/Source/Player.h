@@ -49,6 +49,8 @@ public:
 		return win;
 	}
 
+	void CanShoot(bool can);
+
 private:
 	bool win = false;
 	bool onAir;
@@ -63,6 +65,8 @@ private:
 	bool isAlive;
 
 	bool godMode = false;
+
+	bool canShoot;
 
 	//L02: DONE 1: Declare player parameters
 	SDL_Texture* texture;
