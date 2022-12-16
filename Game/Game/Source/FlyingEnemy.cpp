@@ -143,24 +143,68 @@ void FlyingEnemy::Move()
 {
 	b2Vec2 velocity = pBody->body->GetLinearVelocity();
 
-	if (IsInRadius(objective)) {
-		if (objective.x > position.x) {
-			facing = RIGHT;
-		}
-		if (objective.x < position.x) {
-			facing = LEFT;
-		}
-		if (objective.y < position.y) {
-			elevate = UP;
-		}
-		if (objective.y > position.y) {
-			elevate = DOWN;
+	facing = NO;
+	elevate = NO;
+
+	iPoint* tile0 = path.At(0);
+	iPoint* tile1 = path.At(1);
+	iPoint* tile2 = path.At(2);
+
+
+	if (tile0 != nullptr) {
+		if (tile1 != nullptr) {
+			if (tile2 != nullptr) {
+				if (tile2->x < tile1->x) {
+					facing = LEFT;
+				}
+				else if (tile2->x > tile1->x) {
+					facing = RIGHT;
+				}
+
+				if (tile2->y < tile1->y) {
+					elevate = UP;
+				}
+				else if (tile2->y > tile1->y) {
+					elevate = DOWN;
+				}
+			}
+			if (tile1->x < tile0->x) {
+				facing = LEFT;
+			}
+			else if (tile1->x > tile0->x) {
+				facing = RIGHT;
+			}
+
+			if (tile1->y < tile0->y) {
+				elevate = UP;
+			}
+			else if (tile1->y > tile0->y) {
+				elevate = DOWN;
+			}
 		}
 	}
-	else {
-		facing = NO;
-		elevate = NO;
-	}
+
+
+
+
+	//if (IsInRadius(objective)) {
+	//	if (objective.x > position.x) {
+	//		facing = RIGHT;
+	//	}
+	//	if (objective.x < position.x) {
+	//		facing = LEFT;
+	//	}
+	//	if (objective.y < position.y) {
+	//		elevate = UP;
+	//	}
+	//	if (objective.y > position.y) {
+	//		elevate = DOWN;
+	//	}
+	//}
+	//else {
+	//	facing = NO;
+	//	elevate = NO;
+	//}
 
 	switch (facing)
 	{
