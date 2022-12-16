@@ -33,31 +33,19 @@ bool LevelOne::Awake(pugi::xml_node& config)
 
 	// iterate all objects in the scene
 	// Check https://pugixml.org/docs/quickstart.html#access
-	/*for (pugi::xml_node itemNode = config.child("item"); itemNode; itemNode = itemNode.next_sibling("item"))
-	{
-		Item* item = (Item*)app->entityManager->CreateEntity(EntityType::ITEM);
-		item->parameters = itemNode;
-	}*/
+
 
 	//L02: DONE 3: Instantiate the player using the entity manager
-	
+
 	playerParameters = config.child("player");
 
 	goalParameters = config.child("goal");
 
-	enemyParameters = config.child("enemy");
-	
-	/*/for (pugi::xml_node EnemyNode = config.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
-		
-		Enemy* currentEnemy;
-		if (EnemyNode.attribute("type").as_int()==1){
-			currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);}
-		else {
-			currentEnemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);}
-		currentEnemy->active = false;
-		currentEnemy->parameters = EnemyNode;
-		//enemy->Add(currentEnemy);
-	//}*/
+	for (pugi::xml_node EnemyNode = config.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
+
+		enemyParameters[enemyCount] = EnemyNode;
+		enemyCount++;
+	}
 
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
@@ -72,6 +60,7 @@ bool LevelOne::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelOne::Start()
 {
+<<<<<<< Updated upstream
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->active = false;
 	player->parameters = playerParameters;
@@ -84,6 +73,8 @@ bool LevelOne::Start()
 	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
 	enemy->active = false;
 	enemy->parameters = enemyParameters;
+=======
+>>>>>>> Stashed changes
 
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
@@ -104,19 +95,31 @@ bool LevelOne::Start()
 
 	app->audio->PlayMusic(musicPath, 1.0f);
 
+	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->active = true;
+	player->parameters = playerParameters;
 	player->Start();
 
+	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
 	goal->active = true;
+	goal->parameters = goalParameters;
 	goal->Start();
 
-	enemy->active = true;
-	enemy->Start();
 
-	/*for (ListItem<Enemy*>* currentEnemy = enemy->start; currentEnemy; currentEnemy = currentEnemy->next) {
-		currentEnemy->data->active = true;
-		currentEnemy->data->Start();
-	}*/
+	for (int i = 0; i < enemyCount; i++) {
+		if (enemyParameters[i].attribute("type").as_int() == 0) {
+			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
+			enemy[i]->active = true;
+			enemy[i]->parameters = enemyParameters[i];
+			enemy[i]->Start();
+		}
+		else {
+			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
+			enemy[i]->active = true;
+			enemy[i]->parameters = enemyParameters[i];
+			enemy[i]->Start();
+		}
+	}
 
 	app->render->camera.x = camX;
 	app->render->camera.y = camY;
@@ -165,15 +168,17 @@ bool LevelOne::Update(float dt)
 		app->fade->FadeToBlack(this, (Module*)app->level_transition, 100);
 	}
 
-	if (enemy != nullptr) {
-		iPoint playerCenter;
-		playerCenter.Create(player->position.x + 16, player->position.y + 16);
-		enemy->SetObjective(playerCenter);
-		if (enemy->IsInRadius(playerCenter)) {
-			app->pathfinding->CreatePath(app->map->WorldToMap(enemy->position.x + 8, enemy->position.y + 8),
-				app->map->WorldToMap(enemy->GetObjective().x, enemy->GetObjective().y));
+	for (int i = 0; i < enemyCount; i++) {
+		if (enemy != nullptr) {
+			iPoint playerCenter;
+			playerCenter.Create(player->position.x + 16, player->position.y + 16);
+			enemy[i]->SetObjective(playerCenter);
+			if (enemy[i]->IsInRadius(playerCenter)) {
+				app->pathfinding->CreatePath(app->map->WorldToMap(enemy[i]->position.x + 8, enemy[i]->position.y + 8),
+					app->map->WorldToMap(enemy[i]->GetObjective().x, enemy[i]->GetObjective().y));
 
-			enemy->SetPath(app->pathfinding->GetLastPath());
+				enemy[i]->SetPath(app->pathfinding->GetLastPath());
+			}
 		}
 	}
 
@@ -206,28 +211,28 @@ bool LevelOne::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
 		player->GodSwitch();
 	}
-		
+
 
 	if (app->render->DebugCamera == true) {
-	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		app->render->camera.y += 1;
+		if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+			app->render->camera.y += 1;
 
-	if (app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		app->render->camera.y -= 1;
+		if (app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+			app->render->camera.y -= 1;
 
-	if (app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		app->render->camera.x += 1;
+		if (app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+			app->render->camera.x += 1;
 
-	if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		app->render->camera.x -= 1;
+		if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+			app->render->camera.x -= 1;
 
 	}
 
 	else {
-		if (player->position.x < app->win->GetWidth()/2 - camX) {
+		if (player->position.x < app->win->GetWidth() / 2 - camX) {
 			app->render->camera.x = camX;
 		}
-		else if (player->position.x < app->map->mapData.width*app->map->mapData.tileWidth - app->win->GetWidth() / 2){
+		else if (player->position.x < app->map->mapData.width * app->map->mapData.tileWidth - app->win->GetWidth() / 2) {
 			app->render->camera.x = -player->position.x + app->render->camera.w / 2;
 		}
 		if (-player->position.y + app->render->camera.h / 2 < 0 && -player->position.y + app->render->camera.h / 2 > -app->map->mapData.height * app->map->mapData.tileHeight + app->win->GetHeight())
@@ -277,8 +282,10 @@ bool LevelOne::Update(float dt)
 
 		{
 			// L12: Get the latest calculated path and draw
-			const DynArray<iPoint>* path = enemy->GetPath();
-			app->pathfinding->DrawPath(path);
+			for (int i = 0; i < enemyCount; i++) {
+				const DynArray<iPoint>* path = enemy[i]->GetPath();
+				app->pathfinding->DrawPath(path);
+			}
 		}
 
 		// L12: Debug pathfinding
@@ -286,7 +293,7 @@ bool LevelOne::Update(float dt)
 		app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
 	}
 
-	
+
 
 	return true;
 }
@@ -296,7 +303,7 @@ bool LevelOne::PostUpdate()
 {
 	bool ret = true;
 
-	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
 	return ret;
@@ -311,7 +318,13 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 		}
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
-		enemy->SetPosition(data.child("enemies").child("enemy").attribute("x").as_int(), data.child("enemies").child("enemy").attribute("y").as_int());
+		int i = 0;
+		for (pugi::xml_node EnemyNode = data.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
+			if (EnemyNode.attribute("active").as_bool()) {
+				enemy[i]->SetPosition(EnemyNode.attribute("x").as_int(), EnemyNode.attribute("y").as_int());
+			}
+			i++;
+		}
 	}
 	else {
 		if (active) {
@@ -337,19 +350,20 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 
 
 		pugi::xml_node enem = data.append_child("enemies");
-		pugi::xml_node curEnem = enem.append_child("enemy");
-		curEnem.append_attribute("x") = enemy->position.x;
-		curEnem.append_attribute("y") = enemy->position.y;
+		for (int i = 0; i < enemyCount; i++) {
+			pugi::xml_node curEnem = enem.append_child("enemy");
+			if (enemy[i]->active) {
+				curEnem.append_attribute("x") = enemy[i]->position.x;
+				curEnem.append_attribute("y") = enemy[i]->position.y;
+			}
+
+			curEnem.append_attribute("active") = enemy[i]->active;
+		}
+
 	}
 	else {
 		state.append_attribute("state") = false;
 	}
-
-	/*for (ListItem<Enemy*>* currentEnemy = enemy->start; currentEnemy->data; currentEnemy = currentEnemy->next) {
-		pugi::xml_node curEnem = enem.append_child("enemy");
-		curEnem.append_attribute()
-
-	}*/
 
 	return true;
 }
@@ -370,3 +384,4 @@ bool LevelOne::CleanUp()
 
 	return true;
 }
+

@@ -8,6 +8,8 @@
 #include "Enemies.h"
 #include "List.h"
 
+#define MAX_ENEMIES 20
+
 struct SDL_Texture;
 
 class LevelOne : public Module
@@ -41,11 +43,11 @@ public:
 	//L02: DONE 3: Declare a Player attribute 
 	pugi::xml_node playerParameters;
 	pugi::xml_node goalParameters;
-	pugi::xml_node enemyParameters;
+	pugi::xml_node enemyParameters[MAX_ENEMIES];
 
 	Player* player;
 	Goal* goal;
-	Enemy* enemy;
+	Enemy* enemy[MAX_ENEMIES];
 
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
@@ -66,6 +68,8 @@ private:
 	int camY;
 
 	DynArray<iPoint> debugPath;
+
+	int enemyCount = 0;
 
 };
 

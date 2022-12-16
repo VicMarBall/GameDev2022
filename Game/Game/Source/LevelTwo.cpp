@@ -39,7 +39,11 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 
 	goalParameters = config.child("goal");
 
-	enemyParameters = config.child("enemy");
+	for (pugi::xml_node EnemyNode = config.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
+
+		enemyParameters[enemyCount] = EnemyNode;
+		enemyCount++;
+	}
 
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
@@ -54,6 +58,7 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelTwo::Start()
 {
+<<<<<<< Updated upstream
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->active = false;
 	player->parameters = playerParameters;
@@ -67,6 +72,8 @@ bool LevelTwo::Start()
 	enemy->active = false;
 	enemy->parameters = enemyParameters;
 
+=======
+>>>>>>> Stashed changes
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 	bool retLoad = app->map->Load();
@@ -84,14 +91,31 @@ bool LevelTwo::Start()
 	}
 	app->audio->PlayMusic(musicPath, 1.0f);
 
+	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->active = true;
+	player->parameters = playerParameters;
 	player->Start();
 
+	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
 	goal->active = true;
+	goal->parameters = goalParameters;
 	goal->Start();
 
-	enemy->active = true;
-	enemy->Start();
+
+	for (int i = 0; i < enemyCount; i++) {
+		if (enemyParameters[i].attribute("type").as_int() == 0) {
+			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
+			enemy[i]->active = true;
+			enemy[i]->parameters = enemyParameters[i];
+			enemy[i]->Start();
+		}
+		else {
+			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
+			enemy[i]->active = true;
+			enemy[i]->parameters = enemyParameters[i];
+			enemy[i]->Start();
+		}
+	}
 
 	app->render->camera.x = camX;
 	app->render->camera.y = camY;
@@ -140,15 +164,17 @@ bool LevelTwo::Update(float dt)
 		app->fade->FadeToBlack(this, (Module*)app->win_screen, 100);
 	}
 
-	if (enemy != nullptr) {
-		iPoint playerCenter;
-		playerCenter.Create(player->position.x + 16, player->position.y + 16);
-		enemy->SetObjective(playerCenter);
-		if (enemy->IsInRadius(playerCenter)) {
-			app->pathfinding->CreatePath(app->map->WorldToMap(enemy->position.x + 8, enemy->position.y + 8),
-				app->map->WorldToMap(enemy->GetObjective().x, enemy->GetObjective().y));
+	for (int i = 0; i < enemyCount; i++) {
+		if (enemy != nullptr) {
+			iPoint playerCenter;
+			playerCenter.Create(player->position.x + 16, player->position.y + 16);
+			enemy[i]->SetObjective(playerCenter);
+			if (enemy[i]->IsInRadius(playerCenter)) {
+				app->pathfinding->CreatePath(app->map->WorldToMap(enemy[i]->position.x + 8, enemy[i]->position.y + 8),
+					app->map->WorldToMap(enemy[i]->GetObjective().x, enemy[i]->GetObjective().y));
 
-			enemy->SetPath(app->pathfinding->GetLastPath());
+				enemy[i]->SetPath(app->pathfinding->GetLastPath());
+			}
 		}
 	}
 
@@ -253,8 +279,10 @@ bool LevelTwo::Update(float dt)
 
 		{
 			// L12: Get the latest calculated path and draw
-			const DynArray<iPoint>* path = enemy->GetPath();
-			app->pathfinding->DrawPath(path);
+			for (int i = 0; i < enemyCount; i++) {
+				const DynArray<iPoint>* path = enemy[i]->GetPath();
+				app->pathfinding->DrawPath(path);
+			}
 		}
 
 		// L12: Debug pathfinding
@@ -285,15 +313,19 @@ bool LevelTwo::LoadState(pugi::xml_node& data)
 		}
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
-		enemy->SetPosition(data.child("enemies").child("enemy").attribute("x").as_int(), data.child("enemies").child("enemy").attribute("y").as_int());
+		int i = 0;
+		for (pugi::xml_node EnemyNode = data.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
+			if (EnemyNode.attribute("active").as_bool()) {
+				enemy[i]->SetPosition(EnemyNode.attribute("x").as_int(), EnemyNode.attribute("y").as_int());
+			}
+			i++;
+		}
 	}
 	else {
 		if (active) {
 			Disable();
 		}
 	}
-	
-
 	return true;
 }
 
@@ -313,15 +345,20 @@ bool LevelTwo::SaveState(pugi::xml_node& data)
 
 
 		pugi::xml_node enem = data.append_child("enemies");
-		pugi::xml_node curEnem = enem.append_child("enemy");
-		curEnem.append_attribute("x") = enemy->position.x;
-		curEnem.append_attribute("y") = enemy->position.y;
+		for (int i = 0; i < enemyCount; i++) {
+			pugi::xml_node curEnem = enem.append_child("enemy");
+			if (enemy[i]->active) {
+				curEnem.append_attribute("x") = enemy[i]->position.x;
+				curEnem.append_attribute("y") = enemy[i]->position.y;
+			}
+
+			curEnem.append_attribute("active") = enemy[i]->active;
+		}
+
 	}
 	else {
 		state.append_attribute("state") = false;
 	}
-
-
 	return true;
 }
 

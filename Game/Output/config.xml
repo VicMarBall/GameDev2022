@@ -37,9 +37,8 @@
   <level_one>
 	  <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
 	  <goal x="3920" y="368" texturepath="Assets/Textures/gun.png"/>
-   
-    <enemy x="600" y="400" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="2"/>
-    <enemy x="398" y="590" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="2"/>
+    <enemy x="600" y="400" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="0"/>
+    <enemy x="398" y="350" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
     <enemy x="600" y="500" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
     <camera x="-150" y="-288"/>
 	  <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
@@ -49,8 +48,8 @@
   <level_two>
     <player x="160" y="128" texturepath="Assets/Textures/player_tileset_gun.png"/>
     <enemy x="368" y="560" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
-    <enemy x="368" y="560" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="2"/>
-    <enemy x="368" y="560" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="2"/>
+    <enemy x="368" y="560" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="0"/>
+    <enemy x="368" y="560" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
     <goal x="3744" y="128" texturepath="Assets/Textures/goal.png"/>
     <camera x="0" y="0"/>
     <audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>

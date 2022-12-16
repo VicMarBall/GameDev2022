@@ -9,15 +9,17 @@
 	<scene_intro />
 	<scene_title />
 	<level_one>
-		<state state="false" />
+		<state state="true" />
+		<player x="1067" y="623" />
+		<enemies>
+			<enemy x="1082" y="338" active="true" />
+			<enemy active="false" />
+			<enemy x="570" y="495" active="true" />
+		</enemies>
 	</level_one>
 	<level_transition />
 	<level_two>
-		<state state="true" />
-		<player x="231" y="143" />
-		<enemies>
-			<enemy x="360" y="568" />
-		</enemies>
+		<state state="false" />
 	</level_two>
 	<death_screen />
 	<win_screen />
@@ -25,6 +27,6 @@
 	<map />
 	<pathfinding />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-683" y="-367" />
 	</renderer>
 </save_state>
