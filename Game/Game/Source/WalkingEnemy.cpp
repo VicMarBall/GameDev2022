@@ -123,7 +123,7 @@ bool WalkingEnemy::CleanUp() {
 }
 
 void WalkingEnemy::OnCollision(PhysBody* otherBody) {
-	if (otherBody->typeTerrain == TypeTerrain::FLOOR) {
+	if (otherBody->typeTerrain == TypeTerrain::FLOOR || otherBody->typeTerrain == TypeTerrain::FLOATING) {
 		ground = otherBody;
 	}
 	if (otherBody->typeTerrain == TypeTerrain::DEATH) {
@@ -138,7 +138,7 @@ void WalkingEnemy::OnCollision(PhysBody* otherBody) {
 
 void WalkingEnemy::EndCollision(PhysBody* otherBody)
 {
-	if (otherBody->typeTerrain == TypeTerrain::FLOOR) {
+	if (otherBody->typeTerrain == TypeTerrain::FLOOR || otherBody->typeTerrain == TypeTerrain::FLOATING) {
 		ground = nullptr;
 	}
 }
