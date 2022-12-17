@@ -4,16 +4,22 @@
 	<window />
 	<textures />
 	<audio />
-	<fade />
+	<:anonymous />
 	<scene_intro />
 	<scene_title />
 	<level_one>
 		<state state="true" />
-		<player x="279" y="559" />
+		<player x="368" y="559" />
 		<enemies>
-			<enemy x="590" y="392" active="true" />
-			<enemy x="390" y="340" active="true" />
-			<enemy x="557" y="495" active="true" />
+			<enemy x="583" y="495" active="true" />
+			<enemy x="1878" y="111" active="true" />
+			<enemy x="2307" y="655" active="true" />
+			<enemy x="3265" y="431" active="true" />
+			<enemy x="3572" y="591" active="true" />
+			<enemy x="952" y="440" active="true" />
+			<enemy x="2136" y="312" active="true" />
+			<enemy x="3288" y="152" active="true" />
+			<enemy x="2776" y="344" active="true" />
 		</enemies>
 	</level_one>
 	<level_transition />
@@ -22,6 +28,7 @@
 	</level_two>
 	<death_screen />
 	<win_screen />
+	<fade />
 	<entitymanager />
 	<map />
 	<pathfinding />

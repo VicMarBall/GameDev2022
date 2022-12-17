@@ -165,6 +165,9 @@ void WalkingEnemy::SetDefaultObjective()
 		}
 
 	}
+	else {
+		SetObjective({ position.x + 8, position.y + 8 });
+	}
 }
 
 void WalkingEnemy::Die() {
