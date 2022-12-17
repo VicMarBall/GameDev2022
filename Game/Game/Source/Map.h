@@ -22,6 +22,12 @@ struct TileSet
 
 	SDL_Texture* texture;
 
+	~TileSet()
+	{
+		app->tex->UnLoad(texture);
+		texture = nullptr;
+	}
+
 	// L05: DONE 7: Create a method that receives a tile id and returns it's Rectfind the Rect associated with a specific tile id
 	SDL_Rect GetTileRect(int gid) const;
 };
