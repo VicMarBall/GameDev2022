@@ -308,7 +308,7 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
 		int i = 0;
-		for (pugi::xml_node EnemyNode = data.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
+		for (pugi::xml_node EnemyNode = data.child("enemies").child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
 			if (EnemyNode.attribute("active").as_bool()) {
 				if (!enemy[i]->active) {
 					if (enemyParameters[i].attribute("type").as_int() == 0) {
