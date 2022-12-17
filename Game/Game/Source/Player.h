@@ -81,6 +81,9 @@ private:
 	Animation walkingLeft;
 	Animation jumpingLeft;
 
+	Animation shootingRight;
+	Animation shootingLeft;
+
 	Animation death;
 
 	Animation winning;

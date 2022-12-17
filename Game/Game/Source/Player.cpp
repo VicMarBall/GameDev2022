@@ -60,6 +60,15 @@ bool Player::Start() {
 
 	jumpingLeft.PushBack({ 96, 32, 32, 32 });
 
+	shootingRight.PushBack({ 0, 64, 32, 32 });
+	shootingRight.speed = 0.01f;
+	shootingRight.loop = false;
+
+	shootingLeft.PushBack({ 96, 64, 32, 32 });
+	shootingLeft.speed = 0.01f;
+	shootingLeft.loop = false;
+
+
 	death.PushBack({32, 32, 32, 32});
 
 	winning.PushBack({ 64, 32, 32, 32 });
@@ -100,11 +109,13 @@ bool Player::Update()
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
 
 	if (isAlive && !win) {
-		if (facing == RIGHT) {
-			currentAnimation = &idleRight;
-		}
-		else {
-			currentAnimation = &idleLeft;
+		if (currentAnimation != &shootingRight || currentAnimation != &shootingLeft) {
+			if (facing == RIGHT) {
+				currentAnimation = &idleRight;
+			}
+			else {
+				currentAnimation = &idleLeft;
+			}
 		}
 
 		// shooting
@@ -117,10 +128,14 @@ bool Player::Update()
 						case Player::LEFT:
 							bullet->data->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x, position.y + 16 });
 							pBody->body->ApplyForceToCenter({ 120, 0 }, true);
+							currentAnimation = &shootingLeft;
+							currentAnimation->Reset();
 							break;
 						case Player::RIGHT:
 							bullet->data->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
 							pBody->body->ApplyForceToCenter({ -120, 0 }, true);
+							currentAnimation = &shootingRight;
+							currentAnimation->Reset();
 							break;
 						default:
 							break;
