@@ -144,6 +144,16 @@ void FlyingEnemy::Die() {
 	facing = NO;
 }
 
+void FlyingEnemy::SetObjective(iPoint pos)
+{
+	if (defaultObjective.DistanceTo(pos) < radiusPath) {
+		objective = pos;
+	}
+	else {
+		objective = defaultObjective;
+	}
+}
+
 void FlyingEnemy::SetDefaultObjective()
 {
 	SetObjective(defaultObjective);
@@ -193,6 +203,10 @@ void FlyingEnemy::Move()
 				elevate = DOWN;
 			}
 		}
+	}
+
+	if (position.x + 8 < tile0->x + 16) {
+
 	}
 
 

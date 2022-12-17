@@ -176,27 +176,25 @@ void WalkingEnemy::Move()
 {
 	b2Vec2 velocity = pBody->body->GetLinearVelocity();
 
-	if (IsInRadius(objective)) {
-		if (objective.x > position.x) {
-			facing = RIGHT;
-		}
-		if (objective.x < position.x) {
-			facing = LEFT;
-		}
+	if (objective.x > position.x) {
+		facing = RIGHT;
 	}
-	else {
-		if (ground != nullptr) {
-			int posGroundX;
-			int posGroundY;
-			ground->GetPosition(posGroundX, posGroundY);
-			if (position.x + 8 < posGroundX + 16) {
-				facing = RIGHT;
-			}
-			else if (position.x + 8 > posGroundX + (2*ground->width) - 32) {
-				facing = LEFT;
-			}
-		}
+	if (objective.x < position.x) {
+		facing = LEFT;
 	}
+	//else {
+	//	if (ground != nullptr) {
+	//		int posGroundX;
+	//		int posGroundY;
+	//		ground->GetPosition(posGroundX, posGroundY);
+	//		if (position.x + 8 < posGroundX + 16) {
+	//			facing = RIGHT;
+	//		}
+	//		else if (position.x + 8 > posGroundX + (2*ground->width) - 32) {
+	//			facing = LEFT;
+	//		}
+	//	}
+	//}
 
 	switch (facing)
 	{

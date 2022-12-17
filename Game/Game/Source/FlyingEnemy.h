@@ -31,6 +31,8 @@ public:
 
 	void Die();
 
+	void SetObjective(iPoint pos);
+
 	void SetDefaultObjective();
 
 	void Move();
