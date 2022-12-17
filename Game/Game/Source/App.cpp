@@ -55,7 +55,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	//L07 TODO 2: Add Physics module
 	AddModule(physics);
-	AddModule(fade);
+
 	AddModule(scene_intro);
 	AddModule(scene_title);
 	AddModule(level_one);
@@ -63,6 +63,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(level_two);
 	AddModule(death_screen);
 	AddModule(win_screen);
+
+	AddModule(fade);
+
 	AddModule(entityManager);
 	AddModule(map);
 	AddModule(pathfinding);
