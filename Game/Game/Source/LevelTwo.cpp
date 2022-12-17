@@ -58,22 +58,6 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelTwo::Start()
 {
-<<<<<<< Updated upstream
-	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
-	player->active = false;
-	player->parameters = playerParameters;
-	player->CanShoot(true);
-
-	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
-	goal->active = false;
-	goal->parameters = goalParameters;
-
-	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
-	enemy->active = false;
-	enemy->parameters = enemyParameters;
-
-=======
->>>>>>> Stashed changes
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 	bool retLoad = app->map->Load();
@@ -94,6 +78,7 @@ bool LevelTwo::Start()
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->active = true;
 	player->parameters = playerParameters;
+	player->CanShoot(true);
 	player->Start();
 
 	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);

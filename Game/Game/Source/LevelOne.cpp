@@ -60,22 +60,6 @@ bool LevelOne::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelOne::Start()
 {
-<<<<<<< Updated upstream
-	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
-	player->active = false;
-	player->parameters = playerParameters;
-	player->CanShoot(false);
-
-	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
-	goal->active = false;
-	goal->parameters = goalParameters;
-
-	enemy = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
-	enemy->active = false;
-	enemy->parameters = enemyParameters;
-=======
->>>>>>> Stashed changes
-
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 
@@ -98,6 +82,7 @@ bool LevelOne::Start()
 	player = (Player*)app->entityManager->CreateEntity(EntityType::PLAYER);
 	player->active = true;
 	player->parameters = playerParameters;
+	player->CanShoot(false);
 	player->Start();
 
 	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
