@@ -94,16 +94,13 @@ bool LevelOne::Start()
 	for (int i = 0; i < enemyCount; i++) {
 		if (enemyParameters[i].attribute("type").as_int() == 0) {
 			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
-			enemy[i]->active = true;
-			enemy[i]->parameters = enemyParameters[i];
-			enemy[i]->Start();
 		}
 		else {
 			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
-			enemy[i]->active = true;
-			enemy[i]->parameters = enemyParameters[i];
-			enemy[i]->Start();
 		}
+		enemy[i]->active = true;
+		enemy[i]->parameters = enemyParameters[i];
+		enemy[i]->Start();
 	}
 
 	app->render->camera.x = camX;
@@ -313,7 +310,23 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 		int i = 0;
 		for (pugi::xml_node EnemyNode = data.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
 			if (EnemyNode.attribute("active").as_bool()) {
+				if (!enemy[i]->active) {
+					if (enemyParameters[i].attribute("type").as_int() == 0) {
+						enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
+					}
+					else {
+						enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::WALKINGENEMY);
+					}
+					enemy[i]->active = true;
+					enemy[i]->parameters = enemyParameters[i];
+					enemy[i]->Start();
+				}
 				enemy[i]->SetPosition(EnemyNode.attribute("x").as_int(), EnemyNode.attribute("y").as_int());
+			}
+			else {
+				if (enemy[i]->active) {
+					enemy[i]->Die();
+				}
 			}
 			i++;
 		}
