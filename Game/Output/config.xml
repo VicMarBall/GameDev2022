@@ -83,7 +83,7 @@
   </level_two>
 
   <level_transition>
-	  <textures texturepath="Assets/Textures/win_screen.png"/>
+	  <textures texturepath="Assets/Textures/gun_screen.png"/>
     <audio musicpath="Assets/Audio/Music/Lively Meadow Victory Fanfare.ogg"/>
   </level_transition>
 
