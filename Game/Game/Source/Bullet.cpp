@@ -24,9 +24,6 @@ Bullet::~Bullet() {
 bool Bullet::Awake() {
 
 	//L02: DONE 1: Initialize Player parameters
-	//pos = position;
-	//texturePath = "Assets/Textures/player/idle1.png";
-
 	//L02: DONE 5: Get Player parameters from XML
 
 
@@ -38,6 +35,7 @@ bool Bullet::Start() {
 	// texturePath = parameters.attribute("texturepath").as_string();
 
 	texturePath = "Assets/Textures/bullet.png";
+	sfx = app->audio->LoadFx("Assets/Audio/Fx/shoot.wav");
 
 	//initilize textures
 	texture = app->tex->Load(texturePath);
@@ -145,6 +143,8 @@ void Bullet::SetBullet(DIRECTIONS direction, iPoint pos)
 	pBody->body->SetActive(true);
 
 	isAvailable = false;
+
+	app->audio->PlayFx(sfx);
 
 	if (pBody != nullptr) {
 		b2Vec2 position = { PIXEL_TO_METERS(pos.x), PIXEL_TO_METERS(pos.y) };

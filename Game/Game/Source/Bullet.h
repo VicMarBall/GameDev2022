@@ -46,6 +46,8 @@ private:
 	SDL_Texture* texture;
 	const char* texturePath;
 
+	int sfx;
+
 	float velocity;
 
 	bool isAvailable;
