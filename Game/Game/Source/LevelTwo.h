@@ -8,7 +8,7 @@
 #include "Enemies.h"
 #include "List.h"
 
-#define MAX_ENEMIES 20
+#define MAX_ENEMIES 25
 
 struct SDL_Texture;
 
