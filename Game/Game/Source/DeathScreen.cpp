@@ -78,11 +78,7 @@ bool DeathScreen::PostUpdate() {
 
 bool DeathScreen::CleanUp() {
 	app->tex->UnLoad(bgTexture);
-
 	bgTexture = nullptr;
-
-	bgPath = nullptr;
-	musicPath = nullptr;
 
 	return true;
 }
