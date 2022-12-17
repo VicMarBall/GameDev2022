@@ -28,6 +28,7 @@ bool PathFinding::Start()
 // Called before quitting
 bool PathFinding::CleanUp()
 {
+	app->tex->UnLoad(mouseTileTex);
 	LOG("Freeing pathfinding library");
 
 	lastPath.Clear();

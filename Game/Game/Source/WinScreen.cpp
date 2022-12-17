@@ -70,5 +70,9 @@ bool WinScreen::PostUpdate() {
 bool WinScreen::CleanUp() {
 	app->tex->UnLoad(bgTexture);
 	bgTexture = nullptr;
+
+	bgPath = nullptr;
+	musicPath = nullptr;
+
 	return true;
 }

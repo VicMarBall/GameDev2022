@@ -369,9 +369,6 @@ bool LevelTwo::CleanUp()
 {
 	LOG("Freeing scene");
 	app->entityManager->DestroyAllActiveEntities();
-	//player->CleanUp();
-	//enemy->CleanUp();
-	//goal->CleanUp();
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
 	app->tex->UnLoad(mouseTileTex);

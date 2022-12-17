@@ -74,5 +74,9 @@ bool SceneTitle::PostUpdate() {
 bool SceneTitle::CleanUp() {
 	app->tex->UnLoad(bgTexture);
 	bgTexture = nullptr;
+
+	bgPath = nullptr;
+	musicPath = nullptr;
+
 	return true;
 }

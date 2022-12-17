@@ -296,6 +296,16 @@ bool Physics::CleanUp()
 {
 	LOG("Destroying physics world");
 
+	while (pendingToDelete.Count() > 0) {
+		ListItem<PhysBody*>* pB = pendingToDelete.start;
+
+		world->DestroyBody(pendingToDelete.start->data->body);
+
+		pendingToDelete.Del(pB);
+	}
+
+	pendingToDelete.Clear();
+
 	// Delete the whole physics world!
 	delete world;
 
