@@ -17,8 +17,12 @@ S: Ground Pound
 
 SPACE: Jump/Double Jump
 
+Z (On Level 2): Shoot
+
 ## Debug options: 
 F1: Go to the start of the first level
+
+F2: Go to the start of the second level
 
 F3: Go to the start of the current level
 
