@@ -72,8 +72,6 @@ bool SceneIntro::CleanUp() {
 	app->tex->UnLoad(bgTexture);
 	bgTexture = nullptr;
 
-	bgPath = nullptr;
-
 	return true;
 }
 
