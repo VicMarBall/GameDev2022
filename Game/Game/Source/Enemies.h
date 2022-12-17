@@ -59,7 +59,7 @@ public:
 
 
 
-	void SetObjective(iPoint pos)
+	virtual void SetObjective(iPoint pos)
 	{
 		objective = pos;
 	}
