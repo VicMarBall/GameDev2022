@@ -4,12 +4,14 @@
 #include "Audio.h"
 #include "Input.h"
 #include "PathFinding.h"
+#include "Map.h"
 #include "Render.h"
 #include "LevelOne.h"
 #include "LevelTwo.h"
 #include "Log.h"
 #include "Point.h"
 #include "Physics.h"
+#include "DynArray.h"
 
 FlyingEnemy::FlyingEnemy() : Enemy(EntityType::FLYINGENEMY) {
 
@@ -172,9 +174,25 @@ void FlyingEnemy::Move()
 	iPoint* tile2 = path.At(2);
 
 
+	
+
 	if (tile0 != nullptr) {
+		//iPoint tilePosition0 = app->map->MapToWorld(tile0->x, tile0->y);
+
+		//if (position.x + 8 < tilePosition0.x + 16) {
+		//	facing = RIGHT;				  
+		//}								  
+		//if (position.x + 8 > tilePosition0.x + 16) {
+		//	facing = LEFT;				  
+		//}								  
+		//if (position.y + 8 < tilePosition0.y + 16) {
+		//	elevate = DOWN;				  
+		//}								  
+		//if (position.y + 8 > tilePosition0.y + 16) {
+		//	elevate = UP;
+		//}
 		if (tile1 != nullptr) {
-			if (tile2 != nullptr) {
+			/*if (tile2 != nullptr) {
 				if (tile2->x < tile1->x) {
 					facing = LEFT;
 				}
@@ -188,7 +206,7 @@ void FlyingEnemy::Move()
 				else if (tile2->y > tile1->y) {
 					elevate = DOWN;
 				}
-			}
+			}*/
 			if (tile1->x < tile0->x) {
 				facing = LEFT;
 			}
@@ -204,13 +222,6 @@ void FlyingEnemy::Move()
 			}
 		}
 	}
-
-	if (position.x + 8 < tile0->x + 16) {
-
-	}
-
-
-
 
 	//if (IsInRadius(objective)) {
 	//	if (objective.x > position.x) {
@@ -259,6 +270,24 @@ void FlyingEnemy::Move()
 		break;
 	default:
 		break;
+	}
+
+	// to center
+	if (tile0 != nullptr) {
+		iPoint tilePosition0 = app->map->MapToWorld(tile0->x, tile0->y);
+
+		if (position.x + 8 < tilePosition0.x + 16 - 1 && facing == NO) {
+			velocity.x += 1;
+		}
+		if (position.x + 8 > tilePosition0.x + 16 + 1 && facing == NO) {
+			velocity.x += -1;
+		}
+		if (position.y + 8 < tilePosition0.y + 16 - 1 && elevate == NO) {
+			velocity.y += 1;
+		}
+		if (position.y + 8 > tilePosition0.y + 16 + 1 && elevate == NO) {
+			velocity.y += -1;
+		}
 	}
 
 	pBody->body->SetLinearVelocity(velocity);
