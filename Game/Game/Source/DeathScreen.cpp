@@ -48,7 +48,16 @@ bool DeathScreen::Update(float dt) {
 
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
-		app->fade->FadeToBlack(this, (Module*)app->scene_title, 90);
+		switch (level)
+		{
+		case 1:
+			app->fade->FadeToBlack(this, (Module*)app->level_one, 90);
+		case 2:
+			app->fade->FadeToBlack(this, (Module*)app->level_two, 90);
+		default:
+			break;
+		}
+		// app->fade->FadeToBlack(this, (Module*)app->scene_title, 90);
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_REPEAT) {

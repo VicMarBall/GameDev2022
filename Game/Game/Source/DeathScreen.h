@@ -47,6 +47,7 @@ public:
 	const char* bgPath;
 	const char* musicPath;
 
+	int level = 1;
 	// Textures & Animations
 
 };

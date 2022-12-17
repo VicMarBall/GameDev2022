@@ -10,6 +10,7 @@
 #include "Map.h"
 #include "Physics.h"
 #include "PathFinding.h"
+#include "DeathScreen.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -101,6 +102,8 @@ bool LevelTwo::Start()
 
 	app->render->camera.x = camX;
 	app->render->camera.y = camY;
+
+	app->death_screen->level = 2;
 
 	// Texture to highligh mouse position 
 	mouseTileTex = app->tex->Load("Assets/Maps/path.png");
