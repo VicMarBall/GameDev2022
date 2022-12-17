@@ -110,14 +110,15 @@ bool WalkingEnemy::CleanUp() {
 
 	walkingRight.FullReset();
 	walkingLeft.FullReset();
-
 	death.FullReset();
 
-	active = false;
+	previousAnimation = nullptr;
 
 	if (pBody != nullptr) {
 		app->physics->DeleteBody(pBody);
 	}
+
+	active = false;
 
 	return true;
 }

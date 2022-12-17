@@ -113,14 +113,15 @@ bool FlyingEnemy::CleanUp() {
 
 	flyingRight.FullReset();
 	flyingLeft.FullReset();
-
 	death.FullReset();
 
-	active = false;
+	previousAnimation = nullptr;
 
 	if (pBody != nullptr) {
 		app->physics->DeleteBody(pBody);
 	}
+
+	active = false;
 
 	return true;
 }
