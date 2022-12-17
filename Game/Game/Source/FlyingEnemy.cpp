@@ -156,7 +156,7 @@ void FlyingEnemy::SetObjective(iPoint pos)
 
 void FlyingEnemy::SetDefaultObjective()
 {
-	SetObjective(defaultObjective);
+	objective = defaultObjective;
 }
 
 
