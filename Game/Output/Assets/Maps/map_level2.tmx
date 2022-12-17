@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="128" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="75">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="128" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="76">
  <tileset firstgid="1" name="tilemap_packed_big" tilewidth="32" tileheight="32" tilecount="60" columns="10">
   <image source="tilemap_packed_big.png" width="320" height="192"/>
  </tileset>
@@ -1698,7 +1698,7 @@
    <tile gid="30"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="17"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -3180,7 +3180,7 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="28"/>
+   <tile gid="4"/>
    <tile gid="21"/>
    <tile gid="22"/>
    <tile gid="22"/>
@@ -3294,6 +3294,7 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
+   <tile gid="19"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -3307,8 +3308,7 @@
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
+   <tile gid="17"/>
    <tile gid="1"/>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -8241,8 +8241,8 @@
   <object id="56" x="354" y="480" width="124" height="96"/>
   <object id="57" x="578" y="448" width="60" height="32"/>
   <object id="58" x="738" y="384" width="28" height="64"/>
-  <object id="59" x="834" y="384" width="160" height="32"/>
-  <object id="60" x="994" y="256" width="156" height="128"/>
+  <object id="59" x="834" y="384" width="160" height="192"/>
+  <object id="60" x="994" y="256" width="156" height="192"/>
   <object id="61" x="1218" y="384" width="188" height="128"/>
   <object id="62" x="1406" y="512" width="164" height="32"/>
   <object id="63" x="1570" y="480" width="92" height="64"/>
@@ -8252,8 +8252,8 @@
   <object id="67" x="2110" y="672" width="228" height="32"/>
   <object id="68" x="2338" y="608" width="92" height="64"/>
   <object id="69" x="2530" y="416" width="60" height="352"/>
-  <object id="70" x="2590" y="768" width="192" height="32"/>
-  <object id="71" x="3202" y="768" width="192" height="32"/>
+  <object id="70" x="2590" y="768" width="192" height="64"/>
+  <object id="71" x="3202" y="768" width="192" height="64"/>
   <object id="72" x="3394" y="416" width="92" height="352"/>
   <object id="73" x="3486" y="480" width="128" height="32"/>
   <object id="74" x="90" y="0" width="4" height="160"/>
@@ -8262,18 +8262,16 @@
   <properties>
    <property name="ColType" type="int" value="2"/>
   </properties>
-  <object id="3" x="0" y="576.042" width="384" height="31.9169"/>
-  <object id="4" x="477.5" y="544" width="387.5" height="32"/>
-  <object id="5" x="1088" y="448" width="130.25" height="32"/>
+  <object id="3" x="286" y="576" width="68" height="32"/>
+  <object id="4" x="478" y="576" width="356" height="32"/>
+  <object id="5" x="1150" y="448" width="68" height="32"/>
   <object id="6" x="1631" y="672" width="129" height="32"/>
   <object id="7" x="1600" y="544" width="32" height="128"/>
-  <object id="9" x="864" y="416" width="32" height="128"/>
-  <object id="12" x="2400" y="672" width="160" height="32"/>
+  <object id="12" x="2430" y="672" width="100" height="32"/>
   <object id="15" x="2720" y="928" width="545" height="32"/>
-  <object id="16" x="2688" y="800" width="32" height="128"/>
-  <object id="17" x="3264" y="800" width="32" height="128"/>
-  <object id="20" x="3520" y="512" width="32" height="223"/>
-  <object id="22" x="3552" y="736" width="544" height="32"/>
+  <object id="16" x="2688" y="832" width="32" height="96"/>
+  <object id="17" x="3264" y="832" width="32" height="96"/>
+  <object id="22" x="3486" y="736" width="610" height="32"/>
  </objectgroup>
  <objectgroup id="6" name="Floating">
   <properties>
