@@ -43,6 +43,7 @@ private:
 	enum class Fade_Step {
 		NONE,
 		TO_BLACK,
+		LOADING,
 		FROM_BLACK
 	} currentStep = Fade_Step::NONE;
 

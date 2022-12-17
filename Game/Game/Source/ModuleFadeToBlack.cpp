@@ -42,11 +42,17 @@ bool ModuleFadeToBlack::Update(float dt) {
 		if (frameCount >= maxFadeFrames) {
 
 			moduleToDisable->Disable();
-			moduleToEnable->Enable();
+			// moduleToEnable->Enable();
 
-			currentStep = Fade_Step::FROM_BLACK;
+			currentStep = Fade_Step::LOADING;
 		}
-	} else {
+	} 
+	else if (currentStep == Fade_Step::LOADING) {
+		moduleToEnable->Enable();
+
+		currentStep = Fade_Step::FROM_BLACK;
+	}
+	else if (currentStep == Fade_Step::FROM_BLACK) {
 		--frameCount;
 		if (frameCount <= 0) {
 			currentStep = Fade_Step::NONE;
