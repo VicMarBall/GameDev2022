@@ -116,9 +116,11 @@ bool Player::Update()
 						{
 						case Player::LEFT:
 							bullet->data->SetBullet(Bullet::DIRECTIONS::LEFT, { position.x, position.y + 16 });
+							pBody->body->ApplyForceToCenter({ 120, 0 }, true);
 							break;
 						case Player::RIGHT:
 							bullet->data->SetBullet(Bullet::DIRECTIONS::RIGHT, { position.x + 32, position.y + 16 });
+							pBody->body->ApplyForceToCenter({ -120, 0 }, true);
 							break;
 						default:
 							break;
@@ -154,13 +156,13 @@ bool Player::Update()
 				}
 			}
 
-			if (velocity.x < 0) {
+			if (currentAnimation == &idleLeft && velocity.x < 0) {
 				currentAnimation = &walkingLeft;
 				walkingLeft.speed = abs(velocity.x) * 0.03f;
 				facing = LEFT;
 			}
 
-			if (velocity.x > 0) {
+			if (currentAnimation == &idleRight && velocity.x > 0) {
 				currentAnimation = &walkingRight;
 				walkingRight.speed = abs(velocity.x) * 0.03f;
 				facing = RIGHT;
