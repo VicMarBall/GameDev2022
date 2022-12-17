@@ -303,7 +303,7 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 {
 	if (data.child("state").attribute("state").as_bool()) {
 		if (!active) {
-			Enable();
+			return true;
 		}
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
 
@@ -333,7 +333,8 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 	}
 	else {
 		if (active) {
-			Disable();
+			app->fade->FadeToBlack(this, (Module*)app->level_two, 0);
+			app->LoadGameRequest();
 		}
 	}
 	return true;
