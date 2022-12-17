@@ -32,10 +32,8 @@ bool Bullet::Awake() {
 
 bool Bullet::Start() {
 
-	// texturePath = parameters.attribute("texturepath").as_string();
-
-	texturePath = "Assets/Textures/bullet.png";
-	sfx = app->audio->LoadFx("Assets/Audio/Fx/shoot.wav");
+	texturePath = parameters.attribute("guntexturepath").as_string();
+	sfx = app->audio->LoadFx(parameters.attribute("gunsound").as_string());
 
 	//initilize textures
 	texture = app->tex->Load(texturePath);

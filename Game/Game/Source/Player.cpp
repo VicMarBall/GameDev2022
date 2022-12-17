@@ -92,7 +92,9 @@ bool Player::Start() {
 
 	for (int i = 0; i < 10; ++i)
 	{
-		storedBullets.Add((Bullet*)app->entityManager->CreateEntity(EntityType::BULLET));
+		Bullet* b = storedBullets.Add((Bullet*)app->entityManager->CreateEntity(EntityType::BULLET))->data;
+		b->parameters = parameters;
+		b->Start();
 	}
 
 	return true;

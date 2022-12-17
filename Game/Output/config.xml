@@ -35,7 +35,7 @@
 
   <!-- L02: DONE: Add an element for the entity manager and add the player parameters -->
   <level_one>
-	  <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png"/>
+	  <player x="368" y="560" texturepath="Assets/Textures/player_tileset.png" guntexturepath="Assets/Textures/bullet.png" gunsound="Assets/Audio/Fx/shoot.wav"/>
 	  <goal x="3920" y="368" texturepath="Assets/Textures/gun.png"/>
     <enemy x="512" y="480" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
     <enemy x="1888" y="96" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
@@ -52,7 +52,7 @@
   </level_one>
 
   <level_two>
-    <player x="160" y="128" texturepath="Assets/Textures/player_tileset_gun.png"/>
+    <player x="160" y="128" texturepath="Assets/Textures/player_tileset_gun.png" guntexturepath="Assets/Textures/bullet.png" gunsound="Assets/Audio/Fx/shoot.wav"/>
     <enemy x="608" y="416" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
     <enemy x="928" y="352" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
     <enemy x="1376" y="352" texturepath="Assets/Textures/walking_enemy_spritesheet.png" type="1"/>
