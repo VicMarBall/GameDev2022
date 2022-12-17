@@ -148,6 +148,24 @@ void WalkingEnemy::SetPosition(int posX, int posY) {
 	pBody->body->SetTransform(position, 0);
 }
 
+void WalkingEnemy::SetDefaultObjective()
+{
+	if (ground != nullptr) {
+		int posGroundX;
+		int posGroundY;
+		ground->GetPosition(posGroundX, posGroundY);
+		if (facing == LEFT) {
+			iPoint obj = { posGroundX + 16 , position.y };
+			SetObjective(obj);
+		}
+		if (facing == RIGHT) {
+			iPoint obj = { posGroundX + (2 * ground->width) - 16 , position.y };
+			SetObjective(obj);
+		}
+
+	}
+}
+
 void WalkingEnemy::Die() {
 	isAlive = false;
 	facing = NO;

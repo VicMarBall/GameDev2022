@@ -157,8 +157,15 @@ bool LevelOne::Update(float dt)
 		if (enemy != nullptr) {
 			iPoint playerCenter;
 			playerCenter.Create(player->position.x + 16, player->position.y + 16);
-			enemy[i]->SetObjective(playerCenter);
 			if (enemy[i]->IsInRadius(playerCenter)) {
+				enemy[i]->SetObjective(playerCenter);
+				app->pathfinding->CreatePath(app->map->WorldToMap(enemy[i]->position.x + 8, enemy[i]->position.y + 8),
+					app->map->WorldToMap(enemy[i]->GetObjective().x, enemy[i]->GetObjective().y));
+
+				enemy[i]->SetPath(app->pathfinding->GetLastPath());
+			}
+			else {
+				enemy[i]->SetDefaultObjective();
 				app->pathfinding->CreatePath(app->map->WorldToMap(enemy[i]->position.x + 8, enemy[i]->position.y + 8),
 					app->map->WorldToMap(enemy[i]->GetObjective().x, enemy[i]->GetObjective().y));
 

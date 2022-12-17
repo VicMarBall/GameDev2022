@@ -90,6 +90,11 @@ public:
 		return position.DistanceTo(p) < radiusPath;
 	}
 
+	virtual void SetDefaultObjective()
+	{
+
+	}
+
 protected:
 
 	int radiusPath;

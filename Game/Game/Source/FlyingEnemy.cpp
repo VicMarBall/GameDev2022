@@ -141,6 +141,11 @@ void FlyingEnemy::Die() {
 	facing = NO;
 }
 
+void FlyingEnemy::SetDefaultObjective()
+{
+	SetObjective(defaultObjective);
+}
+
 
 void FlyingEnemy::Move()
 {

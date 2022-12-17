@@ -31,13 +31,15 @@ public:
 
 	void Die();
 
-	void SetObjective(iPoint pos);
+	void SetDefaultObjective();
 
 	void Move();
 
 private:
 
 	bool isAlive;
+
+	iPoint defaultObjective;
 
 	SDL_Texture* texture;
 	const char* texturePath;

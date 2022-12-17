@@ -31,6 +31,8 @@ public:
 
 	void SetPosition(int posX, int posY);
 
+	void SetDefaultObjective();
+
 	void Die();
 
 	void Move();
