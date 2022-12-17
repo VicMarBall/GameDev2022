@@ -159,7 +159,7 @@ void WalkingEnemy::SetDefaultObjective()
 			SetObjective(obj);
 		}
 		if (facing == RIGHT) {
-			iPoint obj = { posGroundX + (2 * ground->width) - 16 , position.y };
+			iPoint obj = { posGroundX + (2 * ground->width) - 32 , position.y };
 			SetObjective(obj);
 		}
 
@@ -191,7 +191,7 @@ void WalkingEnemy::Move()
 			if (position.x + 8 < posGroundX + 16) {
 				facing = RIGHT;
 			}
-			else if (position.x + 8 > posGroundX + (2*ground->width) - 16) {
+			else if (position.x + 8 > posGroundX + (2*ground->width) - 32) {
 				facing = LEFT;
 			}
 		}

@@ -33,6 +33,8 @@ bool FlyingEnemy::Start() {
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
 
+	defaultObjective = position;
+
 	//initilize textures
 	texture = app->tex->Load(texturePath);
 
