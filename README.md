@@ -32,7 +32,7 @@ F6: Load previous state
 
 F8: Free the camera
 
-F9: See colliders
+F9: See colliders / paths
 
 F10: GodMode
 
