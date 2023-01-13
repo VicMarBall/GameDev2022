@@ -6,8 +6,8 @@
 #include "PugiXml/src/pugixml.hpp"
 
 class App;
-// L07 TODO 2: Add Physics Module
 class PhysBody;
+class GuiControl;
 
 class Module
 {
@@ -93,6 +93,11 @@ public:
 			active = false;
 			CleanUp();
 		}
+	}
+
+	virtual bool OnGuiMouseClickEvent(GuiControl* control)
+	{
+		return true;
 	}
 
 public:

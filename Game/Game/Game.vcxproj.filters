@@ -60,6 +60,12 @@
     <ClCompile Include="Source\WinScreen.cpp">
       <Filter>Screens</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GuiButton.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -149,6 +155,15 @@
     <ClInclude Include="Source\WinScreen.h">
       <Filter>Screens</Filter>
     </ClInclude>
+    <ClInclude Include="Source\GuiButton.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiControl.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
@@ -168,6 +183,9 @@
     </Filter>
     <Filter Include="Entities\Enemies">
       <UniqueIdentifier>{dddb82fd-7b1d-42a3-8276-64da8072ed06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{e521d8dc-2156-424f-9803-67229eb19323}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

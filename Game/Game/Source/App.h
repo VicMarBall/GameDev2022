@@ -27,6 +27,7 @@ class EntityManager;
 class Map;
 class Physics;
 class PathFinding;
+class GuiManager;
 //L07 TODO 2: Add Physics module
 
 class App
@@ -107,6 +108,7 @@ public:
 	//L07 TODO 2: Add Physics module
 	Physics* physics;
 	PathFinding* pathfinding;
+	GuiManager* guiManager;
 
 private:
 

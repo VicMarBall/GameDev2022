@@ -83,6 +83,13 @@ bool Render::PostUpdate()
 // Called before quitting
 bool Render::CleanUp()
 {
+	// Free the font
+	TTF_CloseFont(font);
+
+	//we clean up TTF library
+	TTF_Quit();
+
+
 	LOG("Destroying SDL render");
 	SDL_DestroyRenderer(renderer);
 	return true;
@@ -225,6 +232,24 @@ bool Render::DrawCircle(int x, int y, int radius, Uint8 r, Uint8 g, Uint8 b, Uin
 	}
 
 	return ret;
+}
+
+bool Render::DrawText(const char* text, int posx, int posy, int w, int h, SDL_Color color) {
+
+	SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+	int texW = 0;
+	int texH = 0;
+	SDL_QueryTexture(texture, NULL, NULL, &texW, &texH);
+	SDL_Rect dstrect = { posx, posy, w, h };
+
+	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(surface);
+
+	return true;
 }
 
 // L03: DONE 6: Implement a method to load the state
