@@ -114,6 +114,8 @@ bool LevelOne::Start()
 	// Texture to show path origin 
 	originTex = app->tex->Load("Assets/Maps/x.png");
 
+	lifeTexture = app->tex->Load("Assets/Textures/heart.png");
+
 	return true;
 }
 
@@ -285,7 +287,10 @@ bool LevelOne::Update(float dt)
 		app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
 	}
 
-
+	// non interactable ui
+	for (int i = player->GetRemainingLives(); i > 0; --i) {
+		app->render->DrawTexture(lifeTexture, (32 + (80 * i)), 32, 0, false);
+	}
 
 	return true;
 }

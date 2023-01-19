@@ -33,6 +33,7 @@ public:
 	void SetPosition(int posX, int posY);
 
 	void Die();
+
 public:
 
 	const bool Living() {
@@ -50,6 +51,12 @@ public:
 	}
 
 	void CanShoot(bool can);
+
+	int GetRemainingLives() {
+		return lives;
+	}
+	
+
 
 private:
 	bool win = false;

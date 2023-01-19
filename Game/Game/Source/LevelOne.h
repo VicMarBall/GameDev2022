@@ -71,6 +71,7 @@ private:
 
 	int enemyCount = 0;
 
+	SDL_Texture* lifeTexture;
 };
 
 #endif // __LEVELONE_H__
