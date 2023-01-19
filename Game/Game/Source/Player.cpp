@@ -78,6 +78,10 @@ bool Player::Start() {
 
 	isAlive = true;
 
+	lives = 3;
+
+	invencibilityFrames = 0;
+
 	win = false;
 
 	facing = RIGHT;
@@ -108,6 +112,11 @@ bool Player::Update()
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();
 
 	if (isAlive && !win) {
+
+		if (invencibilityFrames > 0) {
+			invencibilityFrames--;
+		}
+
 		if (currentAnimation != &shootingRight || currentAnimation != &shootingLeft) {
 			if (facing == RIGHT) {
 				currentAnimation = &idleRight;
@@ -268,7 +277,10 @@ bool Player::Update()
 	previousAnimation = currentAnimation;
 
 	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x + 1, position.y + 1, &currentFrame);
+
+	if ((invencibilityFrames % 12) < 6) {
+		app->render->DrawTexture(texture, position.x + 1, position.y + 1, &currentFrame);
+	}
 
 	return true;
 }
@@ -327,7 +339,13 @@ void Player::OnCollision(PhysBody* otherBody)
 		}
 
 		if (otherBody->entity->type == EntityType::WALKINGENEMY || otherBody->entity->type == EntityType::FLYINGENEMY) {
-			Die();
+			if (invencibilityFrames == 0) {
+				lives--;
+				if (lives == 0) {
+					Die();
+				}
+				invencibilityFrames = 100;
+			}
 		}
 	}
 }

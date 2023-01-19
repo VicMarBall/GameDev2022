@@ -64,6 +64,10 @@ private:
 
 	bool isAlive;
 
+	int lives;
+
+	int invencibilityFrames;
+
 	bool godMode = false;
 
 	bool canShoot;
