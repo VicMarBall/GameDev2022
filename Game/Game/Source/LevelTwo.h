@@ -8,6 +8,8 @@
 #include "Enemies.h"
 #include "List.h"
 
+#include "GuiImage.h"
+
 #define MAX_ENEMIES 25
 
 struct SDL_Texture;
@@ -70,6 +72,9 @@ private:
 
 	int enemyCount = 0;
 
+	SDL_Texture* lifeTexture;
+
+	GuiImage* livesUI[3];
 };
 
 #endif // __LEVELONE_H__

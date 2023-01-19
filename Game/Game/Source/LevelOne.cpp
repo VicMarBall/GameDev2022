@@ -11,6 +11,7 @@
 #include "Physics.h"
 #include "PathFinding.h"
 #include "DeathScreen.h"
+#include "GuiManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -115,6 +116,12 @@ bool LevelOne::Start()
 	originTex = app->tex->Load("Assets/Maps/x.png");
 
 	lifeTexture = app->tex->Load("Assets/Textures/heart.png");
+
+	// ui
+	for (int i = 0; i < 3; ++i) {
+		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, i, NULL, {32 + (80 * i), 32, 64, 64}, app->guiManager);
+		livesUI[i]->SetTexture(lifeTexture);
+	}
 
 	return true;
 }
@@ -287,9 +294,8 @@ bool LevelOne::Update(float dt)
 		app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
 	}
 
-	// non interactable ui
-	for (int i = player->GetRemainingLives(); i > 0; --i) {
-		app->render->DrawTexture(lifeTexture, (32 + (80 * i)), 32, 0, false);
+	for (int i = 2; i >= player->GetRemainingLives(); --i) {
+		livesUI[i]->toDraw = false;
 	}
 
 	return true;
@@ -299,6 +305,8 @@ bool LevelOne::Update(float dt)
 bool LevelOne::PostUpdate()
 {
 	bool ret = true;
+
+	app->guiManager->Draw();
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;

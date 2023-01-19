@@ -11,6 +11,7 @@
 #include "Physics.h"
 #include "PathFinding.h"
 #include "DeathScreen.h"
+#include "GuiManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -109,6 +110,14 @@ bool LevelTwo::Start()
 	mouseTileTex = app->tex->Load("Assets/Maps/path.png");
 	// Texture to show path origin 
 	originTex = app->tex->Load("Assets/Maps/x.png");
+
+	lifeTexture = app->tex->Load("Assets/Textures/heart.png");
+
+	// ui
+	for (int i = 0; i < 3; ++i) {
+		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, i, NULL, { 32 + (80 * i), 32, 64, 64 }, app->guiManager);
+		livesUI[i]->SetTexture(lifeTexture);
+	}
 
 	return true;
 }
@@ -282,6 +291,10 @@ bool LevelTwo::Update(float dt)
 		app->render->DrawTexture(originTex, originScreen.x, originScreen.y);
 	}
 
+	for (int i = 2; i >= player->GetRemainingLives(); --i) {
+		livesUI[i]->toDraw = false;
+	}
+
 	return true;
 }
 
@@ -289,6 +302,8 @@ bool LevelTwo::Update(float dt)
 bool LevelTwo::PostUpdate()
 {
 	bool ret = true;
+
+	app->guiManager->Draw();
 
 	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;

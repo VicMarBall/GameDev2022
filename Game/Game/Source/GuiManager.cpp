@@ -3,6 +3,7 @@
 #include "Textures.h"
 
 #include "GuiButton.h"
+#include "GuiImage.h"
 #include "Audio.h"
 
 GuiManager::GuiManager() :Module()
@@ -51,6 +52,8 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 	default:
 		break;
 		*/
+	case GuiControlType::IMAGE:
+		guiControl = new GuiImage(id, bounds);
 	}
 
 	//Set the observer
