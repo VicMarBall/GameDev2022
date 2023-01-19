@@ -186,19 +186,19 @@ bool LevelOne::Update(float dt)
 		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
 
+	if (app->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN) {
+		if (app->render->DebugCamera == false)
+			app->render->DebugCamera = true;
+		else
+			app->render->DebugCamera = false;
+	}
+
 	// L03: DONE 3: Request App to Load / Save when pressing the keys F5 (save) / F6 (load)
 	if (app->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		app->SaveGameRequest();
 
 	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
-
-	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
-		if (app->render->DebugCamera == false)
-			app->render->DebugCamera = true;
-		else
-			app->render->DebugCamera = false;
-	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
 		player->GodSwitch();
