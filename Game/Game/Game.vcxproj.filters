@@ -38,7 +38,7 @@
     <ClCompile Include="Source\Goal.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Item.cpp">
+    <ClCompile Include="Source\Coin.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
@@ -129,7 +129,7 @@
     <ClInclude Include="Source\Goal.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Item.h">
+    <ClInclude Include="Source\Coin.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">

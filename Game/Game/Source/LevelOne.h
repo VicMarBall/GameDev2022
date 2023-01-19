@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Player.h"
 #include "Goal.h"
-#include "Item.h"
+#include "Coin.h"
 #include "Enemies.h"
 #include "List.h"
 

@@ -1,4 +1,4 @@
-#include "Item.h"
+#include "Coin.h"
 #include "App.h"
 #include "Textures.h"
 #include "Audio.h"
@@ -10,14 +10,14 @@
 #include "Point.h"
 #include "Physics.h"
 
-Item::Item() : Entity(EntityType::ITEM)
+Coin::Coin() : Entity(EntityType::COIN)
 {
-	name.Create("item");
+	name.Create("coin");
 }
 
-Item::~Item() {}
+Coin::~Coin() {}
 
-bool Item::Awake() {
+bool Coin::Awake() {
 
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
@@ -26,7 +26,7 @@ bool Item::Awake() {
 	return true;
 }
 
-bool Item::Start() {
+bool Coin::Start() {
 
 	//initilize textures
 	texture = app->tex->Load(texturePath);
@@ -37,7 +37,7 @@ bool Item::Start() {
 	return true;
 }
 
-bool Item::Update()
+bool Coin::Update()
 {
 	// L07 TODO 4: Add a physics to an item - update the position of the object from the physics.
 	pBody->GetPosition(position.x, position.y);
@@ -46,7 +46,7 @@ bool Item::Update()
 	return true;
 }
 
-bool Item::CleanUp()
+bool Coin::CleanUp()
 {
 	return true;
 }

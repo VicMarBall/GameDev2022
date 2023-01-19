@@ -7,12 +7,12 @@
 
 struct SDL_Texture;
 
-class Item : public Entity
+class Coin : public Entity
 {
 public:
 
-	Item();
-	virtual ~Item();
+	Coin();
+	virtual ~Coin();
 
 	bool Awake();
 
