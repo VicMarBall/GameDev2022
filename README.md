@@ -26,11 +26,11 @@ F2: Go to the start of the second level
 
 F3: Go to the start of the current level
 
+F4: Free the camera
+
 F5: Save current game state
 
 F6: Load previous state
-
-F8: Free the camera
 
 F9: See colliders / paths
 
