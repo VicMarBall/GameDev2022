@@ -49,6 +49,12 @@ bool Render::Awake(pugi::xml_node& config)
 		camera.y = -288;
 	}
 
+	//initialise the SDL_ttf library
+	TTF_Init();
+
+	//load a font into memory
+	font = TTF_OpenFont("Assets/Fonts/arial/arial.ttf", 25);
+
 	return ret;
 }
 
