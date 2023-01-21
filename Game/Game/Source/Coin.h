@@ -22,6 +22,10 @@ public:
 
 	bool CleanUp();
 
+	void OnCollision(PhysBody* otherBody);
+
+	bool CheckPickingCoin();
+
 public:
 
 	bool isPicked = false;

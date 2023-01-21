@@ -12,6 +12,8 @@
 
 #define MAX_ENEMIES 20
 
+#define MAX_COINS 20
+
 struct SDL_Texture;
 
 class LevelOne : public Module
@@ -46,10 +48,14 @@ public:
 	pugi::xml_node playerParameters;
 	pugi::xml_node goalParameters;
 	pugi::xml_node enemyParameters[MAX_ENEMIES];
+	pugi::xml_node coinsParameters[MAX_COINS];
 
 	Player* player;
 	Goal* goal;
 	Enemy* enemy[MAX_ENEMIES];
+	Coin* coins[MAX_COINS];
+
+	int coinsPicked;
 
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
@@ -72,6 +78,8 @@ private:
 	DynArray<iPoint> debugPath;
 
 	int enemyCount = 0;
+
+	int coinsCount = 0;
 
 	SDL_Texture* lifeTexture;
 

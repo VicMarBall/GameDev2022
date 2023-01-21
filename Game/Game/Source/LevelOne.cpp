@@ -49,6 +49,12 @@ bool LevelOne::Awake(pugi::xml_node& config)
 		enemyCount++;
 	}
 
+	for (pugi::xml_node CoinNode = config.child("coin"); CoinNode; CoinNode = CoinNode.next_sibling("coin")) {
+
+		coinsParameters[coinsCount] = CoinNode;
+		coinsCount++;
+	}
+
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
 
@@ -92,8 +98,7 @@ bool LevelOne::Start()
 	goal->parameters = goalParameters;
 	goal->Start();
 
-
-	for (int i = 0; i < enemyCount; i++) {
+	for (int i = 0; i < enemyCount; ++i) {
 		if (enemyParameters[i].attribute("type").as_int() == 0) {
 			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
 		}
@@ -103,6 +108,15 @@ bool LevelOne::Start()
 		enemy[i]->active = true;
 		enemy[i]->parameters = enemyParameters[i];
 		enemy[i]->Start();
+	}
+
+	coinsPicked = 0;
+
+	for (int i = 0; i < coinsCount; ++i) {
+		coins[i] = (Coin*)app->entityManager->CreateEntity(EntityType::COIN);
+		coins[i]->active = true;
+		coins[i]->parameters = coinsParameters[i];
+		coins[i]->Start();
 	}
 
 	app->render->camera.x = camX;
@@ -179,6 +193,14 @@ bool LevelOne::Update(float dt)
 					app->map->WorldToMap(enemy[i]->GetObjective().x, enemy[i]->GetObjective().y));
 
 				enemy[i]->SetPath(app->pathfinding->GetLastPath());
+			}
+		}
+	}
+
+	for (int i = 0; i < coinsCount; i++) {
+		if (coins != nullptr) {
+			if (coins[i]->CheckPickingCoin()) {
+				coinsPicked++;
 			}
 		}
 	}
