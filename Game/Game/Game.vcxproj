@@ -104,6 +104,7 @@
     <ClCompile Include="Source\GuiImage.cpp" />
     <ClCompile Include="Source\GuiManager.cpp" />
     <ClCompile Include="Source\Coin.cpp" />
+    <ClCompile Include="Source\GuiText.cpp" />
     <ClCompile Include="Source\LevelTransition.cpp" />
     <ClCompile Include="Source\LevelTwo.cpp" />
     <ClCompile Include="Source\Main.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="Source\GuiImage.h" />
     <ClInclude Include="Source\GuiManager.h" />
     <ClInclude Include="Source\Coin.h" />
+    <ClInclude Include="Source\GuiText.h" />
     <ClInclude Include="Source\LevelTransition.h" />
     <ClInclude Include="Source\LevelTwo.h" />
     <ClInclude Include="Source\Map.h" />

@@ -137,6 +137,8 @@ bool LevelOne::Start()
 		livesUI[i]->SetTexture(lifeTexture);
 	}
 
+	coinsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", {600, 32, 32, 32}, app->guiManager);
+
 	return true;
 }
 
@@ -319,6 +321,10 @@ bool LevelOne::Update(float dt)
 	for (int i = 2; i >= player->GetRemainingLives(); --i) {
 		livesUI[i]->toDraw = false;
 	}
+	
+	std::string stringCoinsPicked = std::to_string(coinsPicked);
+
+	coinsCollectedText->SetText(stringCoinsPicked.c_str());
 
 	return true;
 }
@@ -417,6 +423,11 @@ bool LevelOne::CleanUp()
 {
 	LOG("Freeing scene");
 	app->entityManager->DestroyAllActiveEntities();
+
+	app->guiManager->Clear(coinsCollectedText);
+	for (int i = 0; i < 3; ++i) {
+		app->guiManager->Clear(livesUI[i]);
+	}
 
 	app->map->UnLoad();
 	app->tex->UnLoad(img);

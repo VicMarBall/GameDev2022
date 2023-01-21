@@ -22,7 +22,8 @@ enum class GuiControlType
 	INPUTBOX,
 	VALUEBOX,
 	SPINNER,
-	IMAGE
+	IMAGE,
+	TEXT
 };
 
 enum class GuiControlState

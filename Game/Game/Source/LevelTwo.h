@@ -9,8 +9,11 @@
 #include "List.h"
 
 #include "GuiImage.h"
+#include "GuiText.h"
 
 #define MAX_ENEMIES 25
+
+#define MAX_COINS 20
 
 struct SDL_Texture;
 
@@ -46,10 +49,15 @@ public:
 	pugi::xml_node playerParameters;
 	pugi::xml_node goalParameters;
 	pugi::xml_node enemyParameters[MAX_ENEMIES];
+	pugi::xml_node coinsParameters[MAX_COINS];
 
 	Player* player;
 	Goal* goal;
 	Enemy* enemy[MAX_ENEMIES];
+	Coin* coins[MAX_COINS];
+
+	int coinsPicked;
+
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
 
@@ -72,9 +80,13 @@ private:
 
 	int enemyCount = 0;
 
+	int coinsCount = 0;
+
 	SDL_Texture* lifeTexture;
 
 	GuiImage* livesUI[3];
+
+	GuiText* coinsCollectedText;
 };
 
 #endif // __LEVELONE_H__

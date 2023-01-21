@@ -3,7 +3,7 @@
 #include "App.h"
 #include "Log.h"
 
-GuiImage::GuiImage(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::BUTTON, id)
+GuiImage::GuiImage(uint32 id, SDL_Rect bounds) : GuiControl(GuiControlType::IMAGE, id)
 {
 	this->bounds = bounds;
 

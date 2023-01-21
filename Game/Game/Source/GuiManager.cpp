@@ -4,6 +4,7 @@
 
 #include "GuiButton.h"
 #include "GuiImage.h"
+#include "GuiText.h"
 #include "Audio.h"
 
 GuiManager::GuiManager() :Module()
@@ -54,6 +55,10 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 		*/
 	case GuiControlType::IMAGE:
 		guiControl = new GuiImage(id, bounds);
+		break;
+	case GuiControlType::TEXT:
+		guiControl = new GuiText(id, text, bounds);
+		break;
 	}
 
 	//Set the observer
@@ -114,6 +119,22 @@ bool GuiManager::CleanUp()
 	return true;
 
 	return false;
+}
+
+void GuiManager::Clear(GuiControl* toClear)
+{
+
+	ListItem<GuiControl*>* item;
+
+	for (item = guiControlsList.start; item != NULL; item = item->next)
+	{
+		if (toClear == item->data)
+		{
+			RELEASE(item->data);
+			guiControlsList.Del(item);
+			return;
+		}
+	}
 }
 
 

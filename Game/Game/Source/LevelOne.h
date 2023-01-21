@@ -9,6 +9,7 @@
 #include "List.h"
 
 #include "GuiImage.h"
+#include "GuiText.h"
 
 #define MAX_ENEMIES 20
 
@@ -84,6 +85,8 @@ private:
 	SDL_Texture* lifeTexture;
 
 	GuiImage* livesUI[3];
+
+	GuiText* coinsCollectedText;
 };
 
 #endif // __LEVELONE_H__

@@ -47,6 +47,12 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 		enemyCount++;
 	}
 
+	for (pugi::xml_node CoinNode = config.child("coin"); CoinNode; CoinNode = CoinNode.next_sibling("coin")) {
+
+		coinsParameters[coinsCount] = CoinNode;
+		coinsCount++;
+	}
+
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
 
@@ -89,7 +95,7 @@ bool LevelTwo::Start()
 	goal->Start();
 
 
-	for (int i = 0; i < enemyCount; i++) {
+	for (int i = 0; i < enemyCount; ++i) {
 		if (enemyParameters[i].attribute("type").as_int() == 0) {
 			enemy[i] = (Enemy*)app->entityManager->CreateEntity(EntityType::FLYINGENEMY);
 		}
@@ -99,6 +105,15 @@ bool LevelTwo::Start()
 		enemy[i]->active = true;
 		enemy[i]->parameters = enemyParameters[i];
 		enemy[i]->Start();
+	}
+
+	coinsPicked = 0;
+
+	for (int i = 0; i < coinsCount; ++i) {
+		coins[i] = (Coin*)app->entityManager->CreateEntity(EntityType::COIN);
+		coins[i]->active = true;
+		coins[i]->parameters = coinsParameters[i];
+		coins[i]->Start();
 	}
 
 	app->render->camera.x = camX;
@@ -118,6 +133,8 @@ bool LevelTwo::Start()
 		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, i, NULL, { 32 + (80 * i), 32, 64, 64 }, app->guiManager);
 		livesUI[i]->SetTexture(lifeTexture);
 	}
+
+	coinsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", { 600, 32, 32, 32 }, app->guiManager);
 
 	return true;
 }
@@ -179,6 +196,13 @@ bool LevelTwo::Update(float dt)
 		}
 	}
 
+	for (int i = 0; i < coinsCount; i++) {
+		if (coins != nullptr) {
+			if (coins[i]->CheckPickingCoin()) {
+				coinsPicked++;
+			}
+		}
+	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
@@ -295,6 +319,10 @@ bool LevelTwo::Update(float dt)
 		livesUI[i]->toDraw = false;
 	}
 
+	std::string stringCoinsPicked = std::to_string(coinsPicked);
+
+	coinsCollectedText->SetText(stringCoinsPicked.c_str());
+
 	return true;
 }
 
@@ -391,6 +419,12 @@ bool LevelTwo::CleanUp()
 {
 	LOG("Freeing scene");
 	app->entityManager->DestroyAllActiveEntities();
+
+	app->guiManager->Clear(coinsCollectedText);
+	for (int i = 0; i < 3; ++i) {
+		app->guiManager->Clear(livesUI[i]);
+	}
+
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
 	app->tex->UnLoad(mouseTileTex);
