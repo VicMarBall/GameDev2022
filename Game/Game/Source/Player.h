@@ -52,6 +52,10 @@ public:
 
 	void CanShoot(bool can);
 
+	void AddLife() {
+		lives++;
+	}
+
 	int GetRemainingLives() {
 		return lives;
 	}

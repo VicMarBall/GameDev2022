@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Goal.h"
 #include "Coin.h"
+#include "ExtraLife.h"
 #include "Enemies.h"
 #include "List.h"
 
@@ -14,6 +15,8 @@
 #define MAX_ENEMIES 20
 
 #define MAX_COINS 20
+
+#define MAX_EXTRALIVES 5
 
 struct SDL_Texture;
 
@@ -50,11 +53,13 @@ public:
 	pugi::xml_node goalParameters;
 	pugi::xml_node enemyParameters[MAX_ENEMIES];
 	pugi::xml_node coinsParameters[MAX_COINS];
+	pugi::xml_node extraLivesParameters[MAX_EXTRALIVES];
 
 	Player* player;
 	Goal* goal;
 	Enemy* enemy[MAX_ENEMIES];
 	Coin* coins[MAX_COINS];
+	ExtraLife* extraLives[MAX_EXTRALIVES];
 
 	int coinsPicked;
 
@@ -81,6 +86,8 @@ private:
 	int enemyCount = 0;
 
 	int coinsCount = 0;
+
+	int extraLivesCount = 0;
 
 	SDL_Texture* lifeTexture;
 

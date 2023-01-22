@@ -1,5 +1,5 @@
-#ifndef __COIN_H__
-#define __COIN_H__
+#ifndef __EXTRALIFE_H__
+#define __EXTRALIFE_H__
 
 #include "Entity.h"
 #include "Point.h"
@@ -7,12 +7,12 @@
 
 struct SDL_Texture;
 
-class Coin : public Entity
+class ExtraLife : public Entity
 {
 public:
 
-	Coin();
-	virtual ~Coin();
+	ExtraLife();
+	virtual ~ExtraLife();
 
 	bool Awake();
 
@@ -24,7 +24,7 @@ public:
 
 	void OnCollision(PhysBody* otherBody);
 
-	bool CheckPickingCoin();
+	bool CheckPickingLife();
 
 public:
 
@@ -40,4 +40,4 @@ private:
 
 };
 
-#endif // __COIN_H__
+#endif // __EXTRALIFE_H__

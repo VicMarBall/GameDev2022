@@ -52,7 +52,13 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 		coinsParameters[coinsCount] = CoinNode;
 		coinsCount++;
 	}
+	
+	for (pugi::xml_node LivesNode = config.child("extralife"); LivesNode; LivesNode = LivesNode.next_sibling("extralife")) {
 
+		extraLivesParameters[extraLivesCount] = LivesNode;
+		extraLivesCount++;
+	}
+	
 	camX = config.child("camera").attribute("x").as_int();
 	camY = config.child("camera").attribute("y").as_int();
 
@@ -114,6 +120,13 @@ bool LevelTwo::Start()
 		coins[i]->active = true;
 		coins[i]->parameters = coinsParameters[i];
 		coins[i]->Start();
+	}
+	
+	for (int i = 0; i < extraLivesCount; ++i) {
+		extraLives[i] = (ExtraLife*)app->entityManager->CreateEntity(EntityType::EXTRALIFE);
+		extraLives[i]->active = true;
+		extraLives[i]->parameters = extraLivesParameters[i];
+		extraLives[i]->Start();
 	}
 
 	app->render->camera.x = camX;
@@ -200,6 +213,14 @@ bool LevelTwo::Update(float dt)
 		if (coins != nullptr) {
 			if (coins[i]->CheckPickingCoin()) {
 				coinsPicked++;
+			}
+		}
+	}
+
+	for (int i = 0; i < extraLivesCount; i++) {
+		if (extraLives != nullptr) {
+			if (extraLives[i]->CheckPickingLife()) {
+				player->AddLife();
 			}
 		}
 	}

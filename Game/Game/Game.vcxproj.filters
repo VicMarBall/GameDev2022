@@ -72,6 +72,9 @@
     <ClCompile Include="Source\GuiText.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ExtraLife.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="Source\GuiText.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ExtraLife.h">
+      <Filter>Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

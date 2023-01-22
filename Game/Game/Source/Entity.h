@@ -14,6 +14,7 @@ enum class EntityType
 	WALKINGENEMY,
 	FLYINGENEMY,
 	BULLET, 
+	EXTRALIFE,
 	UNKNOWN
 };
 

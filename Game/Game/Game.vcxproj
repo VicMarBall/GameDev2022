@@ -98,6 +98,7 @@
     <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\DeathScreen.cpp" />
     <ClCompile Include="Source\EntityManager.cpp" />
+    <ClCompile Include="Source\ExtraLife.cpp" />
     <ClCompile Include="Source\FlyingEnemy.cpp" />
     <ClCompile Include="Source\Goal.cpp" />
     <ClCompile Include="Source\GuiButton.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="Source\Enemies.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\EntityManager.h" />
+    <ClInclude Include="Source\ExtraLife.h" />
     <ClInclude Include="Source\FlyingEnemy.h" />
     <ClInclude Include="Source\Goal.h" />
     <ClInclude Include="Source\GuiButton.h" />

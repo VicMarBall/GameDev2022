@@ -47,6 +47,7 @@
 	<enemy x="3296" y="160" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="0"/>
 	<enemy x="2784" y="352" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
 	<coin x="368" y="400" texturepath="Assets/Textures/carrot.png" />
+	<extralife x="600" y="400" texturepath="Assets/Textures/heart.png" />
 	<camera x="-150" y="-288"/>
 	<audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
 	<mapfile path="Assets/Maps/map_level1.tmx"/>

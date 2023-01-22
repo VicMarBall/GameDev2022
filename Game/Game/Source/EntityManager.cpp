@@ -6,6 +6,7 @@
 #include "Enemies.h"
 #include "WalkingEnemy.h"
 #include "FlyingEnemy.h"
+#include "ExtraLife.h"
 #include "App.h"
 #include "Textures.h"
 #include "LevelOne.h"
@@ -109,6 +110,9 @@ Entity* EntityManager::CreateEntity(EntityType type)
 		break;
 	case EntityType::BULLET:
 		entity = new Bullet();
+		break;
+	case EntityType::EXTRALIFE:
+		entity = new ExtraLife();
 		break;
 	default: break;
 	}
