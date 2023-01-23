@@ -75,6 +75,7 @@
     <ClCompile Include="Source\ExtraLife.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Source\ExtraLife.h">
       <Filter>Entities</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
