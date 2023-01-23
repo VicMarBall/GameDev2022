@@ -6,6 +6,8 @@
 #include "Log.h"
 #include "SDL/include/SDL.h"
 
+#include "GuiButton.h"
+
 #define MAX_ASSETS_TITLE 13
 
 struct SDL_Texture;
@@ -38,12 +40,18 @@ public:
 	// Disables the player, the enemies and the powerups.
 	bool CleanUp();
 
+	bool OnGuiMouseClickEvent(GuiControl* control);
+
 public:
 
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture;
 	const char* bgPath;
 	const char* musicPath;
+
+	bool playPressed;
+
+	GuiButton* playButton;
 
 	// Textures & Animations
 	

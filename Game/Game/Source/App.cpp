@@ -58,6 +58,8 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	//L07 TODO 2: Add Physics module
 	AddModule(physics);
 
+	AddModule(guiManager);
+
 	AddModule(scene_intro);
 	AddModule(scene_title);
 	AddModule(level_one);
@@ -71,7 +73,6 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(entityManager);
 	AddModule(map);
 	AddModule(pathfinding);
-	AddModule(guiManager);
 
 	// Render last to swap buffer
 	AddModule(render);

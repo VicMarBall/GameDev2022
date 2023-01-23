@@ -61,6 +61,8 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 		break;
 	}
 
+	guiControl->id = id;
+
 	//Set the observer
 	guiControl->SetObserver(observer);
 

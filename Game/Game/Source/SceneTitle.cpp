@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "Window.h"
 #include "ModuleFadeToBlack.h"
+#include "GuiManager.h"
 #include "SDL/include/SDL_scancode.h"
 
 SceneTitle::SceneTitle(bool startEnabled) : Module(startEnabled) {
@@ -28,7 +29,9 @@ bool SceneTitle::Start() {
 	app->audio->PlayMusic(musicPath, 1.0f);
 	bgTexture = app->tex->Load(bgPath);
 	
+	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 0, "PLAY", { 100, 200, 200, 200 }, app->scene_title);
 
+	playPressed = false;
 
 	return ret;
 }
@@ -42,9 +45,8 @@ bool SceneTitle::PreUpdate()
 bool SceneTitle::Update(float dt) {
 
 	bool toSkip = false;
-	
 
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || toSkip) {
+	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || toSkip || playPressed) {
 		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
 
@@ -67,13 +69,24 @@ bool SceneTitle::Update(float dt) {
 bool SceneTitle::PostUpdate() {
 
 	app->render->DrawTexture(bgTexture, 0, 0);
-	
+	app->guiManager->Draw();
+
 	return true;
 }
 
 bool SceneTitle::CleanUp() {
 	app->tex->UnLoad(bgTexture);
 	bgTexture = nullptr;
+	app->guiManager->Clear(playButton);
 
 	return true;
+}
+
+bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
+{
+	if (control->id == 0) {
+		playPressed = true;
+	}
+
+	return false;
 }
