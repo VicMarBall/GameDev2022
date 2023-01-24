@@ -42,6 +42,15 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
+	enum StateTitleScene {
+		TITLE,
+		PLAY,
+		CONTINUE,
+		SETTINGS,
+		CREDITS,
+		EXIT
+	};
+
 public:
 
 	// The scene sprite sheet loaded into an SDL_Texture
@@ -49,9 +58,13 @@ public:
 	const char* bgPath;
 	const char* musicPath;
 
-	bool playPressed;
+	StateTitleScene stateScene;
 
 	GuiButton* playButton;
+	GuiButton* continueButton;
+	GuiButton* settingsButton;
+	GuiButton* creditsButton;
+	GuiButton* exitButton;
 
 	// Textures & Animations
 	

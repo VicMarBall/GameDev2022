@@ -29,9 +29,17 @@ bool SceneTitle::Start() {
 	app->audio->PlayMusic(musicPath, 1.0f);
 	bgTexture = app->tex->Load(bgPath);
 	
-	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 0, "PLAY", { 100, 200, 200, 200 }, app->scene_title);
+	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 100, 100, 100, 50 }, app->scene_title);
 
-	playPressed = false;
+	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 100, 200, 75, 25 }, app->scene_title);
+	
+	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 100, 250, 75, 25 }, app->scene_title);
+	
+	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 100, 300, 75, 25 }, app->scene_title);
+	
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 50, 25 }, app->scene_title);
+	
+	stateScene = TITLE;
 
 	return ret;
 }
@@ -46,7 +54,36 @@ bool SceneTitle::Update(float dt) {
 
 	bool toSkip = false;
 
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || toSkip || playPressed) {
+	switch (stateScene)
+	{
+	case SceneTitle::TITLE:
+
+		break;
+	case SceneTitle::PLAY:
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
+
+		break;
+	case SceneTitle::CONTINUE:
+		// load save_file
+
+		break;
+	case SceneTitle::SETTINGS:
+		// hide all ui and show only settings
+
+		break;
+	case SceneTitle::CREDITS:
+		// credits
+
+		break;
+	case SceneTitle::EXIT:
+
+		return false;
+		break;
+	default:
+		break;
+	}
+
+	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || toSkip) {
 		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
 
@@ -78,14 +115,42 @@ bool SceneTitle::CleanUp() {
 	app->tex->UnLoad(bgTexture);
 	bgTexture = nullptr;
 	app->guiManager->Clear(playButton);
+	app->guiManager->Clear(continueButton);
+	app->guiManager->Clear(settingsButton);
+	app->guiManager->Clear(creditsButton);
+	app->guiManager->Clear(exitButton);
+
 
 	return true;
 }
 
 bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 {
-	if (control->id == 0) {
-		playPressed = true;
+
+	switch (control->id)
+	{
+	case 1:
+		stateScene = PLAY;
+
+		break;
+	case 2:
+		stateScene = CONTINUE;
+
+		break;
+	case 3:
+		stateScene = SETTINGS;
+
+		break;
+	case 4:
+		stateScene = CREDITS;
+
+		break;
+	case 5:
+		stateScene = EXIT;
+
+		break;
+	default:
+		break;
 	}
 
 	return false;
