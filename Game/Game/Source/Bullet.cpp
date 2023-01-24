@@ -94,8 +94,9 @@ bool Bullet::Update()
 		}
 	}
 
-	timer += 0.1f;
-
+	if (pBody != nullptr && pBody->body->IsActive()) {
+		timer += 0.1f;
+	}
 
 	return true;
 }
@@ -179,10 +180,14 @@ bool Bullet::IsAvailable()
 
 void Bullet::PauseMovement()
 {
-	pBody->body->SetActive(false);
+	if (pBody != nullptr) {
+		pBody->body->SetActive(false);
+	}
 }
 
 void Bullet::ResumeMovement()
 {
-	pBody->body->SetActive(true);
+	if (pBody != nullptr) {
+		pBody->body->SetActive(true);
+	}
 }

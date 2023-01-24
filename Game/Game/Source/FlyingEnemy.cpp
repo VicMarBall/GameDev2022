@@ -295,10 +295,14 @@ void FlyingEnemy::Move()
 
 void FlyingEnemy::PauseMovement()
 {
-	pBody->body->SetActive(false);
+	if (pBody != nullptr && isAlive) {
+		pBody->body->SetActive(false);
+	}
 }
 
 void FlyingEnemy::ResumeMovement()
 {
-	pBody->body->SetActive(true);
+	if (pBody != nullptr && isAlive) {
+		pBody->body->SetActive(true);
+	}
 }

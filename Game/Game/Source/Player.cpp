@@ -388,10 +388,22 @@ void Player::CanShoot(bool can)
 
 void Player::PauseMovement()
 {
-	pBody->body->SetActive(false);
+	if (pBody != nullptr) {
+		pBody->body->SetActive(false);
+		for (ListItem<Bullet*>* bullet = storedBullets.start; bullet != NULL; bullet = bullet->next) {
+			bullet->data->PauseMovement();
+		}
+		canShoot = false;
+	}
 }
 
 void Player::ResumeMovement()
 {
-	pBody->body->SetActive(true);
+	if (pBody != nullptr) {
+		pBody->body->SetActive(true);
+		for (ListItem<Bullet*>* bullet = storedBullets.start; bullet != NULL; bullet = bullet->next) {
+			bullet->data->ResumeMovement();
+		}
+		canShoot = true;
+	}
 }

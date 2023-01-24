@@ -218,10 +218,14 @@ void WalkingEnemy::Move()
 
 void WalkingEnemy::PauseMovement()
 {
-	pBody->body->SetActive(false);
+	if (pBody != nullptr && isAlive) {
+		pBody->body->SetActive(false);
+	}
 }
 
 void WalkingEnemy::ResumeMovement()
 {
-	pBody->body->SetActive(true);
+	if (pBody != nullptr && isAlive) {
+		pBody->body->SetActive(true);
+	}
 }

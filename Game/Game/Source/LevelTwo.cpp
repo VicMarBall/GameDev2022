@@ -187,13 +187,17 @@ bool LevelTwo::Update(float dt)
 		if (pause) {
 			player->PauseMovement();
 			for (int i = 0; i < enemyCount; ++i) {
-				enemy[i]->PauseMovement();
+				if (enemy[i] != nullptr) {
+					enemy[i]->PauseMovement();
+				}
 			}
 		}
 		else {
 			player->ResumeMovement();
 			for (int i = 0; i < enemyCount; ++i) {
-				enemy[i]->ResumeMovement();
+				if (enemy[i] != nullptr) {
+					enemy[i]->ResumeMovement();
+				}
 			}
 		}
 	}
