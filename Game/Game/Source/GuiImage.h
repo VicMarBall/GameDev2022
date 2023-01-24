@@ -14,8 +14,6 @@ public:
 	virtual ~GuiImage();
 
 	bool Draw(Render* render);
-
-	bool toDraw = true;
 };
 
 #endif // __GUIIMAGE_H__

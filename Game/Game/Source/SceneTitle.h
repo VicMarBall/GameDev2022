@@ -60,11 +60,17 @@ public:
 
 	StateTitleScene stateScene;
 
+	// main title ui
 	GuiButton* playButton;
 	GuiButton* continueButton;
 	GuiButton* settingsButton;
 	GuiButton* creditsButton;
 	GuiButton* exitButton;
+
+	// setting ui
+	// TODO Sliders
+	GuiButton* soundButton;
+	GuiButton* backFromSettingsButton;
 
 	// Textures & Animations
 	

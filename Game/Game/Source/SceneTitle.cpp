@@ -39,6 +39,13 @@ bool SceneTitle::Start() {
 	
 	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 50, 25 }, app->scene_title);
 	
+	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "sound", { 100, 250, 50, 25 }, app->scene_title);
+	soundButton->toDraw = false;
+
+	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, app->scene_title);
+	backFromSettingsButton->toDraw = false;
+
+
 	stateScene = TITLE;
 
 	return ret;
@@ -57,6 +64,7 @@ bool SceneTitle::Update(float dt) {
 	switch (stateScene)
 	{
 	case SceneTitle::TITLE:
+		
 
 		break;
 	case SceneTitle::PLAY:
@@ -69,6 +77,7 @@ bool SceneTitle::Update(float dt) {
 		break;
 	case SceneTitle::SETTINGS:
 		// hide all ui and show only settings
+
 
 		break;
 	case SceneTitle::CREDITS:
@@ -126,6 +135,11 @@ bool SceneTitle::CleanUp() {
 
 bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 {
+	// 1 == PLAY
+	// 2 == CONTINUE
+	// 3 == SETTINGS
+	// 4 == CREDITS
+	// 5 == EXIT
 
 	switch (control->id)
 	{
@@ -140,6 +154,15 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 	case 3:
 		stateScene = SETTINGS;
 
+		playButton->TurnOFF();
+		continueButton->TurnOFF();
+		settingsButton->TurnOFF();
+		creditsButton->TurnOFF();
+		exitButton->TurnOFF();
+
+		soundButton->TurnON();
+		backFromSettingsButton->TurnON();
+
 		break;
 	case 4:
 		stateScene = CREDITS;
@@ -147,6 +170,22 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		break;
 	case 5:
 		stateScene = EXIT;
+
+		break;
+	case 6:
+
+		break;
+	case 7:
+		stateScene = TITLE;
+
+		playButton->TurnON();
+		continueButton->TurnON();
+		settingsButton->TurnON();
+		creditsButton->TurnON();
+		exitButton->TurnON();
+
+		soundButton->TurnOFF();
+		backFromSettingsButton->TurnOFF();
 
 		break;
 	default:

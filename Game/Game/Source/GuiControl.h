@@ -77,6 +77,14 @@ public:
 		observer->OnGuiMouseClickEvent(this);
 	}
 
+	virtual void TurnON() {
+		toDraw = true;
+	}
+
+	virtual void TurnOFF() {
+		toDraw = false;
+	}
+
 public:
 
 	uint32 id;
@@ -93,6 +101,8 @@ public:
 	//Font font;              // Text font
 
 	Module* observer;        // Observer module (it should probably be an array/list)
+
+	bool toDraw = true;
 };
 
 #endif // __GUICONTROL_H__
