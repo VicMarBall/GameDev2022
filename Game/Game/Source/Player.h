@@ -60,7 +60,9 @@ public:
 		return lives;
 	}
 	
+	void PauseMovement();
 
+	void ResumeMovement();
 
 private:
 	bool win = false;

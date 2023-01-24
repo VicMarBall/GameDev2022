@@ -39,6 +39,10 @@ public:
 
 	bool IsAvailable();
 
+	void PauseMovement();
+
+	void ResumeMovement();
+
 private:
 
 	float timer;

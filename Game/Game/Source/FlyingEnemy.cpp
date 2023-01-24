@@ -292,3 +292,13 @@ void FlyingEnemy::Move()
 
 	pBody->body->SetLinearVelocity(velocity);
 }
+
+void FlyingEnemy::PauseMovement()
+{
+	pBody->body->SetActive(false);
+}
+
+void FlyingEnemy::ResumeMovement()
+{
+	pBody->body->SetActive(true);
+}

@@ -74,6 +74,8 @@ bool LevelOne::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelOne::Start()
 {
+	pause = false;
+
 	// L03: DONE: Load map
 	app->map->SetMapFileName(mapFileName);
 
@@ -182,6 +184,24 @@ bool LevelOne::PreUpdate()
 // Called each loop iteration
 bool LevelOne::Update(float dt)
 {
+	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+		pause = !pause;
+
+		if (pause) {
+			player->PauseMovement();
+			for (int i = 0; i < enemyCount; ++i) {
+				enemy[i]->PauseMovement();
+			}
+		}
+		else {
+			player->ResumeMovement();
+			for (int i = 0; i < enemyCount; ++i) {
+				enemy[i]->ResumeMovement();
+			}
+		}
+	}
+
+
 	if (player->Living() == false) {
 
 		app->fade->FadeToBlack(this, (Module*)app->death_screen, 100);

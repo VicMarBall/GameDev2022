@@ -385,3 +385,13 @@ void Player::CanShoot(bool can)
 {
 	canShoot = can;
 }
+
+void Player::PauseMovement()
+{
+	pBody->body->SetActive(false);
+}
+
+void Player::ResumeMovement()
+{
+	pBody->body->SetActive(true);
+}

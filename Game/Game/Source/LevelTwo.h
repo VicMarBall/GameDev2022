@@ -74,6 +74,8 @@ private:
 	SDL_Texture* mouseTileTex = nullptr;
 	SDL_Texture* originTex = nullptr;
 
+	bool pause = false;
+
 	// L12: Debug pathfing
 	iPoint origin;
 	bool originSelected = false;

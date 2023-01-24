@@ -37,6 +37,10 @@ public:
 
 	void Move();
 
+	void PauseMovement();
+
+	void ResumeMovement();
+
 private:
 
 	SDL_Texture* texture;

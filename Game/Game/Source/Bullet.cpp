@@ -176,3 +176,13 @@ bool Bullet::IsAvailable()
 {
 	return isAvailable;
 }
+
+void Bullet::PauseMovement()
+{
+	pBody->body->SetActive(false);
+}
+
+void Bullet::ResumeMovement()
+{
+	pBody->body->SetActive(true);
+}

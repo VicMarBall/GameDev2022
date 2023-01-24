@@ -95,6 +95,10 @@ public:
 
 	}
 
+	virtual void PauseMovement() {}
+
+	virtual void ResumeMovement() {}
+
 protected:
 
 	int radiusPath;

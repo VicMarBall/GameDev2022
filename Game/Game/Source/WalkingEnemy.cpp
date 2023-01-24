@@ -215,3 +215,13 @@ void WalkingEnemy::Move()
 
 	pBody->body->SetLinearVelocity(velocity);
 }
+
+void WalkingEnemy::PauseMovement()
+{
+	pBody->body->SetActive(false);
+}
+
+void WalkingEnemy::ResumeMovement()
+{
+	pBody->body->SetActive(true);
+}
