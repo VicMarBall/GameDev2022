@@ -15,6 +15,7 @@ enum class EntityType
 	FLYINGENEMY,
 	BULLET, 
 	EXTRALIFE,
+	CHECKPOINT,
 	UNKNOWN
 };
 

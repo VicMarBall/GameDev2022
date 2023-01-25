@@ -7,6 +7,7 @@
 #include "WalkingEnemy.h"
 #include "FlyingEnemy.h"
 #include "ExtraLife.h"
+#include "Checkpoint.h"
 #include "App.h"
 #include "Textures.h"
 #include "LevelOne.h"
