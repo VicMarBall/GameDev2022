@@ -66,7 +66,7 @@ void Checkpoint::OnCollision(PhysBody* otherBody)
 	}
 }
 
-bool Checkpoint::CheckPickingCoin()
+bool Checkpoint::CheckPicking()
 {
 	if (active && isPicked) {
 		return true;

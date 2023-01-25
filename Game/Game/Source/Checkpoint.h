@@ -24,7 +24,7 @@ public:
 
 	void OnCollision(PhysBody* otherBody);
 
-	bool CheckPickingCoin();
+	bool CheckPicking();
 
 public:
 
