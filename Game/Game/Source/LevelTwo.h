@@ -19,6 +19,8 @@
 
 #define MAX_EXTRALIVES 5
 
+#define MAX_LIVESDRAWN 5
+
 struct SDL_Texture;
 
 class LevelTwo : public Module
@@ -96,7 +98,7 @@ private:
 
 	SDL_Texture* lifeTexture;
 
-	GuiImage* livesUI[3];
+	GuiImage* livesUI[MAX_LIVESDRAWN];
 
 	GuiText* coinsCollectedText;
 

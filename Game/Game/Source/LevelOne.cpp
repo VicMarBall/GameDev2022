@@ -154,8 +154,8 @@ bool LevelOne::Start()
 	lifeTexture = app->tex->Load("Assets/Textures/heart.png");
 
 	// ui
-	for (int i = 0; i < 3; ++i) {
-		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, i, NULL, {32 + (80 * i), 32, 64, 64}, app->guiManager);
+	for (int i = 0; i < MAX_LIVESDRAWN; ++i) {
+		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, 0, NULL, {32 + (80 * i), 32, 64, 64}, app->guiManager);
 		livesUI[i]->SetTexture(lifeTexture);
 	}
 
@@ -409,7 +409,7 @@ bool LevelOne::Update(float dt)
 		livesUI[i]->toDraw = true;
 	}
 
-	for (int i = 2; i >= player->GetRemainingLives(); --i) {
+	for (int i = player->GetRemainingLives(); i <= MAX_LIVESDRAWN; ++i) {
 		livesUI[i]->toDraw = false;
 	}
 	
