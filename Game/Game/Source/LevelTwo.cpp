@@ -66,6 +66,28 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 
 	mapFileName = config.child("mapfile").attribute("path").as_string();
 
+	goToTitle = false;
+
+	toExit = false;
+
+	toResume = false;
+
+	resumeButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { 100, 250, 75, 25 }, this);
+	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { 100, 250, 75, 25 }, this);
+	backToTitleButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "BACK TO TITLE", { 100, 250, 75, 25 }, this);
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "EXIT", { 100, 250, 75, 25 }, this);
+
+	resumeButton->TurnOFF();
+	settingsButton->TurnOFF();
+	backToTitleButton->TurnOFF();
+	exitButton->TurnOFF();
+
+	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "sound", { 100, 250, 50, 25 }, this);
+	soundButton->TurnOFF();
+
+	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "BACK", { 100, 350, 50, 25 }, this);
+	backFromSettingsButton->TurnOFF();
+
 	return ret;
 }
 
@@ -181,6 +203,11 @@ bool LevelTwo::PreUpdate()
 // Called each loop iteration
 bool LevelTwo::Update(float dt)
 {
+	if (goToTitle) {
+		app->fade->FadeToBlack(this, (Module*)app->scene_title);
+	}
+
+	// pause
 	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
 		pause = !pause;
 
@@ -191,16 +218,26 @@ bool LevelTwo::Update(float dt)
 					enemy[i]->PauseMovement();
 				}
 			}
+			resumeButton->TurnON();
+			settingsButton->TurnON();
+			backToTitleButton->TurnON();
+			exitButton->TurnON();
 		}
 		else {
-			player->ResumeMovement();
-			for (int i = 0; i < enemyCount; ++i) {
-				if (enemy[i] != nullptr) {
-					enemy[i]->ResumeMovement();
-				}
-			}
+			toResume = true;
 		}
 	}
+
+	if (toResume) {
+		player->ResumeMovement();
+		for (int i = 0; i < enemyCount; ++i) {
+			if (enemy[i] != nullptr) {
+				enemy[i]->ResumeMovement();
+			}
+		}
+		toResume = false;
+	}
+
 
 	if (player->Living() == false) {
 
@@ -377,7 +414,7 @@ bool LevelTwo::PostUpdate()
 
 	app->guiManager->Draw();
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || toExit)
 		ret = false;
 
 	return ret;
@@ -475,4 +512,60 @@ bool LevelTwo::CleanUp()
 	app->tex->UnLoad(originTex);
 
 	return true;
+}
+
+bool LevelTwo::OnGuiMouseClickEvent(GuiControl* control)
+{
+	// 1 == PLAY
+	// 2 == CONTINUE
+	// 3 == SETTINGS
+	// 4 == CREDITS
+	// 5 == EXIT
+
+	switch (control->id)
+	{
+	case 1:
+		pause = false;
+		toResume = true;
+
+		resumeButton->TurnOFF();
+		settingsButton->TurnOFF();
+		backToTitleButton->TurnOFF();
+		exitButton->TurnOFF();
+
+		break;
+	case 2:
+
+
+		resumeButton->TurnOFF();
+		settingsButton->TurnOFF();
+		backToTitleButton->TurnOFF();
+		exitButton->TurnOFF();
+
+		soundButton->TurnON();
+		backFromSettingsButton->TurnON();
+		break;
+	case 3:
+		goToTitle = true;
+		break;
+	case 4:
+		toExit = true;
+		break;
+	case 5:
+
+		break;
+	case 6:
+		resumeButton->TurnON();
+		settingsButton->TurnON();
+		backToTitleButton->TurnON();
+		exitButton->TurnON();
+
+		soundButton->TurnOFF();
+		backFromSettingsButton->TurnOFF();
+		break;
+	default:
+		break;
+	}
+
+	return false;
 }
