@@ -113,7 +113,7 @@ bool Player::Update()
 
 	if (isAlive && !win) {
 
-		if (invencibilityFrames > 0) {
+		if (invencibilityFrames > 0 && pBody != nullptr && pBody->body->IsActive()) {
 			invencibilityFrames--;
 		}
 

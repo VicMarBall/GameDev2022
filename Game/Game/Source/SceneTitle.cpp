@@ -26,6 +26,9 @@ bool SceneTitle::Awake(pugi::xml_node& config) {
 bool SceneTitle::Start() {
 	bool ret = true;
 	
+	app->render->camera.x = 0;
+	app->render->camera.y = 0;
+
 	app->audio->PlayMusic(musicPath, 1.0f);
 	bgTexture = app->tex->Load(bgPath);
 	
@@ -44,7 +47,6 @@ bool SceneTitle::Start() {
 
 	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, app->scene_title);
 	backFromSettingsButton->TurnOFF();
-
 
 	stateScene = TITLE;
 

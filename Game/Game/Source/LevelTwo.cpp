@@ -66,34 +66,18 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 
 	mapFileName = config.child("mapfile").attribute("path").as_string();
 
-	goToTitle = false;
-
-	toExit = false;
-
-	toResume = false;
-
-	resumeButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { 100, 250, 75, 25 }, this);
-	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { 100, 250, 75, 25 }, this);
-	backToTitleButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "BACK TO TITLE", { 100, 250, 75, 25 }, this);
-	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "EXIT", { 100, 250, 75, 25 }, this);
-
-	resumeButton->TurnOFF();
-	settingsButton->TurnOFF();
-	backToTitleButton->TurnOFF();
-	exitButton->TurnOFF();
-
-	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "sound", { 100, 250, 50, 25 }, this);
-	soundButton->TurnOFF();
-
-	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "BACK", { 100, 350, 50, 25 }, this);
-	backFromSettingsButton->TurnOFF();
-
 	return ret;
 }
 
 // Called before the first frame
 bool LevelTwo::Start()
 {
+	goToTitle = false;
+
+	toExit = false;
+
+	toResume = false;
+
 	pause = false;
 
 	// L03: DONE: Load map
@@ -173,6 +157,22 @@ bool LevelTwo::Start()
 
 	coinsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", { 600, 32, 32, 32 }, app->guiManager);
 
+	resumeButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { 100, 100, 75, 25 }, this);
+	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { 100, 150, 75, 25 }, this);
+	backToTitleButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "BACK TO TITLE", { 100, 200, 75, 25 }, this);
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "EXIT", { 100, 250, 75, 25 }, this);
+
+	resumeButton->TurnOFF();
+	settingsButton->TurnOFF();
+	backToTitleButton->TurnOFF();
+	exitButton->TurnOFF();
+
+	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "sound", { 100, 250, 50, 25 }, this);
+	soundButton->TurnOFF();
+
+	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "BACK", { 100, 350, 50, 25 }, this);
+	backFromSettingsButton->TurnOFF();
+
 	return true;
 }
 
@@ -235,6 +235,12 @@ bool LevelTwo::Update(float dt)
 				enemy[i]->ResumeMovement();
 			}
 		}
+
+		resumeButton->TurnOFF();
+		settingsButton->TurnOFF();
+		backToTitleButton->TurnOFF();
+		exitButton->TurnOFF();
+
 		toResume = false;
 	}
 
@@ -506,6 +512,14 @@ bool LevelTwo::CleanUp()
 		app->guiManager->Clear(livesUI[i]);
 	}
 
+	app->guiManager->Clear(resumeButton);
+	app->guiManager->Clear(settingsButton);
+	app->guiManager->Clear(backToTitleButton);
+	app->guiManager->Clear(exitButton);
+
+	app->guiManager->Clear(soundButton);
+	app->guiManager->Clear(backFromSettingsButton);
+
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
 	app->tex->UnLoad(mouseTileTex);
@@ -527,11 +541,6 @@ bool LevelTwo::OnGuiMouseClickEvent(GuiControl* control)
 	case 1:
 		pause = false;
 		toResume = true;
-
-		resumeButton->TurnOFF();
-		settingsButton->TurnOFF();
-		backToTitleButton->TurnOFF();
-		exitButton->TurnOFF();
 
 		break;
 	case 2:
