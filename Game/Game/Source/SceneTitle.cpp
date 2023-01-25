@@ -40,10 +40,10 @@ bool SceneTitle::Start() {
 	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 50, 25 }, app->scene_title);
 	
 	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "sound", { 100, 250, 50, 25 }, app->scene_title);
-	soundButton->toDraw = false;
+	soundButton->TurnOFF();
 
 	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, app->scene_title);
-	backFromSettingsButton->toDraw = false;
+	backFromSettingsButton->TurnOFF();
 
 
 	stateScene = TITLE;

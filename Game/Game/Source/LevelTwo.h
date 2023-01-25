@@ -11,6 +11,7 @@
 
 #include "GuiImage.h"
 #include "GuiText.h"
+#include "GuiButton.h"
 
 #define MAX_ENEMIES 25
 
@@ -46,6 +47,8 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
+
+	bool OnGuiMouseClickEvent(GuiControl* control);
 
 public:
 	//L02: DONE 3: Declare a Player attribute
@@ -96,6 +99,19 @@ private:
 	GuiImage* livesUI[3];
 
 	GuiText* coinsCollectedText;
+
+	// pause ui
+	GuiButton* resumeButton;
+	GuiButton* settingsButton;
+	GuiButton* backToTitleButton;
+	GuiButton* exitButton;
+
+	bool goToTitle;
+	bool toExit;
+	bool toResume;
+
+	GuiButton* soundButton;
+	GuiButton* backFromSettingsButton;
 };
 
 #endif // __LEVELONE_H__
