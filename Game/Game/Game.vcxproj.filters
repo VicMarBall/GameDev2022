@@ -76,6 +76,9 @@
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\Checkpoint.cpp">
+      <Filter>Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Window.h" />
@@ -184,6 +187,9 @@
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\Checkpoint.h">
+      <Filter>Entities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="External">
