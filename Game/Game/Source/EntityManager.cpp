@@ -115,6 +115,9 @@ Entity* EntityManager::CreateEntity(EntityType type)
 	case EntityType::EXTRALIFE:
 		entity = new ExtraLife();
 		break;
+	case EntityType::CHECKPOINT:
+		entity = new Checkpoint();
+		break;
 	default: break;
 	}
 

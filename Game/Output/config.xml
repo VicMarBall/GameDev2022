@@ -50,6 +50,7 @@
 	<coin x="368" y="400" texturepath="Assets/Textures/carrot.png" />
 	<extralife x="600" y="400" texturepath="Assets/Textures/heart.png" />
   <extralife x="900" y="400" texturepath="Assets/Textures/heart.png" />
+  <checkpoint x="512" y="480" texturepath="Assets/Textures/checkpoint.png" />
 	<camera x="-150" y="-288"/>
 	<audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
 	<mapfile path="Assets/Maps/map_level1.tmx"/>

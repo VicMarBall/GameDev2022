@@ -32,7 +32,7 @@ bool Checkpoint::Start() {
 	texture = app->tex->Load(texturePath);
 
 	// L07 TODO 4: Add a physics to an item - initialize the physics body
-	pBody = app->physics->CreateRectangleSensor(position.x, position.y, 16, 32, STATIC);
+	pBody = app->physics->CreateRectangleSensor(position.x, position.y, 16, 48, STATIC);
 	pBody->body->SetFixedRotation(true);
 	pBody->body->SetActive(true);
 	pBody->listener = app->entityManager;
@@ -45,8 +45,19 @@ bool Checkpoint::Update()
 {
 	// L07 TODO 4: Add a physics to an item - update the position of the object from the physics.
 	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x + 8, position.y + 16);
-
+	SDL_Rect sect;
+	sect.y = 0;
+	sect.w = 32;
+	sect.h = 48;
+	if (CheckPicking()) {
+		sect.x = 32;
+		app->render->DrawTexture(texture, position.x + 8, position.y + 16, &sect);
+	}
+	else {
+		sect.x = 0;
+		app->render->DrawTexture(texture, position.x + 8, position.y + 16, &sect);
+	}
+	
 	return true;
 }
 
@@ -68,7 +79,7 @@ void Checkpoint::OnCollision(PhysBody* otherBody)
 
 bool Checkpoint::CheckPicking()
 {
-	if (active && isPicked) {
+	if (isPicked) {
 		return true;
 	}
 	return false;

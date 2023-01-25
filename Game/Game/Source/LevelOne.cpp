@@ -43,6 +43,8 @@ bool LevelOne::Awake(pugi::xml_node& config)
 
 	goalParameters = config.child("goal");
 
+	checkpointParameters = config.child("checkpoint");
+
 	for (pugi::xml_node EnemyNode = config.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
 
 		enemyParameters[enemyCount] = EnemyNode;
@@ -112,6 +114,11 @@ bool LevelOne::Start()
 	goal->active = true;
 	goal->parameters = goalParameters;
 	goal->Start();
+
+	checkpoint = (Checkpoint*)app->entityManager->CreateEntity(EntityType::CHECKPOINT);
+	checkpoint->active = true;
+	checkpoint->parameters = checkpointParameters;
+	checkpoint->Start();
 
 	for (int i = 0; i < enemyCount; ++i) {
 		if (enemyParameters[i].attribute("type").as_int() == 0) {
