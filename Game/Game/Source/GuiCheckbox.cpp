@@ -103,6 +103,30 @@ bool GuiCheckbox::Draw(Render* render)
 	return false;
 }
 
+bool GuiCheckbox::DrawDebug(Render* render)
+{
+	switch (state)
+	{
+	case GuiControlState::DISABLED:
+		render->DrawRectangle(box, 200, 200, 200, 100, true, false);
+		break;
+	case GuiControlState::NORMAL:
+		render->DrawRectangle(box, 0, 0, 255, 100, true, false);
+		break;
+	case GuiControlState::FOCUSED:
+		render->DrawRectangle(box, 0, 0, 20, 100, true, false);
+		break;
+	case GuiControlState::PRESSED:
+		render->DrawRectangle(box, 0, 255, 0, 100, true, false);
+		break;
+	case GuiControlState::SELECTED:
+		render->DrawRectangle(box, 255, 0, 0, 100, true, false);
+		break;
+	}
+
+	return false;
+}
+
 void GuiCheckbox::SwitchCheck()
 {
 	checked = !checked;

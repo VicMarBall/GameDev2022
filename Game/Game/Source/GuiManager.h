@@ -39,6 +39,8 @@ public:
 	float updateMsCycle = 0.0f;
 	bool doLogic = false;
 
+	bool debug;
+
 	SDL_Texture* texture;
 
 };

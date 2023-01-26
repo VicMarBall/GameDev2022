@@ -331,6 +331,15 @@ bool LevelTwo::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		if (app->guiManager->debug) {
+			app->guiManager->debug = false;
+		}
+		else {
+			app->guiManager->debug = true;
+		}
+	}
+
 	if (app->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
 		player->GodSwitch();
 	}

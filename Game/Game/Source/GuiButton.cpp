@@ -90,3 +90,23 @@ bool GuiButton::Draw(Render* render)
 
 	return false;
 }
+
+bool GuiButton::DrawDebug(Render* render)
+{
+	switch (state)
+	{
+	case GuiControlState::DISABLED:
+		render->DrawRectangle(bounds, 200, 200, 200, 100, true, false);
+		break;
+	case GuiControlState::NORMAL:
+		render->DrawRectangle(bounds, 0, 0, 255, 100, true, false);
+		break;
+	case GuiControlState::FOCUSED:
+		render->DrawRectangle(bounds, 0, 0, 20, 100, true, false);
+		break;
+	case GuiControlState::PRESSED:
+		render->DrawRectangle(bounds, 0, 255, 0, 100, true, false);
+		break;
+	}
+	return false;
+}

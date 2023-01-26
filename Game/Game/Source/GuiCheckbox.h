@@ -15,6 +15,7 @@ public:
 
 	bool Update(float dt);
 	bool Draw(Render* render);
+	bool DrawDebug(Render* render);
 
 	void SwitchCheck();
 

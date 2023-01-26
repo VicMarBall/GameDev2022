@@ -135,3 +135,33 @@ bool GuiSlider::Draw(Render* render)
 
 	return false;
 }
+
+bool GuiSlider::DrawDebug(Render* render)
+{
+	SDL_Rect sliderLine;
+	sliderLine.x = bounds.x;
+	sliderLine.y = bounds.y + (bounds.h * 0.5f) - 2;
+	sliderLine.w = sliderLength;
+	sliderLine.h = 4;
+
+	switch (state)
+	{
+	case GuiControlState::DISABLED:
+		render->DrawRectangle(sliderLine, 200, 200, 200, 100, true, false);
+		render->DrawRectangle(box, 200, 200, 200, 100, true, false);
+		break;
+	case GuiControlState::NORMAL:
+		render->DrawRectangle(sliderLine, 100, 100, 100, 100, true, false);
+		render->DrawRectangle(box, 0, 0, 255, 100, true, false);
+		break;
+	case GuiControlState::FOCUSED:
+		render->DrawRectangle(sliderLine, 100, 100, 100, 100, true, false);
+		render->DrawRectangle(box, 0, 0, 20, 100, true, false);
+		break;
+	case GuiControlState::PRESSED:
+		render->DrawRectangle(sliderLine, 100, 100, 100, 100, true, false);
+		render->DrawRectangle(box, 0, 255, 0, 100, true, false);
+		break;
+	}
+	return false;
+}

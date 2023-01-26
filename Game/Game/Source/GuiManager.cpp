@@ -103,12 +103,24 @@ bool GuiManager::Draw() {
 
 	ListItem<GuiControl*>* control = guiControlsList.start;
 
-	while (control != nullptr)
-	{
-		if (control->data->toDraw) {
-			control->data->Draw(app->render);
+	if (debug) {
+		while (control != nullptr)
+		{
+			if (control->data->toDraw) {
+				control->data->Draw(app->render);
+				control->data->DrawDebug(app->render);
+			}
+			control = control->next;
 		}
-		control = control->next;
+	}
+	else {
+		while (control != nullptr)
+		{
+			if (control->data->toDraw) {
+				control->data->Draw(app->render);
+			}
+			control = control->next;
+		}
 	}
 
 	return true;

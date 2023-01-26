@@ -79,6 +79,15 @@ bool SceneTitle::Update(float dt) {
 
 	bool toSkip = false;
 
+	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
+		if (app->guiManager->debug) {
+			app->guiManager->debug = false;
+		}
+		else {
+			app->guiManager->debug = true;
+		}
+	}
+
 	switch (stateScene)
 	{
 	case SceneTitle::TITLE:
