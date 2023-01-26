@@ -7,6 +7,7 @@
 #include "Carrot.h"
 #include "ExtraLife.h"
 #include "Enemies.h"
+#include "Checkpoint.h"
 #include "List.h"
 
 #include "GuiImage.h"
@@ -56,12 +57,14 @@ public:
 	//L02: DONE 3: Declare a Player attribute
 	pugi::xml_node playerParameters;
 	pugi::xml_node goalParameters;
+	pugi::xml_node checkpointParameters;
 	pugi::xml_node enemyParameters[MAX_ENEMIES];
 	pugi::xml_node carrotsParameters[MAX_CARROTS];
 	pugi::xml_node extraLivesParameters[MAX_EXTRALIVES];
 
 	Player* player;
 	Goal* goal;
+	Checkpoint* checkpoint;
 	Enemy* enemy[MAX_ENEMIES];
 	Carrot* carrots[MAX_CARROTS];
 	ExtraLife* extraLives[MAX_EXTRALIVES];
