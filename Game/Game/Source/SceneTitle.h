@@ -7,6 +7,7 @@
 #include "SDL/include/SDL.h"
 
 #include "GuiButton.h"
+#include "GuiCheckbox.h"
 
 #define MAX_ASSETS_TITLE 13
 
@@ -70,6 +71,7 @@ public:
 	// setting ui
 	// TODO Sliders
 	GuiButton* soundButton;
+	GuiCheckbox* checkboxTest;
 	GuiButton* backFromSettingsButton;
 
 	// Textures & Animations

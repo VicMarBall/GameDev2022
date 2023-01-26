@@ -10,13 +10,13 @@
 	<scene_title />
 	<level_one>
 		<state state="true" />
-		<player x="492" y="458" />
+		<player x="488" y="495" />
 		<enemies>
-			<enemy x="617" y="495" active="true" />
-			<enemy x="1844" y="111" active="true" />
-			<enemy x="2273" y="655" active="true" />
-			<enemy x="3233" y="431" active="true" />
-			<enemy x="3540" y="591" active="true" />
+			<enemy x="580" y="495" active="true" />
+			<enemy x="1918" y="111" active="true" />
+			<enemy x="2195" y="655" active="true" />
+			<enemy x="3151" y="431" active="true" />
+			<enemy x="3541" y="591" active="true" />
 			<enemy x="967" y="455" active="true" />
 			<enemy x="2152" y="327" active="true" />
 			<enemy x="3304" y="168" active="true" />
@@ -34,6 +34,6 @@
 	<map />
 	<pathfinding />
 	<renderer>
-		<camera x="-150" y="-198" />
+		<camera x="-150" y="-228" />
 	</renderer>
 </save_state>

@@ -3,6 +3,7 @@
 #include "Textures.h"
 
 #include "GuiButton.h"
+#include "GuiCheckbox.h"
 #include "GuiImage.h"
 #include "GuiText.h"
 #include "Audio.h"
@@ -31,12 +32,14 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 	case GuiControlType::BUTTON:
 		guiControl = new GuiButton(id, bounds, text);
 		break;
-	/*
-	case GuiControlType::TOGGLE:
-		break;
 	case GuiControlType::CHECKBOX:
+		guiControl = new GuiCheckbox(id, bounds, text);
 		break;
-	case GuiControlType::SLIDER:
+	/*case GuiControlType::SLIDER:
+		guiControl = new GuiSlider(id, bounds, text);
+		break;*/
+		/*
+	case GuiControlType::TOGGLE:
 		break;
 	case GuiControlType::SLIDERBAR:
 		break;
@@ -50,14 +53,14 @@ GuiControl* GuiManager::CreateGuiControl(GuiControlType type, int id, const char
 		break;
 	case GuiControlType::SPINNER:
 		break;
-	default:
-		break;
 		*/
 	case GuiControlType::IMAGE:
 		guiControl = new GuiImage(id, bounds);
 		break;
 	case GuiControlType::TEXT:
 		guiControl = new GuiText(id, text, bounds);
+		break;
+	default:
 		break;
 	}
 

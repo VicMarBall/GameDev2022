@@ -32,21 +32,25 @@ bool SceneTitle::Start() {
 	app->audio->PlayMusic(musicPath, 1.0f);
 	bgTexture = app->tex->Load(bgPath);
 	
-	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 100, 100, 100, 50 }, app->scene_title);
+	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 100, 100, 100, 50 }, this);
 
-	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 100, 200, 75, 25 }, app->scene_title);
+	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 100, 200, 75, 25 }, this);
 	
-	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 100, 250, 75, 25 }, app->scene_title);
+	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 100, 250, 75, 25 }, this);
 	
-	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 100, 300, 75, 25 }, app->scene_title);
+	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 100, 300, 75, 25 }, this);
 	
-	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 50, 25 }, app->scene_title);
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 50, 25 }, this);
 	
-	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "sound", { 100, 250, 50, 25 }, app->scene_title);
+	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "sound", { 100, 250, 50, 25 }, this);
 	soundButton->TurnOFF();
 
-	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, app->scene_title);
+	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, this);
 	backFromSettingsButton->TurnOFF();
+
+	checkboxTest = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 8, "Thing", { 100, 300, 50, 25 }, this);
+	checkboxTest->TurnOFF();
+
 
 	stateScene = TITLE;
 
@@ -131,6 +135,9 @@ bool SceneTitle::CleanUp() {
 	app->guiManager->Clear(creditsButton);
 	app->guiManager->Clear(exitButton);
 
+	app->guiManager->Clear(soundButton);
+	app->guiManager->Clear(backFromSettingsButton);
+	app->guiManager->Clear(checkboxTest);
 
 	return true;
 }
@@ -164,6 +171,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 
 		soundButton->TurnON();
 		backFromSettingsButton->TurnON();
+		checkboxTest->TurnON();
 
 		break;
 	case 4:
@@ -188,8 +196,11 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 
 		soundButton->TurnOFF();
 		backFromSettingsButton->TurnOFF();
+		checkboxTest->TurnOFF();
 
 		break;
+	case 8:
+		LOG("HEYYY :DDD");
 	default:
 		break;
 	}
