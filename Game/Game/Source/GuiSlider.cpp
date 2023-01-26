@@ -15,10 +15,10 @@ GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, const char* text, int sliderLen
 	this->sliderLength = sliderLength;
 	
 	if (bounds.w > bounds.h) {
-		box = { bounds.x - (int)(bounds.h * 0.5f), bounds.y - (int)(bounds.h * 0.5f), bounds.h, bounds.h };
+		box = { bounds.x - (int)(bounds.h * 0.5f), bounds.y, bounds.h, bounds.h };
 	}
 	else {
-		box = { bounds.x - (int)(bounds.w * 0.5f), bounds.y - (int)(bounds.w * 0.5f), bounds.w, bounds.w };
+		box = { bounds.x - (int)(bounds.w * 0.5f), bounds.y, bounds.w, bounds.w };
 	}
 
 	valueSlider = 0;
@@ -99,9 +99,9 @@ bool GuiSlider::Draw(Render* render)
 
 	SDL_Rect sliderLine;
 	sliderLine.x = bounds.x;
-	sliderLine.y = bounds.y + (bounds.h * 0.5f);
-	sliderLine.w = bounds.w;
-	sliderLine.h = 10;
+	sliderLine.y = bounds.y + (bounds.h * 0.5f) - 2;
+	sliderLine.w = sliderLength;
+	sliderLine.h = 4;
 
 	switch (state)
 	{
@@ -123,7 +123,7 @@ bool GuiSlider::Draw(Render* render)
 		break;
 	}
 
-	app->render->DrawText(text.GetString(), bounds.x, bounds.y, bounds.w, bounds.h, { 0,0,0 });
+	app->render->DrawText(text.GetString(), bounds.x + sliderLength, bounds.y, bounds.w, bounds.h, { 0,0,0 });
 
 	return false;
 }
