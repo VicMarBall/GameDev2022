@@ -47,9 +47,6 @@ bool SceneTitle::Start() {
 	
 	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 50, 25 }, this);
 	
-	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "sound", { 100, 250, 50, 25 }, this);
-	soundButton->TurnOFF();
-
 	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, this);
 	backToTitle->TurnOFF();
 
@@ -59,6 +56,10 @@ bool SceneTitle::Start() {
 	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 100, 200, 50, 25 }, this, 128);
 	musicVolumeSlider->TurnOFF();
 	musicVolumeSlider->SetValue(app->audio->GetVolumeMusic());
+
+	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 100, 250, 30, 25 }, this, 128);
+	SFXVolumeSlider->TurnOFF();
+	SFXVolumeSlider->SetValue(app->audio->GetSFXVolume());
 
 	stateScene = TITLE;
 
@@ -147,7 +148,7 @@ bool SceneTitle::CleanUp() {
 	app->guiManager->Clear(creditsButton);
 	app->guiManager->Clear(exitButton);
 
-	app->guiManager->Clear(soundButton);
+	app->guiManager->Clear(SFXVolumeSlider);
 	app->guiManager->Clear(backToTitle);
 	app->guiManager->Clear(checkboxTest);
 	app->guiManager->Clear(musicVolumeSlider);
@@ -182,7 +183,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		creditsButton->TurnOFF();
 		exitButton->TurnOFF();
 
-		soundButton->TurnON();
+		SFXVolumeSlider->TurnON();
 		backToTitle->TurnON();
 		checkboxTest->TurnON();
 		musicVolumeSlider->TurnON();
@@ -220,7 +221,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		creditsButton->TurnON();
 		exitButton->TurnON();
 
-		soundButton->TurnOFF();
+		SFXVolumeSlider->TurnOFF();
 		backToTitle->TurnOFF();
 		checkboxTest->TurnOFF();
 		musicVolumeSlider->TurnOFF();
@@ -232,7 +233,10 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		LOG("HEYYY :DDD");
 	case 9:
 		app->audio->SetVolumeMusic(((GuiSlider*)control)->valueSlider);
-
+		break;
+	case 10:
+		app->audio->SetSFXVolume(((GuiSlider*)control)->valueSlider);
+		break;
 	default:
 		break;
 	}

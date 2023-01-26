@@ -58,7 +58,7 @@ bool Audio::Awake(pugi::xml_node& config)
 		ret = true;
 	}
 
-	SetFXVolume(FXVolume);
+	SetSFXVolume(FXVolume);
 	SetVolumeMusic(musicVolume);
 
 	return ret;
@@ -183,7 +183,7 @@ bool Audio::PlayFx(unsigned int id, int repeat)
 	return ret;
 }
 
-void Audio::SetFXVolume(int volume)
+void Audio::SetSFXVolume(int volume)
 {
 	FXVolume = Mix_Volume(-1, volume);
 }

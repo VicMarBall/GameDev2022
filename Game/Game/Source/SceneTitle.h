@@ -75,12 +75,11 @@ public:
 	GuiButton* exitButton;
 
 	// setting ui
-	// TODO Sliders
-	GuiButton* soundButton;
 	GuiCheckbox* checkboxTest;
 	GuiButton* backToTitle;
 
 	GuiSlider* musicVolumeSlider;
+	GuiSlider* SFXVolumeSlider;
 
 	// Textures & Animations
 	
