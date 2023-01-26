@@ -45,23 +45,23 @@ bool SceneTitle::Start() {
 	
 	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 100, 300, 75, 25 }, this);
 	
-	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 50, 25 }, this);
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 40, 25 }, this);
 	
 	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, this);
 	backToTitle->TurnOFF();
 
-	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 100, 150, 50, 25 }, this, 128);
+	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 200, 150, 50, 25 }, this, 128);
 	musicVolumeSlider->TurnOFF();
 	musicVolumeSlider->SetValue(app->audio->GetVolumeMusic());
 
-	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 100, 200, 30, 25 }, this, 128);
+	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 200, 200, 30, 25 }, this, 128);
 	SFXVolumeSlider->TurnOFF();
 	SFXVolumeSlider->SetValue(app->audio->GetSFXVolume());
 
-	fullScreenCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 11, "FULLSCREEN", { 100, 250, 100, 25 }, this);
+	fullScreenCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 11, "FULLSCREEN", { 200, 250, 100, 25 }, this);
 	fullScreenCheckbox->TurnOFF();
 
-	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "VSYNC", { 100, 300, 50, 25 }, this);
+	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "VSYNC", { 200, 300, 50, 25 }, this);
 	VSyncCheckbox->TurnOFF();
 
 	stateScene = TITLE;
