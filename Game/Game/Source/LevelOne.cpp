@@ -523,7 +523,7 @@ bool LevelOne::CleanUp()
 	app->entityManager->DestroyAllActiveEntities();
 
 	app->guiManager->Clear(coinsCollectedText);
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < MAX_LIVESDRAWN; ++i) {
 		app->guiManager->Clear(livesUI[i]);
 	}
 

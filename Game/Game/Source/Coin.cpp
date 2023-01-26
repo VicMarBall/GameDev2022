@@ -32,7 +32,7 @@ bool Coin::Start() {
 	texture = app->tex->Load(texturePath);
 	
 	// L07 TODO 4: Add a physics to an item - initialize the physics body
-	pBody = app->physics->CreateRectangleSensor(position.x, position.y, 16, 32, STATIC);
+	pBody = app->physics->CreateRectangleSensor(position.x, position.y, 32, 32, STATIC);
 	pBody->body->SetFixedRotation(true);
 	pBody->body->SetActive(true);
 	pBody->listener = app->entityManager;
@@ -45,7 +45,7 @@ bool Coin::Update()
 {
 	// L07 TODO 4: Add a physics to an item - update the position of the object from the physics.
 	pBody->GetPosition(position.x, position.y);
-	app->render->DrawTexture(texture, position.x + 8, position.y + 16);
+	app->render->DrawTexture(texture, position.x + 16, position.y + 16);
 
 	return true;
 }
