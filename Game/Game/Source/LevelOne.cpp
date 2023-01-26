@@ -416,7 +416,7 @@ bool LevelOne::Update(float dt)
 		livesUI[i]->toDraw = true;
 	}
 
-	for (int i = player->GetRemainingLives(); i <= MAX_LIVESDRAWN; ++i) {
+	for (int i = player->GetRemainingLives(); i < MAX_LIVESDRAWN; ++i) {
 		livesUI[i]->toDraw = false;
 	}
 	
