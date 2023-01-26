@@ -76,6 +76,7 @@ bool LevelOne::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelOne::Start()
 {
+	timer = 0;
 
 	goToTitle = false;
 
@@ -162,11 +163,11 @@ bool LevelOne::Start()
 
 	// ui
 	for (int i = 0; i < MAX_LIVESDRAWN; ++i) {
-		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, 0, NULL, {32 + (80 * i), 32, 64, 64}, app->guiManager);
+		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, 0, NULL, {32 + (80 * i), 32, 64, 64}, this);
 		livesUI[i]->SetTexture(lifeTexture);
 	}
 
-	carrotsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", {600, 32, 32, 32}, app->guiManager);
+	carrotsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", {600, 32, 32, 32}, this);
 
 	resumeButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { 100, 100, 75, 25 }, this);
 	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { 100, 150, 75, 25 }, this);
@@ -183,6 +184,8 @@ bool LevelOne::Start()
 
 	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "BACK", { 100, 350, 50, 25 }, this);
 	backFromSettingsButton->TurnOFF();
+
+	timerText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "time", { 300, 20, 30, 20 }, this);
 
 	return true;
 }
@@ -214,6 +217,10 @@ bool LevelOne::PreUpdate()
 // Called each loop iteration
 bool LevelOne::Update(float dt)
 {
+	if (!pause) {
+		timer += dt * 0.001f;
+	}
+
 	if (goToTitle) {
 		app->fade->FadeToBlack(this, (Module*)app->scene_title);
 	}
@@ -424,6 +431,10 @@ bool LevelOne::Update(float dt)
 
 	carrotsCollectedText->SetText(stringCarrotsPicked.c_str());
 
+	std::string stringTimer = std::to_string((int)timer);
+	timerText->SetText(stringTimer.c_str());
+	timerText->AdaptWidth(10, stringTimer.length());
+
 	return true;
 }
 
@@ -534,6 +545,8 @@ bool LevelOne::CleanUp()
 
 	app->guiManager->Clear(soundButton);
 	app->guiManager->Clear(backFromSettingsButton);
+
+	app->guiManager->Clear(timerText);
 
 	app->map->UnLoad();
 	app->tex->UnLoad(img);

@@ -35,3 +35,8 @@ void GuiText::SetText(const char* text)
 {
 	this->text = text;
 }
+
+void GuiText::AdaptWidth(int sizeChar, int characters)
+{
+	bounds.w = sizeChar * characters;
+}

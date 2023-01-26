@@ -19,6 +19,8 @@ public:
 
 	void SetText(const char* text);
 
+	void AdaptWidth(int sizeChar, int characters);
+
 	SDL_Color colorText;
 };
 

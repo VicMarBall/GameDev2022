@@ -105,6 +105,9 @@ private:
 
 	GuiText* carrotsCollectedText;
 
+	float timer;
+	GuiText* timerText;
+
 	// pause ui
 	GuiButton* resumeButton;
 	GuiButton* settingsButton;
