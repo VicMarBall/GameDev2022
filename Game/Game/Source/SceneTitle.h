@@ -8,6 +8,7 @@
 
 #include "GuiButton.h"
 #include "GuiCheckbox.h"
+#include "GuiSlider.h"
 
 #define MAX_ASSETS_TITLE 13
 
@@ -73,6 +74,8 @@ public:
 	GuiButton* soundButton;
 	GuiCheckbox* checkboxTest;
 	GuiButton* backFromSettingsButton;
+
+	GuiSlider* testSlider;
 
 	// Textures & Animations
 	

@@ -51,6 +51,8 @@ bool SceneTitle::Start() {
 	checkboxTest = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 8, "Thing", { 100, 300, 50, 25 }, this);
 	checkboxTest->TurnOFF();
 
+	testSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "another", { 100, 200, 50, 25 }, this);
+	testSlider->TurnOFF();
 
 	stateScene = TITLE;
 
@@ -138,6 +140,7 @@ bool SceneTitle::CleanUp() {
 	app->guiManager->Clear(soundButton);
 	app->guiManager->Clear(backFromSettingsButton);
 	app->guiManager->Clear(checkboxTest);
+	app->guiManager->Clear(testSlider);
 
 	return true;
 }
@@ -172,6 +175,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		soundButton->TurnON();
 		backFromSettingsButton->TurnON();
 		checkboxTest->TurnON();
+		testSlider->TurnON();
 
 		break;
 	case 4:
@@ -197,6 +201,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		soundButton->TurnOFF();
 		backFromSettingsButton->TurnOFF();
 		checkboxTest->TurnOFF();
+		testSlider->TurnOFF();
 
 		break;
 	case 8:

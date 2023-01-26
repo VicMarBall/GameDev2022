@@ -29,7 +29,7 @@ public:
 	void Clear(GuiControl* toClear);
 
 	// Additional methods
-	GuiControl* CreateGuiControl(GuiControlType type, int id, const char* text, SDL_Rect bounds, Module* observer, SDL_Rect sliderBounds = { 0,0,0,0 });
+	GuiControl* CreateGuiControl(GuiControlType type, int id, const char* text, SDL_Rect bounds, Module* observer, int sliderLength = 100);
 
 public:
 
