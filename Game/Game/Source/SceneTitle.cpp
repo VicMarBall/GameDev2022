@@ -50,16 +50,19 @@ bool SceneTitle::Start() {
 	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, this);
 	backToTitle->TurnOFF();
 
-	checkboxTest = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 8, "Thing", { 100, 300, 50, 25 }, this);
-	checkboxTest->TurnOFF();
-
-	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 100, 200, 50, 25 }, this, 128);
+	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 100, 150, 50, 25 }, this, 128);
 	musicVolumeSlider->TurnOFF();
 	musicVolumeSlider->SetValue(app->audio->GetVolumeMusic());
 
-	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 100, 250, 30, 25 }, this, 128);
+	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 100, 200, 30, 25 }, this, 128);
 	SFXVolumeSlider->TurnOFF();
 	SFXVolumeSlider->SetValue(app->audio->GetSFXVolume());
+
+	fullScreenCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 11, "FULLSCREEN", { 100, 250, 100, 25 }, this);
+	fullScreenCheckbox->TurnOFF();
+
+	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "VSYNC", { 100, 300, 50, 25 }, this);
+	VSyncCheckbox->TurnOFF();
 
 	stateScene = TITLE;
 
@@ -150,7 +153,8 @@ bool SceneTitle::CleanUp() {
 
 	app->guiManager->Clear(SFXVolumeSlider);
 	app->guiManager->Clear(backToTitle);
-	app->guiManager->Clear(checkboxTest);
+	app->guiManager->Clear(VSyncCheckbox);
+	app->guiManager->Clear(fullScreenCheckbox);
 	app->guiManager->Clear(musicVolumeSlider);
 
 	return true;
@@ -185,7 +189,8 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 
 		SFXVolumeSlider->TurnON();
 		backToTitle->TurnON();
-		checkboxTest->TurnON();
+		VSyncCheckbox->TurnON();
+		fullScreenCheckbox->TurnON();
 		musicVolumeSlider->TurnON();
 
 		withMenu = true;
@@ -223,7 +228,8 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 
 		SFXVolumeSlider->TurnOFF();
 		backToTitle->TurnOFF();
-		checkboxTest->TurnOFF();
+		VSyncCheckbox->TurnOFF();
+		fullScreenCheckbox->TurnOFF();
 		musicVolumeSlider->TurnOFF();
 
 		withMenu = false;
