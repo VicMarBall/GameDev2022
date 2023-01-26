@@ -56,8 +56,9 @@ bool SceneTitle::Start() {
 	checkboxTest = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 8, "Thing", { 100, 300, 50, 25 }, this);
 	checkboxTest->TurnOFF();
 
-	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 100, 200, 50, 25 }, this, 200);
+	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 100, 200, 50, 25 }, this, 128);
 	musicVolumeSlider->TurnOFF();
+	musicVolumeSlider->SetValue(app->audio->GetVolumeMusic());
 
 	stateScene = TITLE;
 
@@ -229,6 +230,9 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		break;
 	case 8:
 		LOG("HEYYY :DDD");
+	case 9:
+		app->audio->SetVolumeMusic(((GuiSlider*)control)->valueSlider);
+
 	default:
 		break;
 	}

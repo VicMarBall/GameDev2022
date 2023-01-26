@@ -28,6 +28,9 @@ bool Audio::Awake(pugi::xml_node& config)
 	LOG("Loading Audio Mixer");
 	bool ret = true;
 	SDL_Init(0);
+	
+	musicVolume = config.child("music").attribute("volume").as_int();
+	FXVolume = config.child("fx").attribute("volume").as_int();
 
 	if(SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{
@@ -54,6 +57,9 @@ bool Audio::Awake(pugi::xml_node& config)
 		active = false;
 		ret = true;
 	}
+
+	SetFXVolume(FXVolume);
+	SetVolumeMusic(musicVolume);
 
 	return ret;
 }
@@ -175,4 +181,14 @@ bool Audio::PlayFx(unsigned int id, int repeat)
 	}
 
 	return ret;
+}
+
+void Audio::SetFXVolume(int volume)
+{
+	FXVolume = Mix_Volume(-1, volume);
+}
+
+void Audio::SetVolumeMusic(int volume)
+{
+	musicVolume = Mix_VolumeMusic(volume);
 }

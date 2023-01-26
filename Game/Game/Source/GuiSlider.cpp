@@ -66,17 +66,19 @@ bool GuiSlider::Update(float dt)
 				state = GuiControlState::PRESSED;
 				int newValue = valueSlider + (mouseX - mousePreviousX);
 				SetValue(newValue);
+				NotifyObserver();
 			}
 
 			//
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP) {
-				NotifyObserver();
+				//NotifyObserver();
 			}
 		}
 		else {
 			if (state == GuiControlState::PRESSED) {
 				int newValue = valueSlider + (mouseX - mousePreviousX);
 				SetValue(newValue);
+				NotifyObserver();
 			}
 			else {
 				state = GuiControlState::NORMAL;
