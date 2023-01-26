@@ -6,9 +6,6 @@
 #include "Point.h"
 #include "SString.h"
 
-#define MIN_VALUE 0
-#define MAX_VALUE 100
-
 class GuiSlider : public GuiControl
 {
 public:
@@ -31,11 +28,11 @@ public:
 
 	void SetValue(int value) {
 		this->valueSlider = value;
-		if (valueSlider < MIN_VALUE) {
-			valueSlider = MIN_VALUE;
+		if (valueSlider < 0) {
+			valueSlider = 0;
 		}
-		else if (valueSlider > MAX_VALUE) {
-			valueSlider = MAX_VALUE;
+		else if (valueSlider > sliderLength) {
+			valueSlider = sliderLength;
 		}
 		box.x = bounds.x + valueSlider - (box.w * 0.5f);
 	}

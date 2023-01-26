@@ -123,7 +123,13 @@ bool GuiSlider::Draw(Render* render)
 		break;
 	}
 
-	app->render->DrawText(text.GetString(), bounds.x + sliderLength, bounds.y, bounds.w, bounds.h, { 0,0,0 });
+	SDL_Rect textBounds;
+	textBounds.x = bounds.x + sliderLength + (box.w * 0.5f);
+	textBounds.y = bounds.y;
+	textBounds.w = bounds.w;
+	textBounds.h = bounds.h;
+	render->DrawRectangle(textBounds, 0, 0, 0, 255, true, false);
+	app->render->DrawText(text.GetString(), textBounds.x, textBounds.y, textBounds.w, textBounds.h, { 255,255,255 });
 
 	return false;
 }

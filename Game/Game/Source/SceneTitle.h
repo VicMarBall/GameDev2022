@@ -75,7 +75,7 @@ public:
 	GuiCheckbox* checkboxTest;
 	GuiButton* backFromSettingsButton;
 
-	GuiSlider* testSlider;
+	GuiSlider* musicVolumeSlider;
 
 	// Textures & Animations
 	
