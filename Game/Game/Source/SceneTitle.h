@@ -59,8 +59,13 @@ public:
 	SDL_Texture* bgTexture;
 	const char* bgPath;
 	const char* musicPath;
+	const char* menuPath;
 
 	StateTitleScene stateScene;
+
+	SDL_Texture* menuBackground = nullptr;
+
+	bool withMenu;
 
 	// main title ui
 	GuiButton* playButton;
@@ -73,7 +78,7 @@ public:
 	// TODO Sliders
 	GuiButton* soundButton;
 	GuiCheckbox* checkboxTest;
-	GuiButton* backFromSettingsButton;
+	GuiButton* backToTitle;
 
 	GuiSlider* musicVolumeSlider;
 

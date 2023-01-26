@@ -31,6 +31,7 @@
 
   <scene_title>
 	  <textures texturepath="Assets/Textures/menu.png"/>
+	  <menutexture texturepath="Assets/Textures/menu_background.png"/>
 	  <audio musicpath="Assets/Audio/Music/Menu-Theme_1.ogg"/>
   </scene_title>
 

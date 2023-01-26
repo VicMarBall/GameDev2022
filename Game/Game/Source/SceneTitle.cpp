@@ -20,6 +20,7 @@ SceneTitle::~SceneTitle() {}
 bool SceneTitle::Awake(pugi::xml_node& config) {
 	bgPath = config.child("textures").attribute("texturepath").as_string();
 	musicPath = config.child("audio").attribute("musicpath").as_string();
+	menuPath = config.child("menutexture").attribute("texturepath").as_string();
 	return true;
 }
 
@@ -32,6 +33,10 @@ bool SceneTitle::Start() {
 	app->audio->PlayMusic(musicPath, 1.0f);
 	bgTexture = app->tex->Load(bgPath);
 	
+	menuBackground = app->tex->Load(menuPath);
+
+	withMenu = false;
+
 	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 100, 100, 100, 50 }, this);
 
 	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 100, 200, 75, 25 }, this);
@@ -45,8 +50,8 @@ bool SceneTitle::Start() {
 	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "sound", { 100, 250, 50, 25 }, this);
 	soundButton->TurnOFF();
 
-	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, this);
-	backFromSettingsButton->TurnOFF();
+	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, this);
+	backToTitle->TurnOFF();
 
 	checkboxTest = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 8, "Thing", { 100, 300, 50, 25 }, this);
 	checkboxTest->TurnOFF();
@@ -81,6 +86,7 @@ bool SceneTitle::Update(float dt) {
 		break;
 	case SceneTitle::CONTINUE:
 		// load save_file
+		app->LoadGameRequest();
 
 		break;
 	case SceneTitle::SETTINGS:
@@ -123,6 +129,9 @@ bool SceneTitle::Update(float dt) {
 bool SceneTitle::PostUpdate() {
 
 	app->render->DrawTexture(bgTexture, 0, 0);
+	if (withMenu) {
+		app->render->DrawTexture(menuBackground, 0, 0);
+	}
 	app->guiManager->Draw();
 
 	return true;
@@ -138,7 +147,7 @@ bool SceneTitle::CleanUp() {
 	app->guiManager->Clear(exitButton);
 
 	app->guiManager->Clear(soundButton);
-	app->guiManager->Clear(backFromSettingsButton);
+	app->guiManager->Clear(backToTitle);
 	app->guiManager->Clear(checkboxTest);
 	app->guiManager->Clear(musicVolumeSlider);
 
@@ -173,13 +182,25 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		exitButton->TurnOFF();
 
 		soundButton->TurnON();
-		backFromSettingsButton->TurnON();
+		backToTitle->TurnON();
 		checkboxTest->TurnON();
 		musicVolumeSlider->TurnON();
+
+		withMenu = true;
 
 		break;
 	case 4:
 		stateScene = CREDITS;
+
+		playButton->TurnOFF();
+		continueButton->TurnOFF();
+		settingsButton->TurnOFF();
+		creditsButton->TurnOFF();
+		exitButton->TurnOFF();
+
+		backToTitle->TurnON();
+
+		withMenu = true;
 
 		break;
 	case 5:
@@ -199,9 +220,11 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		exitButton->TurnON();
 
 		soundButton->TurnOFF();
-		backFromSettingsButton->TurnOFF();
+		backToTitle->TurnOFF();
 		checkboxTest->TurnOFF();
 		musicVolumeSlider->TurnOFF();
+
+		withMenu = false;
 
 		break;
 	case 8:
