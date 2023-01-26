@@ -16,12 +16,12 @@ public:
 	bool Update(float dt);
 	bool Draw(Render* render);
 
-	virtual void TurnON() {
+	void TurnON() {
 		toDraw = true;
 		canClick = true;
 	}
 
-	virtual void TurnOFF() {
+	void TurnOFF() {
 		toDraw = false;
 		canClick = false;
 	}
