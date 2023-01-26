@@ -47,7 +47,7 @@
 	<enemy x="2144" y="320" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="0"/>
 	<enemy x="3296" y="160" texturepath="Assets/Textures/flying_blue_enemy_spritesheet.png" type="0"/>
 	<enemy x="2784" y="352" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
-	<coin x="368" y="400" texturepath="Assets/Textures/carrot.png" />
+	<carrot x="368" y="400" texturepath="Assets/Textures/carrot.png" />
 	<extralife x="600" y="400" texturepath="Assets/Textures/heart.png" />
   <extralife x="900" y="400" texturepath="Assets/Textures/heart.png" />
   <checkpoint x="512" y="480" texturepath="Assets/Textures/checkpoint.png" />

@@ -1,5 +1,5 @@
-#ifndef __COIN_H__
-#define __COIN_H__
+#ifndef __CARROT_H__
+#define __CARROT_H__
 
 #include "Entity.h"
 #include "Point.h"
@@ -7,12 +7,12 @@
 
 struct SDL_Texture;
 
-class Coin : public Entity
+class Carrot : public Entity
 {
 public:
 
-	Coin();
-	virtual ~Coin();
+	Carrot();
+	virtual ~Carrot();
 
 	bool Awake();
 
@@ -24,7 +24,7 @@ public:
 
 	void OnCollision(PhysBody* otherBody);
 
-	bool CheckPickingCoin();
+	bool CheckPickingCarrot();
 
 public:
 
@@ -40,4 +40,4 @@ private:
 
 };
 
-#endif // __COIN_H__
+#endif // __CARROT_H__

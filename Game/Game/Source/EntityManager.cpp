@@ -2,7 +2,7 @@
 #include "Bullet.h"
 #include "Player.h"
 #include "Goal.h"
-#include "Coin.h"
+#include "Carrot.h"
 #include "Enemies.h"
 #include "WalkingEnemy.h"
 #include "FlyingEnemy.h"
@@ -100,8 +100,8 @@ Entity* EntityManager::CreateEntity(EntityType type)
 	case EntityType::GOAL:
 		entity = new Goal;
 		break;
-	case EntityType::COIN:
-		entity = new Coin();
+	case EntityType::CARROT:
+		entity = new Carrot();
 		break;
 	case EntityType::WALKINGENEMY:
 		entity = new WalkingEnemy();

@@ -51,10 +51,10 @@ bool LevelOne::Awake(pugi::xml_node& config)
 		enemyCount++;
 	}
 
-	for (pugi::xml_node CoinNode = config.child("coin"); CoinNode; CoinNode = CoinNode.next_sibling("coin")) {
+	for (pugi::xml_node CarrotNode = config.child("carrot"); CarrotNode; CarrotNode = CarrotNode.next_sibling("carrot")) {
 
-		coinsParameters[coinsCount] = CoinNode;
-		coinsCount++;
+		carrotsParameters[carrotsCount] = CarrotNode;
+		carrotsCount++;
 	}
 	
 	for (pugi::xml_node LivesNode = config.child("extralife"); LivesNode; LivesNode = LivesNode.next_sibling("extralife")) {
@@ -132,13 +132,13 @@ bool LevelOne::Start()
 		enemy[i]->Start();
 	}
 
-	coinsPicked = 0;
+	carrotsPicked = 0;
 
-	for (int i = 0; i < coinsCount; ++i) {
-		coins[i] = (Coin*)app->entityManager->CreateEntity(EntityType::COIN);
-		coins[i]->active = true;
-		coins[i]->parameters = coinsParameters[i];
-		coins[i]->Start();
+	for (int i = 0; i < carrotsCount; ++i) {
+		carrots[i] = (Carrot*)app->entityManager->CreateEntity(EntityType::CARROT);
+		carrots[i]->active = true;
+		carrots[i]->parameters = carrotsParameters[i];
+		carrots[i]->Start();
 	}
 
 	for (int i = 0; i < extraLivesCount; ++i) {
@@ -166,7 +166,7 @@ bool LevelOne::Start()
 		livesUI[i]->SetTexture(lifeTexture);
 	}
 
-	coinsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", {600, 32, 32, 32}, app->guiManager);
+	carrotsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", {600, 32, 32, 32}, app->guiManager);
 
 	resumeButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { 100, 100, 75, 25 }, this);
 	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { 100, 150, 75, 25 }, this);
@@ -285,10 +285,10 @@ bool LevelOne::Update(float dt)
 		}
 	}
 
-	for (int i = 0; i < coinsCount; i++) {
-		if (coins != nullptr) {
-			if (coins[i]->CheckPickingCoin()) {
-				coinsPicked++;
+	for (int i = 0; i < carrotsCount; i++) {
+		if (carrots != nullptr) {
+			if (carrots[i]->CheckPickingCarrot()) {
+				carrotsPicked++;
 			}
 		}
 	}
@@ -420,9 +420,9 @@ bool LevelOne::Update(float dt)
 		livesUI[i]->toDraw = false;
 	}
 	
-	std::string stringCoinsPicked = std::to_string(coinsPicked);
+	std::string stringCarrotsPicked = std::to_string(carrotsPicked);
 
-	coinsCollectedText->SetText(stringCoinsPicked.c_str());
+	carrotsCollectedText->SetText(stringCarrotsPicked.c_str());
 
 	return true;
 }
@@ -522,7 +522,7 @@ bool LevelOne::CleanUp()
 	LOG("Freeing scene");
 	app->entityManager->DestroyAllActiveEntities();
 
-	app->guiManager->Clear(coinsCollectedText);
+	app->guiManager->Clear(carrotsCollectedText);
 	for (int i = 0; i < MAX_LIVESDRAWN; ++i) {
 		app->guiManager->Clear(livesUI[i]);
 	}

@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Player.h"
 #include "Goal.h"
-#include "Coin.h"
+#include "Carrot.h"
 #include "ExtraLife.h"
 #include "Enemies.h"
 #include "List.h"
@@ -15,7 +15,7 @@
 
 #define MAX_ENEMIES 25
 
-#define MAX_COINS 20
+#define MAX_CARROTS 20
 
 #define MAX_EXTRALIVES 5
 
@@ -57,16 +57,16 @@ public:
 	pugi::xml_node playerParameters;
 	pugi::xml_node goalParameters;
 	pugi::xml_node enemyParameters[MAX_ENEMIES];
-	pugi::xml_node coinsParameters[MAX_COINS];
+	pugi::xml_node carrotsParameters[MAX_CARROTS];
 	pugi::xml_node extraLivesParameters[MAX_EXTRALIVES];
 
 	Player* player;
 	Goal* goal;
 	Enemy* enemy[MAX_ENEMIES];
-	Coin* coins[MAX_COINS];
+	Carrot* carrots[MAX_CARROTS];
 	ExtraLife* extraLives[MAX_EXTRALIVES];
 
-	int coinsPicked;
+	int carrotsPicked;
 
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
@@ -92,7 +92,7 @@ private:
 
 	int enemyCount = 0;
 
-	int coinsCount = 0;
+	int carrotsCount = 0;
 
 	int extraLivesCount = 0;
 
@@ -100,7 +100,7 @@ private:
 
 	GuiImage* livesUI[MAX_LIVESDRAWN];
 
-	GuiText* coinsCollectedText;
+	GuiText* carrotsCollectedText;
 
 	// pause ui
 	GuiButton* resumeButton;

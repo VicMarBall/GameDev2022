@@ -38,7 +38,7 @@
     <ClCompile Include="Source\Goal.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Coin.cpp">
+    <ClCompile Include="Source\Carrot.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
@@ -78,6 +78,12 @@
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Checkpoint.cpp">
       <Filter>Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiCheckbox.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GuiSlider.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +148,7 @@
     <ClInclude Include="Source\Goal.h">
       <Filter>Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Coin.h">
+    <ClInclude Include="Source\Carrot.h">
       <Filter>Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
@@ -189,6 +195,12 @@
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Checkpoint.h">
       <Filter>Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiCheckbox.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GuiSlider.h">
+      <Filter>UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

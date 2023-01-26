@@ -9,7 +9,7 @@
 enum class EntityType
 {
 	PLAYER,
-	COIN,
+	CARROT,
 	GOAL,
 	WALKINGENEMY,
 	FLYINGENEMY,

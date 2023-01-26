@@ -10,7 +10,7 @@
 #include "Point.h"
 #include "Physics.h"
 
-ExtraLife::ExtraLife() : Entity(EntityType::COIN)
+ExtraLife::ExtraLife() : Entity(EntityType::CARROT)
 {
 	name.Create("extralife");
 }
@@ -60,7 +60,7 @@ void ExtraLife::OnCollision(PhysBody* otherBody)
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::PLAYER) {
 			isPicked = true;
-			LOG("COIN PICKED :D");
+			LOG("CARROT PICKED :D");
 		}
 	}
 }

@@ -1,4 +1,4 @@
-#include "Coin.h"
+#include "Carrot.h"
 #include "App.h"
 #include "Textures.h"
 #include "Audio.h"
@@ -10,19 +10,19 @@
 #include "Point.h"
 #include "Physics.h"
 
-Coin::Coin() : Entity(EntityType::COIN)
+Carrot::Carrot() : Entity(EntityType::CARROT)
 {
-	name.Create("coin");
+	name.Create("carrot");
 }
 
-Coin::~Coin() {}
+Carrot::~Carrot() {}
 
-bool Coin::Awake() {
+bool Carrot::Awake() {
 
 	return true;
 }
 
-bool Coin::Start() {
+bool Carrot::Start() {
 
 	//initilize textures
 	position.x = parameters.attribute("x").as_int();
@@ -41,7 +41,7 @@ bool Coin::Start() {
 	return true;
 }
 
-bool Coin::Update()
+bool Carrot::Update()
 {
 	// L07 TODO 4: Add a physics to an item - update the position of the object from the physics.
 	pBody->GetPosition(position.x, position.y);
@@ -50,22 +50,22 @@ bool Coin::Update()
 	return true;
 }
 
-bool Coin::CleanUp()
+bool Carrot::CleanUp()
 {
 	return true;
 }
 
-void Coin::OnCollision(PhysBody* otherBody)
+void Carrot::OnCollision(PhysBody* otherBody)
 {
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::PLAYER) {
 			isPicked = true;
-			LOG("COIN PICKED :D");
+			LOG("CARROT PICKED :D");
 		}
 	}
 }
 
-bool Coin::CheckPickingCoin()
+bool Carrot::CheckPickingCarrot()
 {
 	if (active && isPicked) {
 		active = false;
