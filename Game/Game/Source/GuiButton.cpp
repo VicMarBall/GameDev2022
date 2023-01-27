@@ -70,7 +70,7 @@ bool GuiButton::Draw(Render* render)
 {
 	//L15: DONE 4: Draw the button according the GuiControl State
 
-	switch (state)
+	/*switch (state)
 	{
 	case GuiControlState::DISABLED:
 		render->DrawRectangle(bounds, 200, 200, 200, 255, true, false);
@@ -84,9 +84,32 @@ bool GuiButton::Draw(Render* render)
 	case GuiControlState::PRESSED:
 		render->DrawRectangle(bounds, 0, 255, 0, 255, true, false);
 		break;
+	}*/
+
+	if (texture != nullptr) {
+		SDL_Rect* section;
+		switch (state)
+		{
+		case GuiControlState::DISABLED:
+			section = new SDL_Rect{ 0, 0, bounds.w, bounds.h};
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			break;
+		case GuiControlState::NORMAL:
+			section = new SDL_Rect{ bounds.w, 0, bounds.w, bounds.h };
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			break;
+		case GuiControlState::FOCUSED:
+			section = new SDL_Rect{ bounds.w * 2, 0, bounds.w, bounds.h };
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			break;
+		case GuiControlState::PRESSED:
+			section = new SDL_Rect{ bounds.w * 3, 0, bounds.w, bounds.h };
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			break;
+		}
 	}
 
-	app->render->DrawText(text.GetString(), bounds.x, bounds.y, bounds.w, bounds.h, {255,255,255});
+	app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y + 2, bounds.w - 4, bounds.h - 4, {255,255,255});
 
 	return false;
 }

@@ -38,6 +38,7 @@ bool SceneTitle::Start() {
 	withMenu = false;
 
 	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 100, 100, 100, 50 }, this);
+	playButton->texture = app->tex->Load("Assets/Textures/play_button.png");
 
 	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 100, 200, 75, 25 }, this);
 	
