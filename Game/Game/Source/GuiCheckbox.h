@@ -40,7 +40,9 @@ public:
 
 	SDL_Rect box;
 
-	uint audioFxId;
+	uint hoverSFX;
+	uint pressSFX;
+
 };
 
 #endif // __GUIBUTTON_H__

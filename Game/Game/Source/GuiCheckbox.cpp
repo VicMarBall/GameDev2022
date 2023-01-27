@@ -18,8 +18,6 @@ GuiCheckbox::GuiCheckbox(uint32 id, SDL_Rect bounds, const char* text) : GuiCont
 	else {
 		box = { bounds.x, bounds.y, bounds.w, bounds.w };
 	}
-
-	audioFxId = app->audio->LoadFx("Assets/Audio/Fx/retro-video-game-coin-pickup-38299.ogg");
 }
 
 GuiCheckbox::~GuiCheckbox()
@@ -29,6 +27,8 @@ GuiCheckbox::~GuiCheckbox()
 
 bool GuiCheckbox::Update(float dt)
 {
+	GuiControlState previousState = state;
+
 	if (!canClick) {
 		state = GuiControlState::DISABLED;
 	}
@@ -46,16 +46,18 @@ bool GuiCheckbox::Update(float dt)
 		// L15: DONE 3: Update the state of the GUiButton according to the mouse position
 		app->input->GetMousePosition(mouseX, mouseY);
 
-		GuiControlState previousState = state;
 
 		// I'm inside the limitis of the button
 		if (mouseX >= bounds.x && mouseX <= bounds.x + box.w &&
 			mouseY >= bounds.y && mouseY <= bounds.y + box.h) {
 
 			state = GuiControlState::FOCUSED;
+			if (previousState == GuiControlState::NORMAL || previousState == GuiControlState::SELECTED) {
+				app->audio->PlayFx(hoverSFX);
+			}
+
 			if (previousState != state) {
 				LOG("Change state from %d to %d", previousState, state);
-				app->audio->PlayFx(audioFxId);
 			}
 
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT) {
@@ -64,6 +66,7 @@ bool GuiCheckbox::Update(float dt)
 
 			//
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP) {
+				app->audio->PlayFx(pressSFX);
 				SwitchCheck();
 				NotifyObserver();
 			}

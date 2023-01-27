@@ -22,8 +22,6 @@ GuiSlider::GuiSlider(uint32 id, SDL_Rect bounds, const char* text, int sliderLen
 	}
 
 	valueSlider = 0;
-
-	audioFxId = app->audio->LoadFx("Assets/Audio/Fx/retro-video-game-coin-pickup-38299.ogg");
 }
 
 GuiSlider::~GuiSlider()
@@ -33,6 +31,8 @@ GuiSlider::~GuiSlider()
 
 bool GuiSlider::Update(float dt)
 {
+	GuiControlState previousState = state;
+
 	if (!canClick) {
 		state = GuiControlState::DISABLED;
 	}
@@ -50,16 +50,19 @@ bool GuiSlider::Update(float dt)
 		// L15: DONE 3: Update the state of the GUiButton according to the mouse position
 		app->input->GetMousePosition(mouseX, mouseY);
 
-		GuiControlState previousState = state;
 
 		// I'm inside the limitis of the button
 		if (mouseX >= box.x && mouseX <= box.x + box.w &&
 			mouseY >= box.y && mouseY <= box.y + box.h) {
 
 			state = GuiControlState::FOCUSED;
+
+			if (previousState == GuiControlState::NORMAL) {
+				app->audio->PlayFx(hoverSFX);
+			}
+
 			if (previousState != state) {
 				LOG("Change state from %d to %d", previousState, state);
-				app->audio->PlayFx(audioFxId);
 			}
 
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT) {
@@ -71,7 +74,7 @@ bool GuiSlider::Update(float dt)
 
 			//
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP) {
-				//NotifyObserver();
+				app->audio->PlayFx(pressSFX);
 			}
 		}
 		else {

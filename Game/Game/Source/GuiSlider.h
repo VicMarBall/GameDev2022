@@ -50,7 +50,8 @@ public:
 
 	SDL_Rect box;
 
-	uint audioFxId;
+	uint hoverSFX;
+	uint pressSFX;
 };
 
 #endif // __GUISLIDER_H__

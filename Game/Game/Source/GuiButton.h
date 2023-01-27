@@ -32,7 +32,8 @@ public:
 	bool canClick = true;
 	bool drawBasic = false;
 
-	uint audioFxId;
+	uint hoverSFX;
+	uint pressSFX;
 };
 
 #endif // __GUIBUTTON_H__
