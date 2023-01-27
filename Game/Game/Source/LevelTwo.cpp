@@ -462,6 +462,7 @@ bool LevelTwo::LoadState(pugi::xml_node& data)
 {
 	if (data.child("state").attribute("state").as_bool()) {
 		if (!active) {
+			app->LoadGameRequest();
 			return true;
 		}
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());

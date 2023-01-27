@@ -9,23 +9,37 @@
 	<scene_intro />
 	<scene_title />
 	<level_one>
-		<state state="true" />
-		<player x="490" y="468" />
-		<enemies>
-			<enemy x="606" y="495" active="true" />
-			<enemy x="1893" y="111" active="true" />
-			<enemy x="2217" y="655" active="true" />
-			<enemy x="3177" y="431" active="true" />
-			<enemy x="3515" y="591" active="true" />
-			<enemy x="967" y="455" active="true" />
-			<enemy x="2152" y="327" active="true" />
-			<enemy x="3304" y="168" active="true" />
-			<enemy x="2792" y="359" active="true" />
-		</enemies>
+		<state state="false" />
 	</level_one>
 	<level_transition />
 	<level_two>
-		<state state="false" />
+		<state state="true" />
+		<player x="160" y="143" />
+		<enemies>
+			<enemy x="594" y="431" active="true" />
+			<enemy x="860" y="367" active="true" />
+			<enemy x="1247" y="367" active="true" />
+			<enemy x="2033" y="527" active="true" />
+			<enemy x="3355" y="751" active="true" />
+			<enemy x="3504" y="463" active="true" />
+			<enemy x="3972" y="495" active="true" />
+			<enemy x="519" y="295" active="true" />
+			<enemy x="871" y="136" active="true" />
+			<enemy x="1479" y="232" active="true" />
+			<enemy x="1767" y="423" active="true" />
+			<enemy x="2696" y="423" active="true" />
+			<enemy x="2984" y="583" active="true" />
+			<enemy x="3783" y="391" active="true" />
+			<enemy x="1127" y="168" active="true" />
+			<enemy x="2280" y="519" active="true" />
+			<enemy x="2536" y="327" active="true" />
+			<enemy x="2696" y="679" active="true" />
+			<enemy x="2824" y="455" active="true" />
+			<enemy x="3016" y="743" active="true" />
+			<enemy x="3048" y="391" active="true" />
+			<enemy x="3240" y="487" active="true" />
+			<enemy x="3304" y="615" active="true" />
+		</enemies>
 	</level_two>
 	<death_screen />
 	<win_screen />
@@ -34,6 +48,6 @@
 	<map />
 	<pathfinding />
 	<renderer>
-		<camera x="-150" y="-207" />
+		<camera x="0" y="0" />
 	</renderer>
 </save_state>

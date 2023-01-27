@@ -44,6 +44,8 @@ public:
 
 	bool OnGuiMouseClickEvent(GuiControl* control);
 
+	bool LoadState(pugi::xml_node& data);
+
 	enum StateTitleScene {
 		TITLE,
 		PLAY,

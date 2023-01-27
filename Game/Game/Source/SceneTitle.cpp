@@ -314,3 +314,13 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 
 	return false;
 }
+
+bool SceneTitle::LoadState(pugi::xml_node& data)
+{
+	if (active) {
+		app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+		app->LoadGameRequest();
+	}
+	
+	return true;
+}
