@@ -109,7 +109,21 @@ bool GuiButton::Draw(Render* render)
 		}
 	}
 
-	app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y, bounds.w - 4, bounds.h - 4, {255,255,255});
+	switch (state)
+	{
+	case GuiControlState::DISABLED:
+		app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y, bounds.w - 4, bounds.h - 4, { 255,255,255 });
+		break;
+	case GuiControlState::NORMAL:
+		app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y, bounds.w - 4, bounds.h - 4, { 255,255,255 });
+		break;
+	case GuiControlState::FOCUSED:
+		app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y, bounds.w - 4, bounds.h - 4, { 255,255,255 });
+		break;
+	case GuiControlState::PRESSED:
+		app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y + 4, bounds.w - 4, bounds.h - 4, { 255,255,255 });
+		break;
+	}
 
 	return false;
 }
