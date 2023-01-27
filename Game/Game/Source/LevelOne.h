@@ -71,7 +71,7 @@ public:
 	Carrot* carrots[MAX_CARROTS];
 	ExtraLife* extraLives[MAX_EXTRALIVES];
 
-	int carrotsPicked;
+
 
 	bool LoadState(pugi::xml_node&);
 	bool SaveState(pugi::xml_node&);
@@ -107,6 +107,7 @@ private:
 
 	GuiImage* livesUI[MAX_LIVESDRAWN];
 
+	int carrotsPicked;
 	GuiText* carrotsCollectedText;
 
 	float timer;

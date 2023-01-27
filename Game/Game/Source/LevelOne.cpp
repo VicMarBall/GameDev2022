@@ -315,6 +315,27 @@ bool LevelOne::Update(float dt)
 			}
 		}
 	}
+	if (app->moveInCheckpoints()) {
+		for (int i = 0; i < checkpointCount; i++) {
+			if (checkpoint[i]->CheckContact()) {
+				if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN) {
+					int j = i + 1;
+					if (j = checkpointCount) {
+						j = 0;
+					}
+					player->SetPosition(checkpoint[j]->position.x, checkpoint[j]->position.y);
+				}
+				if (app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN) {
+					int j = i + 1;
+					if (j = checkpointCount) {
+						j = 0;
+					}
+					player->SetPosition(checkpoint[j]->position.x, checkpoint[j]->position.y);
+				}
+			}
+		}
+	}
+
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
@@ -485,6 +506,7 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 			return true;
 		}
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
+		player->SetLives(data.child("player").attribute("lives").as_int());
 
 		int i = 0;
 		for (pugi::xml_node EnemyNode = data.child("enemies").child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
@@ -509,6 +531,64 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 			}
 			i++;
 		}
+
+		i = 0;
+		for (pugi::xml_node CheckpointNode = data.child("checkpoints").child("checkpoint"); CheckpointNode; CheckpointNode = CheckpointNode.next_sibling("checkpoint")) {
+			if (CheckpointNode.attribute("active").as_bool()) {
+				if (checkpoint[i]->active) {
+					checkpoint[i]->isPicked = true;
+				}
+			}
+			else {
+				if (checkpoint[i]->active) {
+					checkpoint[i]->isPicked = false;
+				}
+			}
+			i++;
+		}
+
+		i = 0;
+		for (pugi::xml_node CarrotNode = data.child("carrots").child("carrot"); CarrotNode; CarrotNode = CarrotNode.next_sibling("carrot")) {
+			if (CarrotNode.attribute("active").as_bool()) {
+				if (!carrots[i]->active) {
+
+					carrots[i] = (Carrot*)app->entityManager->CreateEntity(EntityType::CARROT);
+
+
+					carrots[i]->active = true;
+					carrots[i]->parameters = carrotsParameters[i];
+					carrots[i]->Start();
+				}
+			}
+			else {
+				if (carrots[i]->active) {
+					carrots[i]->isPicked = true;
+				}
+			}
+			i++;
+		}
+		carrotsPicked = data.child("carrots").attribute("picked").as_int();
+
+		i = 0;
+		for (pugi::xml_node ExtraLifeNode = data.child("lives").child("extralife"); ExtraLifeNode; ExtraLifeNode = ExtraLifeNode.next_sibling("extralife")) {
+			if (ExtraLifeNode.attribute("active").as_bool()) {
+				if (!extraLives[i]->active) {
+					extraLives[i] = (ExtraLife*)app->entityManager->CreateEntity(EntityType::EXTRALIFE);
+					extraLives[i]->active = true;
+					extraLives[i]->parameters = extraLivesParameters[i];
+					extraLives[i]->Start();
+				}
+			
+			}
+			else {
+				if (extraLives[i]->active) {
+					extraLives[i]->isPicked;
+				}
+			}
+			i++;
+		}
+
+		timer = data.child("timer").attribute("time_spent").as_float();
 	}
 	else {
 		if (active) {
@@ -532,6 +612,7 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 
 		play.append_attribute("x") = player->position.x + 16;
 		play.append_attribute("y") = player->position.y + 16;
+		play.append_attribute("lives") = player->GetRemainingLives();
 
 
 		pugi::xml_node enem = data.append_child("enemies");
@@ -544,6 +625,30 @@ bool LevelOne::SaveState(pugi::xml_node& data)
 
 			curEnem.append_attribute("active") = enemy[i]->active;
 		}
+
+		pugi::xml_node carr = data.append_child("carrots");
+		for (int i = 0; i < carrotsCount; i++) {
+			pugi::xml_node curCarr = carr.append_child("carrot");
+			curCarr.append_attribute("active") = carrots[i]->active;
+		}
+		carr.append_attribute("picked") = carrotsPicked;
+
+		pugi::xml_node eLives = data.append_child("lives");
+		for (int i = 0; i < extraLivesCount; i++) {
+			pugi::xml_node curLive = eLives.append_child("extralife");
+			curLive.append_attribute("active") = extraLives[i]->active;
+		}
+
+		pugi::xml_node checks = data.append_child("checkpoints");
+		for (int i = 0; i < checkpointCount; i++) {
+			pugi::xml_node curCheck = checks.append_child("checkpoint");
+
+
+			curCheck.append_attribute("active") = checkpoint[i]->CheckPicking();
+		}
+
+		pugi::xml_node timing = data.append_child("timer");
+		timing.append_attribute("time_spent") = timer;
 
 	}
 	else {

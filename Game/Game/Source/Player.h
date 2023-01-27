@@ -59,6 +59,10 @@ public:
 	int GetRemainingLives() {
 		return lives;
 	}
+
+	void SetLives(int amount) {
+		lives = amount;
+	}
 	
 	void PauseMovement();
 
