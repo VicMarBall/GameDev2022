@@ -115,6 +115,7 @@ public:
 	GuiManager* guiManager;
 
 	bool fromTitle;
+	bool fromCheckpoint;
 	int lastCheckpoint;
 
 private:

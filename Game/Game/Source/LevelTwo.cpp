@@ -111,6 +111,7 @@ bool LevelTwo::Start()
 	player->CanShoot(true);
 	player->Start();
 
+
 	goal = (Goal*)app->entityManager->CreateEntity(EntityType::GOAL);
 	goal->active = true;
 	goal->parameters = goalParameters;
@@ -150,6 +151,11 @@ bool LevelTwo::Start()
 		extraLives[i]->active = true;
 		extraLives[i]->parameters = extraLivesParameters[i];
 		extraLives[i]->Start();
+	}
+
+	if (app->fromCheckpoint) {
+		player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+		app->fromCheckpoint = false;
 	}
 
 	app->render->camera.x = camX;
@@ -317,15 +323,44 @@ bool LevelTwo::Update(float dt)
 			app->lastCheckpoint++;
 			if (app->lastCheckpoint >= 6) {
 				app->lastCheckpoint = 3;
+				
 			}
-			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
 			app->lastCheckpoint--;
 			if (app->lastCheckpoint < 3) {
 				app->lastCheckpoint = 5;
 			}
-			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint-3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+		}
+
+		if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
+			app->lastCheckpoint = 0;
+			app->fromCheckpoint = true;
+			app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+		}
+		if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
+			app->lastCheckpoint = 1;
+			app->fromCheckpoint = true;
+			app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+		}
+		if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
+			app->lastCheckpoint = 2;
+			app->fromCheckpoint = true;
+			app->fade->FadeToBlack(this, (Module*)app->level_one, 0);
+		}
+		if (app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) {
+			app->lastCheckpoint = 3;
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+		}
+		if (app->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN) {
+			app->lastCheckpoint = 4;
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+		}
+		if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN) {
+			app->lastCheckpoint = 5;
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
 		}
 
 	}
