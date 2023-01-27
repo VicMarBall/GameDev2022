@@ -437,8 +437,8 @@ bool LevelOne::Update(float dt)
 	}
 	
 	std::string stringCarrotsPicked = std::to_string(carrotsPicked);
-
 	carrotsCollectedText->SetText(stringCarrotsPicked.c_str());
+	carrotsCollectedText->AdaptWidth(20, stringCarrotsPicked.length());
 
 	std::string stringTimer = std::to_string((int)timer);
 	timerText->SetText(stringTimer.c_str());
