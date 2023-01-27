@@ -371,6 +371,21 @@ void App::SaveGameRequest()
 	saveGameRequested = true;
 }
 
+bool App::LoadFileExists()
+{
+	bool ret = true;
+
+	pugi::xml_document gameStateFile;
+	pugi::xml_parse_result result = gameStateFile.load_file("save_game.xml");
+
+	if (result == NULL) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
 
 // L02: DONE 5: Implement the method LoadFromFile() to actually load a xml file
 // then call all the modules to load themselves
