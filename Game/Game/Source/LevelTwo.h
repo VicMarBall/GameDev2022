@@ -22,6 +22,8 @@
 
 #define MAX_LIVESDRAWN 5
 
+#define MAX_CHECKPOINTS 3
+
 struct SDL_Texture;
 
 class LevelTwo : public Module
@@ -57,14 +59,14 @@ public:
 	//L02: DONE 3: Declare a Player attribute
 	pugi::xml_node playerParameters;
 	pugi::xml_node goalParameters;
-	pugi::xml_node checkpointParameters;
+	pugi::xml_node checkpointParameters[MAX_CHECKPOINTS];
 	pugi::xml_node enemyParameters[MAX_ENEMIES];
 	pugi::xml_node carrotsParameters[MAX_CARROTS];
 	pugi::xml_node extraLivesParameters[MAX_EXTRALIVES];
 
 	Player* player;
 	Goal* goal;
-	Checkpoint* checkpoint;
+	Checkpoint* checkpoint[MAX_CHECKPOINTS];
 	Enemy* enemy[MAX_ENEMIES];
 	Carrot* carrots[MAX_CARROTS];
 	ExtraLife* extraLives[MAX_EXTRALIVES];
@@ -98,6 +100,8 @@ private:
 	int carrotsCount = 0;
 
 	int extraLivesCount = 0;
+
+	int checkpointCount = 0;
 
 	SDL_Texture* lifeTexture;
 

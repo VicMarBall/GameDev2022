@@ -71,8 +71,18 @@ void Checkpoint::OnCollision(PhysBody* otherBody)
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::PLAYER) {
 			isPicked = true;
+			inContact = true;
 			app->SaveGameRequest();
 			LOG("Checkpoint :D");
+		}
+	}
+}
+
+void Checkpoint::EndCollision(PhysBody* otherBody)
+{
+	if (otherBody->entity != nullptr) {
+		if (otherBody->entity->type == EntityType::PLAYER) {
+			inContact = false;
 		}
 	}
 }
@@ -83,4 +93,9 @@ bool Checkpoint::CheckPicking()
 		return true;
 	}
 	return false;
+}
+
+bool Checkpoint::CheckContact()
+{
+	return inContact;
 }

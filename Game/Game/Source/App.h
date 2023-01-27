@@ -67,6 +67,8 @@ public:
 	void SaveGameRequest() ;
 	bool LoadFromFile();
 	bool SaveToFile() ;
+	bool moveInCheckpoints();
+	void checkpointState();
 
 private:
 
@@ -134,6 +136,8 @@ private:
 	// L03: DONE 1: Create control variables to control that the real Load and Save happens at the end of the frame
     bool saveGameRequested;
 	bool loadGameRequested;
+
+	bool moveCheckpoints = false;
 
 	// L13: TODO 4: Calculate some timing measures
 // required variables are provided:

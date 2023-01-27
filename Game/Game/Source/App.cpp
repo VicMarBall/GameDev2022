@@ -427,3 +427,18 @@ bool App::SaveToFile()
 
 	return ret;
 }
+
+bool App::moveInCheckpoints()
+{
+	return moveCheckpoints;
+}
+
+void App::checkpointState()
+{
+	if (moveCheckpoints) {
+		moveCheckpoints = false;
+	}
+	else {
+		moveCheckpoints = true;
+	}
+}

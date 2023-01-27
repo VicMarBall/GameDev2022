@@ -24,14 +24,18 @@ public:
 
 	void OnCollision(PhysBody* otherBody);
 
+	void EndCollision(PhysBody* otherBody);
+
 	bool CheckPicking();
+	bool CheckContact();
 
 public:
 
-	bool isPicked = false;
+
 
 private:
-
+	bool isPicked = false;
+	bool inContact = false;
 	SDL_Texture* texture;
 	const char* texturePath;
 

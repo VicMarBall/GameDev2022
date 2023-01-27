@@ -41,7 +41,11 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 
 	goalParameters = config.child("goal");
 
-	checkpointParameters = config.child("checkpoint");
+	for (pugi::xml_node CheckpointNode = config.child("checkpoint"); CheckpointNode; CheckpointNode = CheckpointNode.next_sibling("checkpoint")) {
+
+		checkpointParameters[checkpointCount] = CheckpointNode;
+		checkpointCount++;
+	}
 
 	for (pugi::xml_node EnemyNode = config.child("enemy"); EnemyNode; EnemyNode = EnemyNode.next_sibling("enemy")) {
 
@@ -112,10 +116,12 @@ bool LevelTwo::Start()
 	goal->parameters = goalParameters;
 	goal->Start();
 
-	checkpoint = (Checkpoint*)app->entityManager->CreateEntity(EntityType::CHECKPOINT);
-	checkpoint->active = true;
-	checkpoint->parameters = checkpointParameters;
-	checkpoint->Start();
+	for (int i = 0; i < checkpointCount; ++i) {
+		checkpoint[i] = (Checkpoint*)app->entityManager->CreateEntity(EntityType::CHECKPOINT);
+		checkpoint[i]->active = true;
+		checkpoint[i]->parameters = checkpointParameters[i];
+		checkpoint[i]->Start();
+	}
 
 	for (int i = 0; i < enemyCount; ++i) {
 		if (enemyParameters[i].attribute("type").as_int() == 0) {
@@ -331,6 +337,9 @@ bool LevelTwo::Update(float dt)
 	if (app->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		app->LoadGameRequest();
 
+	if (app->input->GetKey(SDL_SCANCODE_F7) == KEY_DOWN)
+		app->checkpointState();
+
 	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
 		if (app->guiManager->debug) {
 			app->guiManager->debug = false;
@@ -461,12 +470,13 @@ bool LevelTwo::PostUpdate()
 bool LevelTwo::LoadState(pugi::xml_node& data)
 {
 	if (data.child("state").attribute("state").as_bool()) {
-		if (app->fromTitle) {
-			app->fromTitle = false;
-			app->fade->FadeToBlack((Module*)app->scene_title, this, 30);
-			app->LoadGameRequest();
-		}
+
 		if (!active) {
+			if (app->fromTitle) {
+				app->fromTitle = false;
+				app->fade->FadeToBlack((Module*)app->scene_title, this, 0);
+				app->LoadGameRequest();
+			}
 			return true;
 		}
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());
