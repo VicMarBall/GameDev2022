@@ -70,6 +70,8 @@ public:
 	SDL_Texture* bigButtonTexture = nullptr;
 	SDL_Texture* longButtonTexture = nullptr;
 	SDL_Texture* shortButtonTexture = nullptr;
+	SDL_Texture* checkboxTexture = nullptr;
+
 
 	SDL_Texture* creditsText = nullptr;
 

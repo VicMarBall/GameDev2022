@@ -159,7 +159,7 @@ bool GuiSlider::DrawDebug(Render* render)
 		break;
 	case GuiControlState::FOCUSED:
 		render->DrawRectangle(sliderLine, 100, 100, 100, 100, true, false);
-		render->DrawRectangle(box, 0, 0, 20, 100, true, false);
+		render->DrawRectangle(box, 255, 0, 0, 100, true, false);
 		break;
 	case GuiControlState::PRESSED:
 		render->DrawRectangle(sliderLine, 100, 100, 100, 100, true, false);
