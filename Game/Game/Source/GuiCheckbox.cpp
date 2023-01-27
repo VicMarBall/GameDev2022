@@ -82,23 +82,69 @@ bool GuiCheckbox::Update(float dt)
 bool GuiCheckbox::Draw(Render* render)
 {
 	//L15: DONE 4: Draw the button according the GuiControl State
-	switch (state)
-	{
-	case GuiControlState::DISABLED:
-		render->DrawRectangle(box, 200, 200, 200, 255, true, false);
-		break;
-	case GuiControlState::NORMAL:
-		render->DrawRectangle(box, 0, 0, 255, 255, true, false);
-		break;
-	case GuiControlState::FOCUSED:
-		render->DrawRectangle(box, 0, 0, 20, 255, true, false);
-		break;
-	case GuiControlState::PRESSED:
-		render->DrawRectangle(box, 0, 255, 0, 255, true, false);
-		break;
-	case GuiControlState::SELECTED:
-		render->DrawRectangle(box, 255, 0, 0, 255, true, false);
-		break;
+	//switch (state)
+	//{
+	//case GuiControlState::DISABLED:
+	//	render->DrawRectangle(box, 200, 200, 200, 255, true, false);
+	//	break;
+	//case GuiControlState::NORMAL:
+	//	render->DrawRectangle(box, 0, 0, 255, 255, true, false);
+	//	break;
+	//case GuiControlState::FOCUSED:
+	//	render->DrawRectangle(box, 0, 0, 20, 255, true, false);
+	//	break;
+	//case GuiControlState::PRESSED:
+	//	render->DrawRectangle(box, 0, 255, 0, 255, true, false);
+	//	break;
+	//case GuiControlState::SELECTED:
+	//	render->DrawRectangle(box, 255, 0, 0, 255, true, false);
+	//	break;
+	//}
+
+	if (texture != nullptr) {
+		SDL_Rect* section;
+		if (checked) {
+			switch (state)
+			{
+			case GuiControlState::DISABLED:
+				section = new SDL_Rect{ 0, box.h, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			case GuiControlState::SELECTED:
+				section = new SDL_Rect{ box.w, box.h, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			case GuiControlState::FOCUSED:
+				section = new SDL_Rect{ box.w * 2, box.h, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			case GuiControlState::PRESSED:
+				section = new SDL_Rect{ box.w * 3, box.h, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			}
+		}
+		else {
+			switch (state)
+			{
+			case GuiControlState::DISABLED:
+				section = new SDL_Rect{ 0, 0, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			case GuiControlState::NORMAL:
+				section = new SDL_Rect{ box.w, 0, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			case GuiControlState::FOCUSED:
+				section = new SDL_Rect{ box.w * 2, 0, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			case GuiControlState::PRESSED:
+				section = new SDL_Rect{ box.w * 3, 0, box.w, box.h };
+				app->render->DrawTexture(texture, box.x, box.y, section);
+				break;
+			}
+		}
 	}
 
 	app->render->DrawText(text.GetString(), bounds.x + box.w, bounds.y, bounds.w, bounds.h, { 0, 0, 0 });
@@ -117,13 +163,13 @@ bool GuiCheckbox::DrawDebug(Render* render)
 		render->DrawRectangle(box, 0, 0, 255, 100, true, false);
 		break;
 	case GuiControlState::FOCUSED:
-		render->DrawRectangle(box, 0, 0, 20, 100, true, false);
+		render->DrawRectangle(box, 255, 0, 0, 100, true, false);
 		break;
 	case GuiControlState::PRESSED:
 		render->DrawRectangle(box, 0, 255, 0, 100, true, false);
 		break;
 	case GuiControlState::SELECTED:
-		render->DrawRectangle(box, 255, 0, 0, 100, true, false);
+		render->DrawRectangle(box, 0, 0, 255, 100, true, false);
 		break;
 	}
 

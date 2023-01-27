@@ -93,13 +93,17 @@ bool SceneTitle::Start() {
 	SFXVolumeSlider->hoverSFX = hoverSFX;
 	SFXVolumeSlider->pressSFX = pressSFX;
 
+	checkboxTexture = app->tex->Load("Assets/Textures/checkbox.png");
+
 	fullScreenCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 11, "FULLSCREEN", { 150, 250, 100, 25 }, this);
 	fullScreenCheckbox->TurnOFF();
+	fullScreenCheckbox->texture = checkboxTexture;
 	fullScreenCheckbox->hoverSFX = hoverSFX;
 	fullScreenCheckbox->pressSFX = pressSFX;
 
 	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "VSYNC", { 150, 300, 50, 25 }, this);
 	VSyncCheckbox->TurnOFF();
+	VSyncCheckbox->texture = checkboxTexture;
 	VSyncCheckbox->hoverSFX = hoverSFX;
 	VSyncCheckbox->pressSFX = pressSFX;
 
@@ -212,6 +216,7 @@ bool SceneTitle::CleanUp() {
 	app->tex->UnLoad(longButtonTexture);
 	app->tex->UnLoad(shortButtonTexture);
 	app->tex->UnLoad(creditsText);
+	app->tex->UnLoad(checkboxTexture);
 
 	return true;
 }
