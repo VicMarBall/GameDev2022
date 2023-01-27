@@ -120,6 +120,7 @@ bool LevelTwo::Start()
 		checkpoint[i] = (Checkpoint*)app->entityManager->CreateEntity(EntityType::CHECKPOINT);
 		checkpoint[i]->active = true;
 		checkpoint[i]->parameters = checkpointParameters[i];
+		checkpoint[i]->id = i + 3;
 		checkpoint[i]->Start();
 	}
 
@@ -309,6 +310,24 @@ bool LevelTwo::Update(float dt)
 				player->AddLife();
 			}
 		}
+	}
+
+	if (app->moveInCheckpoints()) {
+		if (app->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
+			app->lastCheckpoint++;
+			if (app->lastCheckpoint >= 6) {
+				app->lastCheckpoint = 3;
+			}
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+		}
+		if (app->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
+			app->lastCheckpoint--;
+			if (app->lastCheckpoint < 3) {
+				app->lastCheckpoint = 5;
+			}
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+		}
+
 	}
 
 	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {

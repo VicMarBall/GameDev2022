@@ -115,6 +115,7 @@ public:
 	GuiManager* guiManager;
 
 	bool fromTitle;
+	int lastCheckpoint;
 
 private:
 
@@ -139,6 +140,7 @@ private:
 	bool loadGameRequested;
 
 	bool moveCheckpoints = false;
+
 
 	// L13: TODO 4: Calculate some timing measures
 // required variables are provided:

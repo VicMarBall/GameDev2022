@@ -10,30 +10,31 @@
 	<scene_title />
 	<level_one>
 		<state state="true" />
-		<player x="490" y="495" lives="2" />
+		<player x="368" y="559" lives="3" />
 		<enemies>
-			<enemy x="455" y="551" active="true" />
-			<enemy x="1890" y="103" active="true" />
-			<enemy x="2254" y="647" active="true" />
-			<enemy x="3173" y="423" active="true" />
-			<enemy x="3492" y="583" active="true" />
-			<enemy x="960" y="448" active="true" />
-			<enemy x="2144" y="320" active="true" />
-			<enemy x="3296" y="160" active="true" />
-			<enemy x="2784" y="352" active="true" />
+			<enemy x="502" y="472" active="true" />
+			<enemy x="1878" y="88" active="true" />
+			<enemy x="2294" y="568" active="true" />
+			<enemy x="3190" y="408" active="true" />
+			<enemy x="3574" y="568" active="true" />
+			<enemy x="952" y="440" active="true" />
+			<enemy x="2136" y="312" active="true" />
+			<enemy x="3288" y="152" active="true" />
+			<enemy x="2776" y="344" active="true" />
 		</enemies>
-		<carrots picked="1">
-			<carrot active="false" />
+		<carrots picked="0">
+			<carrot active="true" />
 		</carrots>
 		<lives>
-			<extralife active="false" />
+			<extralife active="true" />
 			<extralife active="true" />
 		</lives>
 		<checkpoints>
 			<checkpoint active="true" />
-			<checkpoint active="true" />
+			<checkpoint active="false" />
+			<checkpoint active="false" />
 		</checkpoints>
-		<timer time_spent="36.2962875" />
+		<timer time_spent="1.23000002" />
 	</level_one>
 	<level_transition />
 	<level_two>
@@ -46,6 +47,6 @@
 	<map />
 	<pathfinding />
 	<renderer>
-		<camera x="-801" y="-367" />
+		<camera x="-150" y="-304" />
 	</renderer>
 </save_state>

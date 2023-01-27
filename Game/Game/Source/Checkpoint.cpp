@@ -72,6 +72,7 @@ void Checkpoint::OnCollision(PhysBody* otherBody)
 		if (otherBody->entity->type == EntityType::PLAYER) {
 			isPicked = true;
 			inContact = true;
+			app->lastCheckpoint = id;
 			app->SaveGameRequest();
 			LOG("Checkpoint :D");
 		}

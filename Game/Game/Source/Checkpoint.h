@@ -32,8 +32,10 @@ public:
 public:
 
 	bool isPicked = false;
+	int id;
 
 private:
+
 
 	bool inContact = false;
 	SDL_Texture* texture;

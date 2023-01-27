@@ -125,6 +125,7 @@ bool LevelOne::Start()
 		checkpoint[i] = (Checkpoint*)app->entityManager->CreateEntity(EntityType::CHECKPOINT);
 		checkpoint[i]->active = true;
 		checkpoint[i]->parameters = checkpointParameters[i];
+		checkpoint[i]->id = i;
 		checkpoint[i]->Start();
 	}
 	
@@ -315,25 +316,23 @@ bool LevelOne::Update(float dt)
 			}
 		}
 	}
+	
 	if (app->moveInCheckpoints()) {
-		for (int i = 0; i < checkpointCount; i++) {
-			if (checkpoint[i]->CheckContact()) {
-				if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN) {
-					int j = i + 1;
-					if (j = checkpointCount) {
-						j = 0;
-					}
-					player->SetPosition(checkpoint[j]->position.x, checkpoint[j]->position.y);
-				}
-				if (app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN) {
-					int j = i + 1;
-					if (j = checkpointCount) {
-						j = 0;
-					}
-					player->SetPosition(checkpoint[j]->position.x, checkpoint[j]->position.y);
-				}
+		if (app->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) {
+			app->lastCheckpoint++;
+			if (app->lastCheckpoint >= 3) {
+				app->lastCheckpoint = 0;
 			}
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y +32);
 		}
+		if (app->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
+			app->lastCheckpoint--;
+			if (app->lastCheckpoint < 0) {
+				app->lastCheckpoint = 2;
+			}
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 32);
+		}
+
 	}
 
 
