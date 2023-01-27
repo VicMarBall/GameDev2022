@@ -57,6 +57,12 @@ bool SceneTitle::Start() {
 	continueButton->texture = longButtonTexture;
 	continueButton->hoverSFX = hoverSFX;
 	continueButton->pressSFX = pressSFX;
+	if (app->LoadFileExists()) {
+		continueButton->canClick = true;
+	}
+	else {
+		continueButton->canClick = false;
+	}
 
 	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 50, 250, 75, 25 }, this);
 	settingsButton->texture = longButtonTexture;
