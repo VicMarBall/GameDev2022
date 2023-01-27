@@ -16,13 +16,13 @@
 		<state state="true" />
 		<player x="160" y="143" />
 		<enemies>
-			<enemy x="594" y="431" active="true" />
-			<enemy x="860" y="367" active="true" />
-			<enemy x="1247" y="367" active="true" />
-			<enemy x="2033" y="527" active="true" />
-			<enemy x="3355" y="751" active="true" />
-			<enemy x="3504" y="463" active="true" />
-			<enemy x="3972" y="495" active="true" />
+			<enemy x="596" y="431" active="true" />
+			<enemy x="948" y="367" active="true" />
+			<enemy x="1336" y="367" active="true" />
+			<enemy x="2037" y="527" active="true" />
+			<enemy x="3285" y="751" active="true" />
+			<enemy x="3573" y="463" active="true" />
+			<enemy x="3932" y="495" active="true" />
 			<enemy x="519" y="295" active="true" />
 			<enemy x="871" y="136" active="true" />
 			<enemy x="1479" y="232" active="true" />

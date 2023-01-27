@@ -461,8 +461,12 @@ bool LevelTwo::PostUpdate()
 bool LevelTwo::LoadState(pugi::xml_node& data)
 {
 	if (data.child("state").attribute("state").as_bool()) {
-		if (!active) {
+		if (app->fromTitle) {
+			app->fromTitle = false;
+			app->fade->FadeToBlack((Module*)app->scene_title, this, 30);
 			app->LoadGameRequest();
+		}
+		if (!active) {
 			return true;
 		}
 		player->SetPosition(data.child("player").attribute("x").as_int(), data.child("player").attribute("y").as_int());

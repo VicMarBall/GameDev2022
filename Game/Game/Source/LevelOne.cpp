@@ -464,6 +464,11 @@ bool LevelOne::PostUpdate()
 bool LevelOne::LoadState(pugi::xml_node& data)
 {
 	if (data.child("state").attribute("state").as_bool()) {
+		if (app->fromTitle) {
+			app->fromTitle = false;
+			app->fade->FadeToBlack((Module*)app->scene_title, this, 30);
+			app->LoadGameRequest();
+		}
 		if (!active) {
 			return true;
 		}

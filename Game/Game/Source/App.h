@@ -111,6 +111,8 @@ public:
 	PathFinding* pathfinding;
 	GuiManager* guiManager;
 
+	bool fromTitle;
+
 private:
 
 	int argc;
