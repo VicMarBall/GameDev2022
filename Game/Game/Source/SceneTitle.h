@@ -65,6 +65,11 @@ public:
 
 	SDL_Texture* menuBackground = nullptr;
 
+	SDL_Texture* bigButtonTexture = nullptr;
+	SDL_Texture* longButtonTexture = nullptr;
+	SDL_Texture* shortButtonTexture = nullptr;
+
+
 	bool withMenu;
 
 	// main title ui

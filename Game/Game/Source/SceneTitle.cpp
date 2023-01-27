@@ -37,19 +37,30 @@ bool SceneTitle::Start() {
 
 	withMenu = false;
 
+	bigButtonTexture = app->tex->Load("Assets/Textures/play_button.png");
+
 	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 100, 100, 100, 50 }, this);
-	playButton->texture = app->tex->Load("Assets/Textures/play_button.png");
+	playButton->texture = bigButtonTexture;
+
+	longButtonTexture = app->tex->Load("Assets/Textures/large_button.png");
 
 	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 100, 200, 75, 25 }, this);
-	
+	continueButton->texture = longButtonTexture;
+
 	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 100, 250, 75, 25 }, this);
-	
+	settingsButton->texture = longButtonTexture;
+
 	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 100, 300, 75, 25 }, this);
-	
-	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 40, 25 }, this);
-	
-	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 50, 25 }, this);
+	creditsButton->texture = longButtonTexture;
+
+	shortButtonTexture = app->tex->Load("Assets/Textures/short_button.png");
+
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 45, 25 }, this);
+	exitButton->texture = shortButtonTexture;
+
+	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 45, 25 }, this);
 	backToTitle->TurnOFF();
+	backToTitle->texture = shortButtonTexture;
 
 	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 200, 150, 50, 25 }, this, 128);
 	musicVolumeSlider->TurnOFF();
@@ -166,6 +177,10 @@ bool SceneTitle::CleanUp() {
 	app->guiManager->Clear(VSyncCheckbox);
 	app->guiManager->Clear(fullScreenCheckbox);
 	app->guiManager->Clear(musicVolumeSlider);
+
+	app->tex->UnLoad(bigButtonTexture);
+	app->tex->UnLoad(longButtonTexture);
+	app->tex->UnLoad(shortButtonTexture);
 
 	return true;
 }

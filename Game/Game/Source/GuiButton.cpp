@@ -109,7 +109,7 @@ bool GuiButton::Draw(Render* render)
 		}
 	}
 
-	app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y + 2, bounds.w - 4, bounds.h - 4, {255,255,255});
+	app->render->DrawText(text.GetString(), bounds.x + 2, bounds.y, bounds.w - 4, bounds.h - 4, {255,255,255});
 
 	return false;
 }
@@ -125,7 +125,7 @@ bool GuiButton::DrawDebug(Render* render)
 		render->DrawRectangle(bounds, 0, 0, 255, 100, true, false);
 		break;
 	case GuiControlState::FOCUSED:
-		render->DrawRectangle(bounds, 0, 0, 20, 100, true, false);
+		render->DrawRectangle(bounds, 255, 0, 0, 100, true, false);
 		break;
 	case GuiControlState::PRESSED:
 		render->DrawRectangle(bounds, 0, 255, 0, 100, true, false);
