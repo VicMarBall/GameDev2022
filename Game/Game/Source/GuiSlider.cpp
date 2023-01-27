@@ -108,24 +108,31 @@ bool GuiSlider::Draw(Render* render)
 	sliderLine.w = sliderLength;
 	sliderLine.h = 4;
 
-	switch (state)
-	{
-	case GuiControlState::DISABLED:
-		render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
-		render->DrawRectangle(box, 200, 200, 200, 255, true, false);
-		break;
-	case GuiControlState::NORMAL:
-		render->DrawRectangle(sliderLine, 100, 100, 100, 255, true, false);
-		render->DrawRectangle(box, 0, 0, 255, 255, true, false);
-		break;
-	case GuiControlState::FOCUSED:
-		render->DrawRectangle(sliderLine, 100, 100, 100, 255, true, false);
-		render->DrawRectangle(box, 0, 0, 20, 255, true, false);
-		break;
-	case GuiControlState::PRESSED:
-		render->DrawRectangle(sliderLine, 100, 100, 100, 255, true, false);
-		render->DrawRectangle(box, 0, 255, 0, 255, true, false);
-		break;
+	if (texture != nullptr) {
+		SDL_Rect* section;
+		switch (state)
+		{
+		case GuiControlState::DISABLED:
+			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
+			section = new SDL_Rect{ 0, 0, box.w, box.h };
+			app->render->DrawTexture(texture, box.x, box.y, section);
+			break;
+		case GuiControlState::NORMAL:
+			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
+			section = new SDL_Rect{ box.w, 0, box.w, box.h };
+			app->render->DrawTexture(texture, box.x, box.y, section);
+			break;
+		case GuiControlState::FOCUSED:
+			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
+			section = new SDL_Rect{ box.w * 2, 0, box.w, box.h };
+			app->render->DrawTexture(texture, box.x, box.y, section);
+			break;
+		case GuiControlState::PRESSED:
+			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
+			section = new SDL_Rect{ box.w * 3, 0, box.w, box.h };
+			app->render->DrawTexture(texture, box.x, box.y, section);
+			break;
+		}
 	}
 
 	SDL_Rect textBounds;
@@ -133,8 +140,8 @@ bool GuiSlider::Draw(Render* render)
 	textBounds.y = bounds.y;
 	textBounds.w = bounds.w;
 	textBounds.h = bounds.h;
-	render->DrawRectangle(textBounds, 0, 0, 0, 255, true, false);
-	app->render->DrawText(text.GetString(), textBounds.x, textBounds.y, textBounds.w, textBounds.h, { 255,255,255 });
+	//render->DrawRectangle(textBounds, 0, 0, 0, 255, true, false);
+	app->render->DrawText(text.GetString(), textBounds.x, textBounds.y, textBounds.w, textBounds.h, { 0,0,0 });
 
 	return false;
 }

@@ -81,15 +81,19 @@ bool SceneTitle::Start() {
 	backToTitle->hoverSFX = hoverSFX;
 	backToTitle->pressSFX = pressSFX;
 
+	sliderBoxTexture = app->tex->Load("Assets/Textures/slider_box.png");
+
 	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 150, 150, 50, 25 }, this, 128);
 	musicVolumeSlider->TurnOFF();
 	musicVolumeSlider->SetValue(app->audio->GetVolumeMusic());
+	musicVolumeSlider->texture = sliderBoxTexture;
 	musicVolumeSlider->hoverSFX = hoverSFX;
 	musicVolumeSlider->pressSFX = pressSFX;
 
 	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 150, 200, 30, 25 }, this, 128);
 	SFXVolumeSlider->TurnOFF();
 	SFXVolumeSlider->SetValue(app->audio->GetSFXVolume());
+	SFXVolumeSlider->texture = sliderBoxTexture;
 	SFXVolumeSlider->hoverSFX = hoverSFX;
 	SFXVolumeSlider->pressSFX = pressSFX;
 
@@ -217,6 +221,7 @@ bool SceneTitle::CleanUp() {
 	app->tex->UnLoad(shortButtonTexture);
 	app->tex->UnLoad(creditsText);
 	app->tex->UnLoad(checkboxTexture);
+	app->tex->UnLoad(sliderBoxTexture);
 
 	return true;
 }
