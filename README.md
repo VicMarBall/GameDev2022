@@ -32,6 +32,8 @@ F5: Save current game state
 
 F6: Load previous state
 
+F8: See GUI bounds / logic
+
 F9: See colliders / paths
 
 F10: GodMode
