@@ -78,6 +78,11 @@ bool LevelTwo::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelTwo::Start()
 {
+	if (app->fromTitle) {
+		app->fromTitle = false;
+		app->LoadGameRequest();
+	}
+
 	timer = 0;
 
 	goToTitle = false;
@@ -527,9 +532,7 @@ bool LevelTwo::LoadState(pugi::xml_node& data)
 
 		if (!active) {
 			if (app->fromTitle) {
-				app->fromTitle = false;
 				app->fade->FadeToBlack((Module*)app->scene_title, this, 0);
-				app->LoadGameRequest();
 			}
 			return true;
 		}

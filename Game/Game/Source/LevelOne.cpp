@@ -81,6 +81,11 @@ bool LevelOne::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool LevelOne::Start()
 {
+	if (app->fromTitle) {
+		app->fromTitle = false;
+		app->LoadGameRequest();
+	}
+
 	timer = 0;
 
 	goToTitle = false;
@@ -530,9 +535,7 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 
 		if (!active) {
 			if (app->fromTitle) {
-				app->fromTitle = false;
 				app->fade->FadeToBlack((Module*)app->scene_title, this, 0);
-				app->LoadGameRequest();
 			}
 			return true;
 		}

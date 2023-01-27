@@ -14,31 +14,31 @@
 	<level_transition />
 	<level_two>
 		<state state="true" />
-		<player x="160" y="128" lives="3" />
+		<player x="418" y="463" lives="3" />
 		<enemies>
-			<enemy x="598" y="408" active="true" />
-			<enemy x="918" y="344" active="true" />
-			<enemy x="1366" y="344" active="true" />
-			<enemy x="1974" y="504" active="true" />
-			<enemy x="3222" y="728" active="true" />
-			<enemy x="3510" y="440" active="true" />
-			<enemy x="3958" y="472" active="true" />
-			<enemy x="504" y="280" active="true" />
-			<enemy x="856" y="120" active="true" />
-			<enemy x="1464" y="216" active="true" />
-			<enemy x="1752" y="408" active="true" />
-			<enemy x="2680" y="408" active="true" />
-			<enemy x="2968" y="568" active="true" />
-			<enemy x="3770" y="376" active="true" />
-			<enemy x="1112" y="152" active="true" />
-			<enemy x="2264" y="504" active="true" />
-			<enemy x="2520" y="312" active="true" />
-			<enemy x="2680" y="664" active="true" />
-			<enemy x="2808" y="440" active="true" />
-			<enemy x="3000" y="728" active="true" />
-			<enemy x="3032" y="376" active="true" />
-			<enemy x="3224" y="472" active="true" />
-			<enemy x="3288" y="600" active="true" />
+			<enemy x="600" y="431" active="true" />
+			<enemy x="952" y="367" active="true" />
+			<enemy x="1322" y="367" active="true" />
+			<enemy x="2059" y="527" active="true" />
+			<enemy x="3280" y="751" active="true" />
+			<enemy x="3532" y="463" active="true" />
+			<enemy x="3966" y="495" active="true" />
+			<enemy x="467" y="392" active="true" />
+			<enemy x="871" y="136" active="true" />
+			<enemy x="1479" y="232" active="true" />
+			<enemy x="1767" y="424" active="true" />
+			<enemy x="2696" y="424" active="true" />
+			<enemy x="2984" y="583" active="true" />
+			<enemy x="3783" y="392" active="true" />
+			<enemy x="1127" y="168" active="true" />
+			<enemy x="2280" y="519" active="true" />
+			<enemy x="2536" y="328" active="true" />
+			<enemy x="2696" y="679" active="true" />
+			<enemy x="2824" y="456" active="true" />
+			<enemy x="3016" y="743" active="true" />
+			<enemy x="3048" y="392" active="true" />
+			<enemy x="3240" y="488" active="true" />
+			<enemy x="3304" y="615" active="true" />
 		</enemies>
 		<carrots picked="0" />
 		<lives />
@@ -47,7 +47,7 @@
 			<checkpoint active="false" />
 			<checkpoint active="false" />
 		</checkpoints>
-		<timer time_spent="1.12700009" />
+		<timer time_spent="10.7269173" />
 	</level_two>
 	<death_screen />
 	<win_screen />
@@ -56,6 +56,6 @@
 	<map />
 	<pathfinding />
 	<renderer>
-		<camera x="0" y="0" />
+		<camera x="-34" y="-207" />
 	</renderer>
 </save_state>
