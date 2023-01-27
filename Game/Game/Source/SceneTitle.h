@@ -69,8 +69,10 @@ public:
 	SDL_Texture* longButtonTexture = nullptr;
 	SDL_Texture* shortButtonTexture = nullptr;
 
+	SDL_Texture* creditsText = nullptr;
 
 	bool withMenu;
+	bool withCredits;
 
 	// main title ui
 	GuiButton* playButton;

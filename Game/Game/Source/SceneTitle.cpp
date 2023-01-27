@@ -36,44 +36,47 @@ bool SceneTitle::Start() {
 	menuBackground = app->tex->Load(menuPath);
 
 	withMenu = false;
+	withCredits = false;
+
+	creditsText = app->tex->Load("Assets/Textures/credits_text.png");
 
 	bigButtonTexture = app->tex->Load("Assets/Textures/play_button.png");
 
-	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 100, 100, 100, 50 }, this);
+	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 50, 100, 100, 50 }, this);
 	playButton->texture = bigButtonTexture;
 
 	longButtonTexture = app->tex->Load("Assets/Textures/large_button.png");
 
-	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 100, 200, 75, 25 }, this);
+	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 50, 200, 75, 25 }, this);
 	continueButton->texture = longButtonTexture;
 
-	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 100, 250, 75, 25 }, this);
+	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 50, 250, 75, 25 }, this);
 	settingsButton->texture = longButtonTexture;
 
-	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 100, 300, 75, 25 }, this);
+	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 50, 300, 75, 25 }, this);
 	creditsButton->texture = longButtonTexture;
 
 	shortButtonTexture = app->tex->Load("Assets/Textures/short_button.png");
 
-	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 100, 350, 45, 25 }, this);
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 50, 350, 45, 25 }, this);
 	exitButton->texture = shortButtonTexture;
 
-	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 100, 350, 45, 25 }, this);
+	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 50, 350, 45, 25 }, this);
 	backToTitle->TurnOFF();
 	backToTitle->texture = shortButtonTexture;
 
-	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 200, 150, 50, 25 }, this, 128);
+	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 9, "MUSIC", { 100, 150, 50, 25 }, this, 128);
 	musicVolumeSlider->TurnOFF();
 	musicVolumeSlider->SetValue(app->audio->GetVolumeMusic());
 
-	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 200, 200, 30, 25 }, this, 128);
+	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 10, "SFX", { 100, 200, 30, 25 }, this, 128);
 	SFXVolumeSlider->TurnOFF();
 	SFXVolumeSlider->SetValue(app->audio->GetSFXVolume());
 
-	fullScreenCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 11, "FULLSCREEN", { 200, 250, 100, 25 }, this);
+	fullScreenCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 11, "FULLSCREEN", { 100, 250, 100, 25 }, this);
 	fullScreenCheckbox->TurnOFF();
 
-	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "VSYNC", { 200, 300, 50, 25 }, this);
+	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 12, "VSYNC", { 100, 300, 50, 25 }, this);
 	VSyncCheckbox->TurnOFF();
 
 	stateScene = TITLE;
@@ -158,6 +161,9 @@ bool SceneTitle::PostUpdate() {
 	if (withMenu) {
 		app->render->DrawTexture(menuBackground, 0, 0);
 	}
+	if (withCredits) {
+		app->render->DrawTexture(creditsText, 0, 0);
+	}
 	app->guiManager->Draw();
 
 	return true;
@@ -181,6 +187,7 @@ bool SceneTitle::CleanUp() {
 	app->tex->UnLoad(bigButtonTexture);
 	app->tex->UnLoad(longButtonTexture);
 	app->tex->UnLoad(shortButtonTexture);
+	app->tex->UnLoad(creditsText);
 
 	return true;
 }
@@ -233,6 +240,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		backToTitle->TurnON();
 
 		withMenu = true;
+		withCredits = true;
 
 		break;
 	case 5:
@@ -258,6 +266,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		musicVolumeSlider->TurnOFF();
 
 		withMenu = false;
+		withCredits = false;
 
 		break;
 	case 8:
