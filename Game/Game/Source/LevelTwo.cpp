@@ -159,7 +159,7 @@ bool LevelTwo::Start()
 	}
 
 	if (app->fromCheckpoint) {
-		player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+		player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 16);
 		app->fromCheckpoint = false;
 	}
 
@@ -393,14 +393,14 @@ bool LevelTwo::Update(float dt)
 				app->lastCheckpoint = 3;
 				
 			}
-			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
 			app->lastCheckpoint--;
 			if (app->lastCheckpoint < 3) {
 				app->lastCheckpoint = 5;
 			}
-			player->SetPosition(checkpoint[app->lastCheckpoint-3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint-3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 16);
 		}
 
 		if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
@@ -420,15 +420,15 @@ bool LevelTwo::Update(float dt)
 		}
 		if (app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) {
 			app->lastCheckpoint = 3;
-			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_5) == KEY_DOWN) {
 			app->lastCheckpoint = 4;
-			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_6) == KEY_DOWN) {
 			app->lastCheckpoint = 5;
-			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint - 3]->position.x, checkpoint[app->lastCheckpoint - 3]->position.y + 16);
 		}
 
 	}

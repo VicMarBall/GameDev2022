@@ -164,7 +164,7 @@ bool LevelOne::Start()
 	}
 
 	if (app->fromCheckpoint) {
-		player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+		player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 16);
 		app->fromCheckpoint = false;
 	}
 
@@ -396,26 +396,26 @@ bool LevelOne::Update(float dt)
 			if (app->lastCheckpoint >= 3) {
 				app->lastCheckpoint = 0;
 			}
-			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y +48);
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
 			app->lastCheckpoint--;
 			if (app->lastCheckpoint < 0) {
 				app->lastCheckpoint = 2;
 			}
-				player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+				player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN) {
 			app->lastCheckpoint = 0;
-			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_2) == KEY_DOWN) {
 			app->lastCheckpoint = 1;
-			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_3) == KEY_DOWN) {
 			app->lastCheckpoint = 2;
-			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y + 48);
+			player->SetPosition(checkpoint[app->lastCheckpoint]->position.x, checkpoint[app->lastCheckpoint]->position.y+16);
 		}
 		if (app->input->GetKey(SDL_SCANCODE_4) == KEY_DOWN) {
 			app->lastCheckpoint = 3;
