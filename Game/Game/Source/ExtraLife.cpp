@@ -43,6 +43,7 @@ bool ExtraLife::Start() {
 
 bool ExtraLife::Update()
 {
+	OPTICK_EVENT();
 	// L07 TODO 4: Add a physics to an item - update the position of the object from the physics.
 	pBody->GetPosition(position.x, position.y);
 	app->render->DrawTexture(texture, position.x + 16, position.y + 16);

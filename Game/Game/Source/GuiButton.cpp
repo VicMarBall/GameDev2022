@@ -20,6 +20,7 @@ GuiButton::~GuiButton()
 
 bool GuiButton::Update(float dt)
 {
+	OPTICK_EVENT();
 	GuiControlState previousState = state;
 
 	if (!canClick) {

@@ -39,10 +39,12 @@ bool SceneIntro::Start() {
 // Called each loop iteration
 bool SceneIntro::PreUpdate()
 {
+	OPTICK_EVENT();
 	return true;
 }
 
 bool SceneIntro::Update(float dt) {
+	OPTICK_EVENT();
 	durationTimer++;
 	
 	
@@ -62,6 +64,7 @@ bool SceneIntro::Update(float dt) {
 
 // Update: draw background
 bool SceneIntro::PostUpdate() {
+	OPTICK_EVENT();
 	// Draw everything --------------------------------------
 	app->render->DrawTexture(bgTexture, 0, 0, NULL);
 

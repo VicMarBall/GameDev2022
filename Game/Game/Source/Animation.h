@@ -40,6 +40,7 @@ public:
 	}
 
 	void Update() {
+		OPTICK_EVENT();
 		currentFrame += speed;
 		if (currentFrame >= totalFrames)
 		{

@@ -14,6 +14,7 @@
 Bullet::Bullet() : Entity(EntityType::BULLET)
 {
 	name.Create("Bullet");
+	Start();
 }
 
 Bullet::~Bullet() {
@@ -65,6 +66,7 @@ bool Bullet::Start() {
 
 bool Bullet::Update()
 {
+	OPTICK_EVENT();
 	if (toDisable) {
 		isAvailable = true;
 		pBody->body->SetActive(false);

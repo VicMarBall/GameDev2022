@@ -266,6 +266,7 @@ bool LevelOne::Start()
 // Called each loop iteration
 bool LevelOne::PreUpdate()
 {
+	OPTICK_EVENT();
 	for (b2Body* b = app->physics->world->GetBodyList(); b; b = b->GetNext())
 	{
 		PhysBody* pB = (PhysBody*)b->GetUserData();
@@ -290,6 +291,7 @@ bool LevelOne::PreUpdate()
 // Called each loop iteration
 bool LevelOne::Update(float dt)
 {
+	OPTICK_EVENT();
 	if (!pause) {
 		timer += dt * 0.001f;
 	}
@@ -578,6 +580,7 @@ bool LevelOne::Update(float dt)
 // Called each loop iteration
 bool LevelOne::PostUpdate()
 {
+	OPTICK_EVENT();
 	bool ret = true;
 
 	app->guiManager->Draw();
@@ -591,6 +594,7 @@ bool LevelOne::PostUpdate()
 // L03: DONE 6: Implement a method to load the state load players's x and y
 bool LevelOne::LoadState(pugi::xml_node& data)
 {
+	OPTICK_EVENT();
 	if (data.child("state").attribute("state").as_bool()) {
 
 		if (!active) {
@@ -697,6 +701,7 @@ bool LevelOne::LoadState(pugi::xml_node& data)
 // using append_child and append_attribute
 bool LevelOne::SaveState(pugi::xml_node& data)
 {
+	OPTICK_EVENT();
 	pugi::xml_node state = data.append_child("state");
 
 	if (active) {

@@ -31,6 +31,7 @@ public:
 	}
 
 	virtual bool Update(){
+		OPTICK_EVENT();
 		return true;
 	}
 

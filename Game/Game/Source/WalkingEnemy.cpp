@@ -66,6 +66,7 @@ bool WalkingEnemy::Start() {
 }
 
 bool WalkingEnemy::Update() {
+	OPTICK_EVENT();
 
 	Animation* currentAnimation = previousAnimation;
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();

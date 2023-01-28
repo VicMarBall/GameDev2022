@@ -53,6 +53,7 @@ public:
 
 	virtual bool Update(float dt)
 	{
+		OPTICK_EVENT();
 		return true;
 	}
 

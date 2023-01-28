@@ -44,6 +44,7 @@ bool Checkpoint::Start() {
 
 bool Checkpoint::Update()
 {
+	OPTICK_EVENT();
 	// L07 TODO 4: Add a physics to an item - update the position of the object from the physics.
 	pBody->GetPosition(position.x, position.y);
 	SDL_Rect sect;

@@ -106,6 +106,7 @@ bool Player::Start() {
 
 bool Player::Update()
 {
+	OPTICK_EVENT();
 	// L07 TODO 5: Add physics to the player - updated player position using physics
 	b2Vec2 velocity = pBody->body->GetLinearVelocity();
 	Animation* currentAnimation = previousAnimation;

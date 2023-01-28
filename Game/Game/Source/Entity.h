@@ -5,6 +5,7 @@
 #include "SString.h"
 #include "Input.h"
 #include "Render.h"
+#include "App.h"
 
 enum class EntityType
 {
@@ -37,6 +38,7 @@ public:
 
 	virtual bool Update()
 	{
+		OPTICK_EVENT();
 		return true;
 	}
 

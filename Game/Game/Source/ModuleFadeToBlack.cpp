@@ -30,10 +30,12 @@ bool ModuleFadeToBlack::Start() {
 // Called each loop iteration
 bool ModuleFadeToBlack::PreUpdate()
 {
+	OPTICK_EVENT();
 	return true;
 }
 
 bool ModuleFadeToBlack::Update(float dt) {
+	OPTICK_EVENT();
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return true;
 
@@ -63,6 +65,7 @@ bool ModuleFadeToBlack::Update(float dt) {
 }
 
 bool ModuleFadeToBlack::PostUpdate() {
+	OPTICK_EVENT();
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return true;
 

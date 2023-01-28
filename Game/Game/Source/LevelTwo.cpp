@@ -261,6 +261,7 @@ bool LevelTwo::Start()
 // Called each loop iteration
 bool LevelTwo::PreUpdate()
 {
+	OPTICK_EVENT();
 	for (b2Body* b = app->physics->world->GetBodyList(); b; b = b->GetNext())
 	{
 		PhysBody* pB = (PhysBody*)b->GetUserData();
@@ -285,6 +286,7 @@ bool LevelTwo::PreUpdate()
 // Called each loop iteration
 bool LevelTwo::Update(float dt)
 {
+	OPTICK_EVENT();
 	if (!pause) {
 		timer += dt * 0.001f;
 	}
@@ -575,6 +577,7 @@ bool LevelTwo::Update(float dt)
 // Called each loop iteration
 bool LevelTwo::PostUpdate()
 {
+	OPTICK_EVENT();
 	bool ret = true;
 
 	app->guiManager->Draw();
@@ -588,6 +591,7 @@ bool LevelTwo::PostUpdate()
 // L03: DONE 6: Implement a method to load the state load players's x and y
 bool LevelTwo::LoadState(pugi::xml_node& data)
 {
+	OPTICK_EVENT();
 	if (data.child("state").attribute("state").as_bool()) {
 
 		if (!active) {
@@ -694,6 +698,7 @@ bool LevelTwo::LoadState(pugi::xml_node& data)
 // using append_child and append_attribute
 bool LevelTwo::SaveState(pugi::xml_node& data)
 {
+	OPTICK_EVENT();
 	pugi::xml_node state = data.append_child("state");
 
 	if (active) {

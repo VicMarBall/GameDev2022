@@ -40,11 +40,12 @@ bool WinScreen::Start() {
 // Called each loop iteration
 bool WinScreen::PreUpdate()
 {
+	OPTICK_EVENT();
 	return true;
 }
 
 bool WinScreen::Update(float dt) {
-
+	OPTICK_EVENT();
 
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
@@ -61,6 +62,7 @@ bool WinScreen::Update(float dt) {
 
 // Update: draw background
 bool WinScreen::PostUpdate() {
+	OPTICK_EVENT();
 	// Draw everything --------------------------------------
 	app->render->DrawTexture(bgTexture, 0, 0, NULL);
 

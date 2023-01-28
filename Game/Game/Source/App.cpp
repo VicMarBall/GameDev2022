@@ -21,8 +21,6 @@
 #include "Defs.h"
 #include "Log.h"
 
-#include "Optick/include/optick.h"
-
 #include <iostream>
 #include <sstream>
 
@@ -394,6 +392,7 @@ bool App::LoadFileExists()
 // then call all the modules to load themselves
 bool App::LoadFromFile()
 {
+	OPTICK_EVENT();
 	bool ret = true;
 
 	pugi::xml_document gameStateFile;
@@ -425,6 +424,7 @@ bool App::LoadFromFile()
 // check https://pugixml.org/docs/quickstart.html#modify
 bool App::SaveToFile() 
 {
+	OPTICK_EVENT();
 	bool ret = false;
 
 	pugi::xml_document* saveDoc = new pugi::xml_document();

@@ -72,6 +72,7 @@ bool FlyingEnemy::Start() {
 }
 
 bool FlyingEnemy::Update() {
+	OPTICK_EVENT();
 
 	Animation* currentAnimation = previousAnimation;
 	SDL_Rect currentFrame = currentAnimation->GetCurrentFrame();

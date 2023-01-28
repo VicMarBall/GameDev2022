@@ -27,6 +27,7 @@ GuiCheckbox::~GuiCheckbox()
 
 bool GuiCheckbox::Update(float dt)
 {
+	OPTICK_EVENT();
 	GuiControlState previousState = state;
 
 	if (!canClick) {

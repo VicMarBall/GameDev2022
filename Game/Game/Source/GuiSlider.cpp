@@ -31,6 +31,7 @@ GuiSlider::~GuiSlider()
 
 bool GuiSlider::Update(float dt)
 {
+	OPTICK_EVENT();
 	GuiControlState previousState = state;
 
 	if (!canClick) {

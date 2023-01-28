@@ -55,6 +55,7 @@ bool Goal::Start() {
 
 bool Goal::Update()
 {
+	OPTICK_EVENT();
 	// L07 TODO 5: Add physics to the player - updated player position using physics
 
 	if (!win) {

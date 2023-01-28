@@ -126,10 +126,12 @@ bool SceneTitle::Start() {
 // Called each loop iteration
 bool SceneTitle::PreUpdate()
 {
+	OPTICK_EVENT();
 	return true;
 }
 
 bool SceneTitle::Update(float dt) {
+	OPTICK_EVENT();
 
 	bool toSkip = false;
 
@@ -195,6 +197,7 @@ bool SceneTitle::Update(float dt) {
 
 // Update: draw background
 bool SceneTitle::PostUpdate() {
+	OPTICK_EVENT();
 
 	app->render->DrawTexture(bgTexture, 0, 0);
 	if (withMenu) {
