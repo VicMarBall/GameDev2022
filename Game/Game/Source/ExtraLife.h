@@ -35,6 +35,8 @@ private:
 	SDL_Texture* texture;
 	const char* texturePath;
 
+	int sfx;
+
 	//TODO 4: Add a physics to an item
 	PhysBody* pBody;
 

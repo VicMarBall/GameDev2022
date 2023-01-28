@@ -28,6 +28,7 @@ bool ExtraLife::Start() {
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
+	sfx = app->audio->LoadFx(parameters.attribute("sound_path").as_string());
 
 	texture = app->tex->Load(texturePath);
 
@@ -60,6 +61,7 @@ void ExtraLife::OnCollision(PhysBody* otherBody)
 {
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::PLAYER) {
+			app->audio->PlayFx(sfx);
 			isPicked = true;
 			LOG("CARROT PICKED :D");
 		}
