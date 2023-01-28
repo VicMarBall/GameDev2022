@@ -81,7 +81,7 @@ bool SceneTitle::Start() {
 	exitButton->hoverSFX = hoverSFX;
 	exitButton->pressSFX = pressSFX;
 
-	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 50, 350, 45, 25 }, this);
+	backToTitle = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 7, "BACK", { 50, 365, 45, 25 }, this);
 	backToTitle->TurnOFF();
 	backToTitle->texture = shortButtonTexture;
 	backToTitle->hoverSFX = hoverSFX;

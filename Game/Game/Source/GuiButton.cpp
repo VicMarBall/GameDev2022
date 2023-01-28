@@ -42,13 +42,6 @@ bool GuiButton::Update(float dt)
 			
 			state = GuiControlState::FOCUSED;
 
-			if (previousState != state) {
-				LOG("Change state from %d to %d",previousState,state);
-				if (state == GuiControlState::FOCUSED) {
-					app->audio->PlayFx(hoverSFX);
-				}
-			}
-
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_REPEAT) {
 				state = GuiControlState::PRESSED;
 			}
@@ -57,6 +50,13 @@ bool GuiButton::Update(float dt)
 			if (app->input->GetMouseButtonDown(SDL_BUTTON_LEFT) == KeyState::KEY_UP) {
 				app->audio->PlayFx(pressSFX);
 				NotifyObserver();
+			}
+
+			if (previousState != state) {
+				LOG("Change state from %d to %d", previousState, state);
+				if (state == GuiControlState::FOCUSED) {
+					app->audio->PlayFx(hoverSFX);
+				}
 			}
 		}
 		else {
