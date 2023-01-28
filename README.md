@@ -9,6 +9,10 @@ Victor Martin ([VicMarBall](https://github.com/VicMarBall))
 ## How to play: 
 Press ENTER in the Scenes to skip them
 
+Press ESC in the Scenes to close the game
+
+Press ESC in the Levels to Pause the game
+
 A: Move Left
 
 D: Move Right
