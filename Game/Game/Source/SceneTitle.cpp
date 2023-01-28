@@ -134,8 +134,6 @@ bool SceneTitle::PreUpdate()
 bool SceneTitle::Update(float dt) {
 	OPTICK_EVENT();
 
-	bool toSkip = false;
-
 	if (app->input->GetKey(SDL_SCANCODE_F8) == KEY_DOWN) {
 		if (app->guiManager->debug) {
 			app->guiManager->debug = false;
@@ -175,10 +173,6 @@ bool SceneTitle::Update(float dt) {
 		break;
 	default:
 		break;
-	}
-
-	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN || toSkip) {
-		app->fade->FadeToBlack(this, (Module*)app->level_one, 30);
 	}
 
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_REPEAT) {
