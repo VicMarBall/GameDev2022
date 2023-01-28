@@ -48,6 +48,8 @@ bool DeathScreen::Update(float dt) {
 
 
 	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN) {
+		app->fromCheckpoint = true;
+
 		switch (level)
 		{
 		case 1:
