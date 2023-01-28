@@ -44,7 +44,7 @@ public:
 		return musicVolume;
 	}
 
-	void ClearAllFX();
+	void ClearAllAudio();
 
 private:
 

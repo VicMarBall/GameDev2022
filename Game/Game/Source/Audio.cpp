@@ -193,7 +193,11 @@ void Audio::SetVolumeMusic(int volume)
 	musicVolume = Mix_VolumeMusic(volume);
 }
 
-void Audio::ClearAllFX()
+void Audio::ClearAllAudio()
 {
+	ListItem<Mix_Chunk*>* item;
+	for (item = fx.start; item != NULL; item = item->next)
+		Mix_FreeChunk(item->data);
+
 	fx.Clear();
 }

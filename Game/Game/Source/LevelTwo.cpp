@@ -783,7 +783,7 @@ bool LevelTwo::CleanUp()
 	app->tex->UnLoad(mouseTileTex);
 	app->tex->UnLoad(originTex);
 
-	app->audio->ClearAllFX();
+	app->audio->ClearAllAudio();
 
 	return true;
 

@@ -14,7 +14,6 @@
 Bullet::Bullet() : Entity(EntityType::BULLET)
 {
 	name.Create("Bullet");
-	Start();
 }
 
 Bullet::~Bullet() {
