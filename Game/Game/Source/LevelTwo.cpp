@@ -176,28 +176,82 @@ bool LevelTwo::Start()
 	lifeTexture = app->tex->Load("Assets/Textures/heart.png");
 
 	// ui
+	uint hoverSFX = app->audio->LoadFx("Assets/Audio/Fx/hover_button_sound.wav");
+	uint pressSFX = app->audio->LoadFx("Assets/Audio/Fx/press_button_sound.wav");
+
+	longButtonTexture = app->tex->Load("Assets/Textures/large_button.png");
+
+	resumeButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { 100, 150, 75, 25 }, this);
+	resumeButton->TurnOFF();
+	resumeButton->texture = longButtonTexture;
+	resumeButton->hoverSFX = hoverSFX;
+	resumeButton->pressSFX = pressSFX;
+
+	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { 100, 200, 75, 25 }, this);
+	settingsButton->TurnOFF();
+	settingsButton->texture = longButtonTexture;
+	settingsButton->hoverSFX = hoverSFX;
+	settingsButton->pressSFX = pressSFX;
+
+	backToTitleButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "BACK TO TITLE", { 100, 250, 75, 25 }, this);
+	backToTitleButton->TurnOFF();
+	backToTitleButton->texture = longButtonTexture;
+	backToTitleButton->hoverSFX = hoverSFX;
+	backToTitleButton->pressSFX = pressSFX;
+
+	shortButtonTexture = app->tex->Load("Assets/Textures/short_button.png");
+
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "EXIT", { 50, 350, 45, 25 }, this);
+	exitButton->TurnOFF();
+	exitButton->texture = shortButtonTexture;
+	exitButton->hoverSFX = hoverSFX;
+	exitButton->pressSFX = pressSFX;
+
+	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "BACK", { 50, 350, 45, 25 }, this);
+	backFromSettingsButton->TurnOFF();
+	backFromSettingsButton->texture = shortButtonTexture;
+	backFromSettingsButton->hoverSFX = hoverSFX;
+	backFromSettingsButton->pressSFX = pressSFX;
+
+	sliderBoxTexture = app->tex->Load("Assets/Textures/slider_box.png");
+
+	musicVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 6, "MUSIC", { 150, 150, 50, 25 }, this, 128);
+	musicVolumeSlider->TurnOFF();
+	musicVolumeSlider->SetValue(app->audio->GetVolumeMusic());
+	musicVolumeSlider->texture = sliderBoxTexture;
+	musicVolumeSlider->hoverSFX = hoverSFX;
+	musicVolumeSlider->pressSFX = pressSFX;
+
+	SFXVolumeSlider = (GuiSlider*)app->guiManager->CreateGuiControl(GuiControlType::SLIDER, 7, "SFX", { 150, 200, 30, 25 }, this, 128);
+	SFXVolumeSlider->TurnOFF();
+	SFXVolumeSlider->SetValue(app->audio->GetSFXVolume());
+	SFXVolumeSlider->texture = sliderBoxTexture;
+	SFXVolumeSlider->hoverSFX = hoverSFX;
+	SFXVolumeSlider->pressSFX = pressSFX;
+
+	checkboxTexture = app->tex->Load("Assets/Textures/checkbox.png");
+
+	fullScreenCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 8, "FULLSCREEN", { 150, 250, 100, 25 }, this);
+	fullScreenCheckbox->TurnOFF();
+	fullScreenCheckbox->texture = checkboxTexture;
+	fullScreenCheckbox->hoverSFX = hoverSFX;
+	fullScreenCheckbox->pressSFX = pressSFX;
+
+	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 9, "VSYNC", { 150, 300, 50, 25 }, this);
+	VSyncCheckbox->TurnOFF();
+	VSyncCheckbox->texture = checkboxTexture;
+	VSyncCheckbox->hoverSFX = hoverSFX;
+	VSyncCheckbox->pressSFX = pressSFX;
+	VSyncCheckbox->checked = app->vsync;
+
+
+	// ui
 	for (int i = 0; i < MAX_LIVESDRAWN; ++i) {
 		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, 0, NULL, { 32 + (80 * i), 32, 64, 64 }, this);
 		livesUI[i]->SetTexture(lifeTexture);
 	}
 
 	carrotsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", { 600, 32, 32, 32 }, this);
-
-	resumeButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "RESUME", { 100, 100, 75, 25 }, this);
-	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "SETTINGS", { 100, 150, 75, 25 }, this);
-	backToTitleButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "BACK TO TITLE", { 100, 200, 75, 25 }, this);
-	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "EXIT", { 100, 250, 75, 25 }, this);
-
-	resumeButton->TurnOFF();
-	settingsButton->TurnOFF();
-	backToTitleButton->TurnOFF();
-	exitButton->TurnOFF();
-
-	soundButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "sound", { 100, 250, 50, 25 }, this);
-	soundButton->TurnOFF();
-
-	backFromSettingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 6, "BACK", { 100, 350, 50, 25 }, this);
-	backFromSettingsButton->TurnOFF();
 
 	timerText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "time", { 300, 20, 30, 20 }, this);
 
@@ -272,6 +326,12 @@ bool LevelTwo::Update(float dt)
 		settingsButton->TurnOFF();
 		backToTitleButton->TurnOFF();
 		exitButton->TurnOFF();
+
+		SFXVolumeSlider->TurnOFF();
+		backFromSettingsButton->TurnOFF();
+		VSyncCheckbox->TurnOFF();
+		fullScreenCheckbox->TurnOFF();
+		musicVolumeSlider->TurnOFF();
 
 		toResume = false;
 	}
@@ -703,8 +763,13 @@ bool LevelTwo::CleanUp()
 	app->guiManager->Clear(backToTitleButton);
 	app->guiManager->Clear(exitButton);
 
-	app->guiManager->Clear(soundButton);
 	app->guiManager->Clear(backFromSettingsButton);
+
+	app->guiManager->Clear(musicVolumeSlider);
+	app->guiManager->Clear(SFXVolumeSlider);
+
+	app->guiManager->Clear(fullScreenCheckbox);
+	app->guiManager->Clear(VSyncCheckbox);
 
 	app->guiManager->Clear(timerText);
 
@@ -714,15 +779,20 @@ bool LevelTwo::CleanUp()
 	app->tex->UnLoad(originTex);
 
 	return true;
+
 }
 
 bool LevelTwo::OnGuiMouseClickEvent(GuiControl* control)
 {
-	// 1 == PLAY
-	// 2 == CONTINUE
-	// 3 == SETTINGS
-	// 4 == CREDITS
-	// 5 == EXIT
+	// 1 == RESUME
+	// 2 == SETTINGS
+	// 3 == BACK TO TITLE
+	// 4 == EXIT
+	// 5 == BACK (FROM SETTINGS)
+	// 6 == MUSIC
+	// 7 == SFX
+	// 8 == FULLSCREEN
+	// 9 == VSYNC
 
 	switch (control->id)
 	{
@@ -733,14 +803,17 @@ bool LevelTwo::OnGuiMouseClickEvent(GuiControl* control)
 		break;
 	case 2:
 
-
 		resumeButton->TurnOFF();
 		settingsButton->TurnOFF();
 		backToTitleButton->TurnOFF();
 		exitButton->TurnOFF();
 
-		soundButton->TurnON();
+		SFXVolumeSlider->TurnON();
 		backFromSettingsButton->TurnON();
+		VSyncCheckbox->TurnON();
+		fullScreenCheckbox->TurnON();
+		musicVolumeSlider->TurnON();
+
 		break;
 	case 3:
 		goToTitle = true;
@@ -750,15 +823,41 @@ bool LevelTwo::OnGuiMouseClickEvent(GuiControl* control)
 		break;
 	case 5:
 
-		break;
-	case 6:
 		resumeButton->TurnON();
 		settingsButton->TurnON();
 		backToTitleButton->TurnON();
 		exitButton->TurnON();
 
-		soundButton->TurnOFF();
+		SFXVolumeSlider->TurnOFF();
 		backFromSettingsButton->TurnOFF();
+		VSyncCheckbox->TurnOFF();
+		fullScreenCheckbox->TurnOFF();
+		musicVolumeSlider->TurnOFF();
+
+		break;
+	case 6:
+		app->audio->SetVolumeMusic(((GuiSlider*)control)->valueSlider);
+
+		break;
+	case 7:
+		app->audio->SetSFXVolume(((GuiSlider*)control)->valueSlider);
+
+		break;
+	case 8:
+		if (((GuiCheckbox*)control)->checked) {
+			SDL_SetWindowFullscreen(app->win->window, SDL_WindowFlags::SDL_WINDOW_FULLSCREEN_DESKTOP);
+		}
+		else {
+			SDL_SetWindowFullscreen(app->win->window, 0);
+		}
+		break;
+	case 9:
+		if (((GuiCheckbox*)control)->checked) {
+			app->vsync = true;
+		}
+		else {
+			app->vsync = false;
+		}
 		break;
 	default:
 		break;

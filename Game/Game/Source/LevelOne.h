@@ -131,7 +131,6 @@ private:
 	bool toExit;
 	bool toResume;
 
-	GuiButton* soundButton;
 	GuiButton* backFromSettingsButton;
 
 	GuiSlider* musicVolumeSlider;

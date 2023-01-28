@@ -108,19 +108,19 @@ bool GuiCheckbox::Draw(Render* render)
 			{
 			case GuiControlState::DISABLED:
 				section = new SDL_Rect{ 0, box.h, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			case GuiControlState::SELECTED:
 				section = new SDL_Rect{ box.w, box.h, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			case GuiControlState::FOCUSED:
 				section = new SDL_Rect{ box.w * 2, box.h, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			case GuiControlState::PRESSED:
 				section = new SDL_Rect{ box.w * 3, box.h, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			}
 		}
@@ -129,19 +129,19 @@ bool GuiCheckbox::Draw(Render* render)
 			{
 			case GuiControlState::DISABLED:
 				section = new SDL_Rect{ 0, 0, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			case GuiControlState::NORMAL:
 				section = new SDL_Rect{ box.w, 0, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			case GuiControlState::FOCUSED:
 				section = new SDL_Rect{ box.w * 2, 0, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			case GuiControlState::PRESSED:
 				section = new SDL_Rect{ box.w * 3, 0, box.w, box.h };
-				app->render->DrawTexture(texture, box.x, box.y, section);
+				app->render->DrawTexture(texture, box.x, box.y, section, false);
 				break;
 			}
 		}

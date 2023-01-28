@@ -115,22 +115,22 @@ bool GuiSlider::Draw(Render* render)
 		case GuiControlState::DISABLED:
 			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
 			section = new SDL_Rect{ 0, 0, box.w, box.h };
-			app->render->DrawTexture(texture, box.x, box.y, section);
+			app->render->DrawTexture(texture, box.x, box.y, section, false);
 			break;
 		case GuiControlState::NORMAL:
 			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
 			section = new SDL_Rect{ box.w, 0, box.w, box.h };
-			app->render->DrawTexture(texture, box.x, box.y, section);
+			app->render->DrawTexture(texture, box.x, box.y, section, false);
 			break;
 		case GuiControlState::FOCUSED:
 			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
 			section = new SDL_Rect{ box.w * 2, 0, box.w, box.h };
-			app->render->DrawTexture(texture, box.x, box.y, section);
+			app->render->DrawTexture(texture, box.x, box.y, section, false);
 			break;
 		case GuiControlState::PRESSED:
 			render->DrawRectangle(sliderLine, 200, 200, 200, 200, true, false);
 			section = new SDL_Rect{ box.w * 3, 0, box.w, box.h };
-			app->render->DrawTexture(texture, box.x, box.y, section);
+			app->render->DrawTexture(texture, box.x, box.y, section, false);
 			break;
 		}
 	}

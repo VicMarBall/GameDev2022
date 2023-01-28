@@ -95,19 +95,19 @@ bool GuiButton::Draw(Render* render)
 		{
 		case GuiControlState::DISABLED:
 			section = new SDL_Rect{ 0, 0, bounds.w, bounds.h};
-			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section, false);
 			break;
 		case GuiControlState::NORMAL:
 			section = new SDL_Rect{ bounds.w, 0, bounds.w, bounds.h };
-			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section, false);
 			break;
 		case GuiControlState::FOCUSED:
 			section = new SDL_Rect{ bounds.w * 2, 0, bounds.w, bounds.h };
-			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section, false);
 			break;
 		case GuiControlState::PRESSED:
 			section = new SDL_Rect{ bounds.w * 3, 0, bounds.w, bounds.h };
-			app->render->DrawTexture(texture, bounds.x, bounds.y, section);
+			app->render->DrawTexture(texture, bounds.x, bounds.y, section, false);
 			break;
 		}
 	}

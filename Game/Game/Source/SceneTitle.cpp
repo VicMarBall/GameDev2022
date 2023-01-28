@@ -325,6 +325,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		else {
 			SDL_SetWindowFullscreen(app->win->window, 0);
 		}
+		break;
 	case 12:
 		if (((GuiCheckbox*)control)->checked) {
 			app->vsync = true;
@@ -332,6 +333,7 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		else {
 			app->vsync = false;
 		}
+		break;
 	default:
 		break;
 	}
