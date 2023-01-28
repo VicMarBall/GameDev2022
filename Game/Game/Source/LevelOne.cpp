@@ -252,13 +252,13 @@ bool LevelOne::Start()
 
 	// ui
 	for (int i = 0; i < MAX_LIVESDRAWN; ++i) {
-		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, 0, NULL, {32 + (80 * i), 32, 64, 64}, this);
+		livesUI[i] = (GuiImage*)app->guiManager->CreateGuiControl(GuiControlType::IMAGE, 0, NULL, {32 + (64 * i), 32, 64, 64}, this);
 		livesUI[i]->SetTexture(lifeTexture);
 	}
 
-	carrotsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", {600, 32, 32, 32}, this);
+	carrotsCollectedText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "carrots?!", {600, 32, 20, 40}, this);
 
-	timerText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "time", { 300, 20, 30, 20 }, this);
+	timerText = (GuiText*)app->guiManager->CreateGuiControl(GuiControlType::TEXT, 0, "time", { 350, 20, 30, 20 }, this);
 
 	return true;
 }
