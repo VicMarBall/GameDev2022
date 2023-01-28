@@ -116,6 +116,7 @@ bool SceneTitle::Start() {
 	VSyncCheckbox->texture = checkboxTexture;
 	VSyncCheckbox->hoverSFX = hoverSFX;
 	VSyncCheckbox->pressSFX = pressSFX;
+	VSyncCheckbox->checked = app->vsync;
 
 	stateScene = TITLE;
 
@@ -323,6 +324,13 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 		}
 		else {
 			SDL_SetWindowFullscreen(app->win->window, 0);
+		}
+	case 12:
+		if (((GuiCheckbox*)control)->checked) {
+			app->vsync = true;
+		}
+		else {
+			app->vsync = false;
 		}
 	default:
 		break;
