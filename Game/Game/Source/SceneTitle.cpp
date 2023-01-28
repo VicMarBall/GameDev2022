@@ -46,14 +46,14 @@ bool SceneTitle::Start() {
 
 	bigButtonTexture = app->tex->Load("Assets/Textures/play_button.png");
 
-	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 50, 100, 100, 50 }, this);
+	playButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 1, "PLAY", { 50, 200, 100, 50 }, this);
 	playButton->texture = bigButtonTexture;
 	playButton->hoverSFX = hoverSFX;
 	playButton->pressSFX = playSFX;
 
 	longButtonTexture = app->tex->Load("Assets/Textures/large_button.png");
 
-	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 50, 200, 75, 25 }, this);
+	continueButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 2, "CONTINUE", { 50, 260, 75, 25 }, this);
 	continueButton->texture = longButtonTexture;
 	continueButton->hoverSFX = hoverSFX;
 	continueButton->pressSFX = pressSFX;
@@ -64,19 +64,19 @@ bool SceneTitle::Start() {
 		continueButton->canClick = false;
 	}
 
-	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 50, 250, 75, 25 }, this);
+	settingsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 3, "SETTINGS", { 50, 295, 75, 25 }, this);
 	settingsButton->texture = longButtonTexture;
 	settingsButton->hoverSFX = hoverSFX;
 	settingsButton->pressSFX = pressSFX;
 
-	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 50, 300, 75, 25 }, this);
+	creditsButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 4, "CREDITS", { 50, 330, 75, 25 }, this);
 	creditsButton->texture = longButtonTexture;
 	creditsButton->hoverSFX = hoverSFX;
 	creditsButton->pressSFX = pressSFX;
 
 	shortButtonTexture = app->tex->Load("Assets/Textures/short_button.png");
 
-	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 50, 350, 45, 25 }, this);
+	exitButton = (GuiButton*)app->guiManager->CreateGuiControl(GuiControlType::BUTTON, 5, "EXIT", { 50, 400, 45, 25 }, this);
 	exitButton->texture = shortButtonTexture;
 	exitButton->hoverSFX = hoverSFX;
 	exitButton->pressSFX = pressSFX;
