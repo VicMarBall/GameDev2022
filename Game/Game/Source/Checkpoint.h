@@ -28,7 +28,7 @@ public:
 
 public:
 
-	bool isPicked = false;
+	bool isPicked;
 	int id;
 
 private:

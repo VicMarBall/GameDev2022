@@ -25,6 +25,7 @@ bool Checkpoint::Awake() {
 bool Checkpoint::Start() {
 
 	//initilize textures
+	isPicked = false;
 	position.x = parameters.attribute("x").as_int();
 	position.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
@@ -71,8 +72,11 @@ void Checkpoint::OnCollision(PhysBody* otherBody)
 	if (otherBody->entity != nullptr) {
 		if (otherBody->entity->type == EntityType::PLAYER) {
 			isPicked = true;
-			app->lastCheckpoint = id;
-			app->SaveGameRequest();
+			if (app->lastCheckpoint != id) {
+				app->lastCheckpoint = id;
+				app->SaveGameRequest();
+			}
+			
 			LOG("Checkpoint :D");
 		}
 	}
