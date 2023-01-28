@@ -13,6 +13,8 @@
 #include "GuiImage.h"
 #include "GuiText.h"
 #include "GuiButton.h"
+#include "GuiSlider.h"
+#include "GuiCheckbox.h"
 
 #define MAX_ENEMIES 25
 
@@ -112,6 +114,13 @@ private:
 	float timer;
 	GuiText* timerText;
 
+
+	SDL_Texture* longButtonTexture = nullptr;
+	SDL_Texture* shortButtonTexture = nullptr;
+	SDL_Texture* checkboxTexture = nullptr;
+	SDL_Texture* sliderBoxTexture = nullptr;
+
+
 	// pause ui
 	GuiButton* resumeButton;
 	GuiButton* settingsButton;
@@ -124,6 +133,12 @@ private:
 
 	GuiButton* soundButton;
 	GuiButton* backFromSettingsButton;
+
+	GuiSlider* musicVolumeSlider;
+	GuiSlider* SFXVolumeSlider;
+
+	GuiCheckbox* fullScreenCheckbox;
+	GuiCheckbox* VSyncCheckbox;
 };
 
 #endif // __LEVELONE_H__

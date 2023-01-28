@@ -118,6 +118,10 @@ public:
 	bool fromCheckpoint;
 	int lastCheckpoint;
 
+	bool vsync;
+
+	float dt;
+
 private:
 
 	int argc;
@@ -134,7 +138,6 @@ private:
 	pugi::xml_node configNode;
 
 	uint frames;
-	float dt;
 
 	// L03: DONE 1: Create control variables to control that the real Load and Save happens at the end of the frame
     bool saveGameRequested;

@@ -231,11 +231,14 @@ void App::FinishUpdate()
 		// Average FPS for the whole game life
 		averageFps = (averageFps + framesPerSecond) / 2;
 	}
-	float delay = float(maxFrameDuration) - dt;
 
-	if (maxFrameDuration > 0 && delay > 0) {
-		SDL_Delay(delay);
-		dt = maxFrameDuration;
+	if (vsync) {
+		float delay = float(maxFrameDuration) - dt;
+
+		if (maxFrameDuration > 0 && delay > 0) {
+			SDL_Delay(delay);
+			dt = maxFrameDuration;
+		}
 	}
 
 	static char title[256];
