@@ -242,8 +242,8 @@ void App::FinishUpdate()
 	}
 
 	static char title[256];
-	sprintf_s(title, 256, "Av.FPS: %.2f Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %I64u ",
-		averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount);
+	sprintf_s(title, 256, "Av.FPS: %.2f Last sec frames: %i Last dt: %.3f Time since startup: %.3f Frame Count: %I64u Vsync %i",
+		averageFps, framesPerSecond, dt, secondsSinceStartup, frameCount, vsync);
 
 	app->win->SetTitle(title);
 }
