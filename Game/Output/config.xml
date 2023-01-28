@@ -52,8 +52,8 @@
 		<extralife x="600" y="400" texturepath="Assets/Textures/heart.png" />
 		<extralife x="900" y="400" texturepath="Assets/Textures/heart.png" />
 		<checkpoint x="368" y="560" texturepath="Assets/Textures/checkpoint.png" />
-		<checkpoint x="512" y="480" texturepath="Assets/Textures/checkpoint.png" />
-		<checkpoint x="600" y="500" texturepath="Assets/Textures/checkpoint.png" />
+		<checkpoint x="1312" y="624" texturepath="Assets/Textures/checkpoint.png" />
+		<checkpoint x="2496" y="528" texturepath="Assets/Textures/checkpoint.png" />
 		<camera x="-150" y="-288"/>
 		<audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
 		<mapfile path="Assets/Maps/map_level1.tmx"/>
@@ -85,9 +85,9 @@
 		<enemy x="3232" y="480" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
 		<enemy x="3296" y="608" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
 		<goal x="3760" y="128" texturepath="Assets/Textures/goal.png"/>
-		<checkpoint x="160" y="128" texturepath="Assets/Textures/checkpoint.png" />
-		<checkpoint x="512" y="480" texturepath="Assets/Textures/checkpoint.png" />
-		<checkpoint x="600" y="500" texturepath="Assets/Textures/checkpoint.png" />
+		<checkpoint x="160" y="144" texturepath="Assets/Textures/checkpoint.png" />
+		<checkpoint x="1312" y="368" texturepath="Assets/Textures/checkpoint.png" />
+		<checkpoint x="2560" y="400" texturepath="Assets/Textures/checkpoint.png" />
 		<camera x="0" y="0"/>
 		<audio musicpath="Assets/Audio/Music/mushroomdance_0.ogg"/>
 		<mapfile path="Assets/Maps/map_level2.tmx"/>
