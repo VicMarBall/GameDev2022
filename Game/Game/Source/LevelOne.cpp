@@ -778,6 +778,11 @@ bool LevelOne::CleanUp()
 
 	app->guiManager->Clear(timerText);
 
+	app->tex->UnLoad(longButtonTexture);
+	app->tex->UnLoad(shortButtonTexture);
+	app->tex->UnLoad(checkboxTexture);
+	app->tex->UnLoad(sliderBoxTexture);
+
 	app->map->UnLoad();
 	app->tex->UnLoad(img);
 	app->tex->UnLoad(mouseTileTex);
