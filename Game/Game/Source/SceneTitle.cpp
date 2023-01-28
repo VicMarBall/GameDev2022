@@ -296,6 +296,12 @@ bool SceneTitle::OnGuiMouseClickEvent(GuiControl* control)
 
 		playButton->TurnON();
 		continueButton->TurnON();
+		if (app->LoadFileExists()) {
+			continueButton->canClick = true;
+		}
+		else {
+			continueButton->canClick = false;
+		}
 		settingsButton->TurnON();
 		creditsButton->TurnON();
 		exitButton->TurnON();
