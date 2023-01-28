@@ -43,6 +43,9 @@ public:
 	int GetVolumeMusic() {
 		return musicVolume;
 	}
+
+	void ClearAllFX();
+
 private:
 
 	int FXVolume;

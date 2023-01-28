@@ -192,3 +192,8 @@ void Audio::SetVolumeMusic(int volume)
 {
 	musicVolume = Mix_VolumeMusic(volume);
 }
+
+void Audio::ClearAllFX()
+{
+	fx.Clear();
+}

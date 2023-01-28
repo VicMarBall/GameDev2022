@@ -788,6 +788,8 @@ bool LevelOne::CleanUp()
 	app->tex->UnLoad(mouseTileTex);
 	app->tex->UnLoad(originTex);
 
+	app->audio->ClearAllFX();
+
 	return true;
 }
 

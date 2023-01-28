@@ -230,6 +230,8 @@ bool SceneTitle::CleanUp() {
 	app->tex->UnLoad(checkboxTexture);
 	app->tex->UnLoad(sliderBoxTexture);
 
+	app->audio->ClearAllFX();
+
 	return true;
 }
 
