@@ -37,7 +37,9 @@ F5: Save current game state
 F6: Load previous state
 
 F7: Activate Checkpoint Teleportation
-  J K: Teleport between Checkpoints in the same level
+  
+   J K: Teleport between Checkpoints in the same level
+  
   1 2 3 4 5 6: Teleport to a specific Checkpoint (including between levels)
 
 F8: See GUI bounds / logic
