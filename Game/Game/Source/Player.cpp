@@ -339,12 +339,14 @@ void Player::OnCollision(PhysBody* otherBody)
 		}
 
 		if (otherBody->entity->type == EntityType::WALKINGENEMY || otherBody->entity->type == EntityType::FLYINGENEMY) {
-			if (invencibilityFrames == 0) {
-				lives--;
-				if (lives == 0) {
-					Die();
+			if (!godMode) {
+				if (invencibilityFrames == 0) {
+					lives--;
+					if (lives == 0) {
+						Die();
+					}
+					invencibilityFrames = 100;
 				}
-				invencibilityFrames = 100;
 			}
 		}
 	}

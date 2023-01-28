@@ -240,7 +240,7 @@ bool LevelTwo::Update(float dt)
 	}
 
 	// pause
-	if (app->input->GetKey(SDL_SCANCODE_P) == KEY_DOWN) {
+	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN) {
 		pause = !pause;
 
 		if (pause) {
@@ -519,7 +519,7 @@ bool LevelTwo::PostUpdate()
 
 	app->guiManager->Draw();
 
-	if (app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN || toExit)
+	if (toExit)
 		ret = false;
 
 	return ret;
