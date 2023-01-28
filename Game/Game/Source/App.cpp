@@ -104,6 +104,8 @@ bool App::Awake()
 {
 	bool ret = false;
 
+	fromCheckpoint = false;
+
 	// L01: DONE 3: Load config from XML
 	ret = LoadConfig();
 

@@ -90,6 +90,13 @@
 		<enemy x="3040" y="384" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
 		<enemy x="3232" y="480" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
 		<enemy x="3296" y="608" texturepath="Assets/Textures/flying_yellow_enemy_spritesheet.png" type="0"/>
+		<carrot x="608" y="432" texturepath="Assets/Textures/carrot.png" />
+		<carrot x="752" y="368" texturepath="Assets/Textures/carrot.png" />
+		<carrot x="1456" y="336" texturepath="Assets/Textures/carrot.png" />
+		<carrot x="1744" y="432" texturepath="Assets/Textures/carrot.png" />
+		<carrot x="2832" y="528" texturepath="Assets/Textures/carrot.png" />
+		<carrot x="3440" y="368" texturepath="Assets/Textures/carrot.png" />
+		<extralife x="1184" y="416" texturepath="Assets/Textures/heart.png" />
 		<goal x="3760" y="128" texturepath="Assets/Textures/goal.png"/>
 		<checkpoint x="160" y="144" texturepath="Assets/Textures/checkpoint.png" />
 		<checkpoint x="1312" y="368" texturepath="Assets/Textures/checkpoint.png" />

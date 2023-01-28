@@ -236,6 +236,7 @@ bool LevelTwo::Start()
 	fullScreenCheckbox->texture = checkboxTexture;
 	fullScreenCheckbox->hoverSFX = hoverSFX;
 	fullScreenCheckbox->pressSFX = pressSFX;
+	fullScreenCheckbox->checked = false;
 
 	VSyncCheckbox = (GuiCheckbox*)app->guiManager->CreateGuiControl(GuiControlType::CHECKBOX, 9, "VSYNC", { 150, 300, 50, 25 }, this);
 	VSyncCheckbox->TurnOFF();

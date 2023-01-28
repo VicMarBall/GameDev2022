@@ -18,6 +18,8 @@ GuiManager::~GuiManager() {}
 
 bool GuiManager::Start()
 {
+	debug = false;
+
 	return true;
 }
 
